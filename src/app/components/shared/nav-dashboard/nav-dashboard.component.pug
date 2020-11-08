@@ -1,0 +1,109 @@
+.main-sidebar.sidebar-style-2
+  aside#sidebar-wrapper
+    //- .sidebar-brand
+    //-   a(href="index.html") Stisla
+    //- .sidebar-brand.sidebar-brand-sm
+    //-   a(href="index.html") St
+    ul.sidebar-menu
+      li.menu-header Panel de usuario
+
+      li
+        a.nav-link([routerLink]="['/dashboard/profile']", routerLinkActive="active")
+          i.fas.fa-user
+          |
+          span Perfil de usuario
+      li
+        a.nav-link([routerLink]="['/dashboard/settings']", routerLinkActive="active")
+          i.fas.fa-cogs
+          |
+          span Configuraciones
+      li
+        a.nav-link((click)="this.logout()")
+          i.fas.fa-sign-out-alt
+          |
+          span Cerrar sesión
+      //- li.dropdown
+      //-   a.nav-link.has-dropdown(href="#")
+      //-     i.fas.fa-th
+      //-     |
+      //-     span Bootstrap
+      //-   ul.dropdown-menu
+      //-     li
+      //-       a.nav-link(href="bootstrap-alert.html") Alert
+      //-     li
+      //-       a.nav-link(href="bootstrap-badge.html") Badge
+      //-     li
+      //-       a.nav-link(href="bootstrap-breadcrumb.html") Breadcrumb
+      //-     li
+      //-       a.nav-link(href="bootstrap-buttons.html") Buttons
+      //-     li
+      //-       a.nav-link(href="bootstrap-card.html") Card
+      //-     li
+      //-       a.nav-link(href="bootstrap-carousel.html") Carousel
+      //-     li
+      //-       a.nav-link(href="bootstrap-collapse.html") Collapse
+      //-     li
+      //-       a.nav-link(href="bootstrap-dropdown.html") Dropdown
+      //-     li
+      //-       a.nav-link(href="bootstrap-form.html") Form
+      //-     li
+      //-       a.nav-link(href="bootstrap-list-group.html") List Group
+      //-     li
+      //-       a.nav-link(href="bootstrap-media-object.html") Media Object
+      //-     li
+      //-       a.nav-link(href="bootstrap-modal.html") Modal
+      //-     li
+      //-       a.nav-link(href="bootstrap-nav.html") Nav
+      //-     li
+      //-       a.nav-link(href="bootstrap-navbar.html") Navbar
+      //-     li
+      //-       a.nav-link(href="bootstrap-pagination.html") Pagination
+      //-     li
+      //-       a.nav-link(href="bootstrap-popover.html") Popover
+      //-     li
+      //-       a.nav-link(href="bootstrap-progress.html") Progress
+      //-     li
+      //-       a.nav-link(href="bootstrap-table.html") Table
+      //-     li
+      //-       a.nav-link(href="bootstrap-tooltip.html") Tooltip
+      //-     li
+      //-       a.nav-link(href="bootstrap-typography.html") Typography
+      //- li.menu-header Stisla
+      //- li.dropdown
+      //-   a.nav-link.has-dropdown(href="#")
+      //-     i.fas.fa-th-large
+      //-     |
+      //-     span Components
+      //-   ul.dropdown-menu
+      //-     li
+      //-       a.nav-link(href="components-article.html") Article
+      //-     li
+      //-       a.nav-link.beep.beep-sidebar(href="components-avatar.html") Avatar
+      //-     li
+      //-       a.nav-link(href="components-chat-box.html") Chat Box
+      //-     li
+      //-       a.nav-link.beep.beep-sidebar(href="components-empty-state.html") Empty State
+      //-     li
+      //-       a.nav-link(href="components-gallery.html") Gallery
+      //-     li
+      //-       a.nav-link.beep.beep-sidebar(href="components-hero.html") Hero
+      //-     li
+      //-       a.nav-link(href="components-multiple-upload.html") Multiple Upload
+      //-     li
+      //-       a.nav-link.beep.beep-sidebar(href="components-pricing.html") Pricing
+      //-     li
+      //-       a.nav-link(href="components-statistic.html") Statistic
+      //-     li
+      //-       a.nav-link(href="components-tab.html") Tab
+      //-     li
+      //-       a.nav-link(href="components-table.html") Table
+      //-     li
+      //-       a.nav-link(href="components-user.html") User
+      //-     li
+      //-       a.nav-link.beep.beep-sidebar(href="components-wizard.html") Wizard
+    //- .mt-4.mb-4.p-3.hide-sidebar-mini
+    //-   a.btn.btn-primary.btn-lg.btn-block.btn-icon-split(href="https://getstisla.com/docs")
+    //-     i.fas.fa-rocket
+    //-     |  Documentation
+
+//- //  html2pug -f -c < nav-dashboard.component.pug > nav-dashboard.component.pug

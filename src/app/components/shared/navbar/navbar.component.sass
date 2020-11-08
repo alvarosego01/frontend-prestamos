@@ -1,0 +1,37 @@
+
+
+@import "~src/generals"
+
+
+
+.navbar
+    right: 0!important
+
+ul.navbar-nav
+    li.nav-item
+        a
+            transition: $trans
+            color: white
+            &:hover
+                background-color: white
+                color: $primaryApp
+    li.nav-item.active
+        a
+            background-color: white
+            color: $primaryApp
+
+
+
+.nav-collapse
+    ul.navbar-nav.show
+        background-color: $primaryApp
+        li
+            a
+                transition: $trans
+                color: $primaryApp
+                &:hover
+                    background-color: $primaryApp
+                    color: white
+            a.active
+                background-color: $primaryApp
+                color: white

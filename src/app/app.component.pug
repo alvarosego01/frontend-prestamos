@@ -1,0 +1,14 @@
+app-navbar
+app-nav-dashboard(*ngIf="this._sessionService.estaLogueado() == true")
+#app
+  p-toast
+  app-spinner(*ngIf="this._globalService.spinner == true")
+  .main-wrapper.main-wrapper-1
+    .main-content( [ngClass]="{'noSpace': this._sessionService.estaLogueado() == false }")
+      app-public(*ngIf="this._globalService.spinner == false")
+      app-dashboard(*ngIf="this._globalService.spinner == true")
+app-footer
+
+
+
+//- [ngClass]="{ 'noSpace': this._sessionService.estaLogueado() == true }"

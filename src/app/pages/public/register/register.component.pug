@@ -1,0 +1,110 @@
+section.section
+  //- p-progressspinner(*ngIf="this.spinner == true")
+  .container.mt-5
+    .row
+      .col-12.col-sm-10.offset-sm-1.col-md-8.offset-md-2.col-lg-8.offset-lg-2.col-xl-8.offset-xl-2
+        .login-brand
+          | Proyecto
+        .card.card-primary
+          .card-header
+            h4 Registro de usuario
+          .card-body
+            form.needs-validation&attributes({
+              '#f': 'ngForm',
+              '(ngSubmit)': 'userRegister( f )',
+              'novalidate': ''
+              })
+              .form-divider
+                | Información de usuario
+              .row
+                .form-group.col-md-12.col-lg-4
+                  label(for="nombres") Nombres
+                  input#nombres.form-control( ngModel, required, type="text", name="nombres", autofocus)
+                  .invalid-feedback
+                    | Por favor, escribe tu nombre
+                .form-group.col-md-12.col-lg-4
+                  label(for="apellidos") Apellidos
+                  input#apellidos.form-control( ngModel, required, type="text", name="apellidos")
+                  .invalid-feedback
+                    | Por favor, escribe tu apellido
+                .form-group.col-md-12.col-lg-4
+                  label(for="cedula") Nro Identificación ó Cédula
+                  input#cedula.form-control( ngModel, required, type="text", name="cedula")
+                  .invalid-feedback
+                    | Por favor, escribe tu apellido
+              .row
+                .form-group.col-md-12.col-lg-4
+                  label(for="pais") País
+                  .selectric-wrapper.selectric-form-control.selectric-selectric.selectric-below.selectric-open
+                    .selectric-hide-select
+                      select#pais.form-control.selectric(ngModel, required, type="text", name="pais", tabindex="-1")
+                        option Colombia
+                        option Ecuador
+                      .invalid-feedback
+                        | Por favor, selecciona un país
+
+                .form-group.col-md-12.col-lg-4
+                  label(for="estado") Estado ó departamento
+                  input#estado.form-control( ngModel, required, type="text", name="estado", autofocus)
+                  .invalid-feedback
+                    | Por favor, escribe un estado ó departamento
+
+                .form-group.col-md-12.col-lg-4
+                  label(for="ciudad") Ciudad
+                  input#ciudad.form-control( ngModel, required, type="text", name="ciudad")
+                  .invalid-feedback
+                    | Por favor, escribe tu ciudad
+              .row
+                .form-group.col-md-12
+                  label(for="direccion") Dirección
+                  input#direccion.form-control( ngModel, required, type="text", name="direccion", autofocus)
+                  .invalid-feedback
+                    | Por favor, escribe tu nombre
+
+              .row
+                .form-group.col-md-12.col-lg-4
+                  label(for="edad") Edad
+                  input#edad.form-control( ngModel, required, type="number", name="edad")
+                  .invalid-feedback
+                    | Por favor, escribe tu edad
+
+                .form-group.col-md-12.col-lg-4
+                  label(for="nroFijo") Teléfono fijo
+                  input#nroFijo.form-control( ngModel, type="tel", name="nroFijo", autofocus)
+                  .invalid-feedback
+                    | Por favor, escribe un teléfono fijo
+
+                .form-group.col-md-12.col-lg-4
+                  label(for="nroCelular") Teléfono Celular
+                  input#nroCelular.form-control( ngModel, required,type="tel", name="nroCelular", autofocus)
+                  .invalid-feedback
+                    | Por favor, escribe un teléfono Celular
+
+              .form-divider
+                | Datos de acceso
+              .row
+                .form-group.col-md-12.col-lg-4
+                  label(for="email") Email
+                  input#email.form-control( ngModel ,required ,type="email", name="email")
+                  .invalid-feedback
+                    | Por favor, escribe tu email
+                .form-group.col-md-12.col-lg-4
+                  label.d-block(for="pass") Contraseña
+                  input#pass.form-control.pwstrength(ngModel ,required , type="password", data-indicator="pwindicator", name="pass")
+                  #pwindicator.pwindicator
+                    .bar
+                    .label
+                .form-group.col-md-12.col-lg-4
+                  label.d-block(for="Cpass") Confirmar contraseña
+                  input#Cpass.form-control(ngModel ,required, type="password", name="Cpass")
+
+              .form-group
+                button.btn.btn-primary.btn-lg.btn-block(type='submit' tabindex='4')
+                  | Registrar
+        .mt-5.text-muted.text-center
+          | ¿Ya eres usuario?
+          a&attributes({
+            "[routerLink]": "['/login']",
+            "routerLinkActive": "active"
+          }) Inicia sesión
+
