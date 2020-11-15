@@ -8,5 +8,8 @@ export class GlobalService {
 
   spinner: boolean = false;
 
+
+  openModal: boolean = false;
+
   constructor() { }
 }

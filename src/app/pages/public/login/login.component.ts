@@ -16,7 +16,11 @@ export class LoginComponent implements OnInit {
     public _sessionService: SessionService,
     public _globalService: GlobalService,
     public router: Router
-  ) { }
+  ) {
+
+    
+
+   }
 
   ngOnInit(): void {
     window.scroll(0,0);

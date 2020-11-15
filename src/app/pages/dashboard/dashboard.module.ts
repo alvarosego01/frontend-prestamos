@@ -10,25 +10,32 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GlobalModule } from 'src/app/components/global/global.module';
+import { AdminModule } from './roles/admin/admin.module';
+import { RouterModule } from '@angular/router';
+import { InfoUserComponent } from './info-user/info-user.component';
 
 
-
+import {DialogModule} from 'primeng/dialog';
 @NgModule({
   declarations: [
     DashboardComponent,
     ProfileComponent,
     NotificationsComponent,
-    SettingsComponent],
+    SettingsComponent,
+    InfoUserComponent],
   imports: [
     CommonModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    DialogModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     GlobalModule,
     // PipesModule,
-    _DASHBOARD_ROUTES
+    AdminModule,
+    RouterModule
+    // _DASHBOARD_ROUTES
   ],
   exports: [
     // DashboardComponent

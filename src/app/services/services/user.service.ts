@@ -24,6 +24,8 @@ export class UserService {
 
   _SERVICIOS: string = environment._SERVICE;
 
+  
+
   constructor(
 
     public http: HttpClient,
@@ -31,6 +33,7 @@ export class UserService {
     public _sessionService: SessionService
 
   ) {
+
   }
 
 
@@ -58,7 +61,7 @@ export class UserService {
   }
   usersAllGET(paginate){
 
-    let url = `${this._SERVICIOS}/users?t=${this._sessionService.token}&paginate=${paginate}`;
+    let url = `${this._SERVICIOS}/users?paginate=${paginate}`;
 
     return this.http.get(url).pipe(
         map((resp: any) => {
@@ -72,7 +75,7 @@ export class UserService {
   }
   usersOneGET(id: string){
 
-    let url = `${this._SERVICIOS}/users/${id}?t=${this._sessionService.token}`;
+    let url = `${this._SERVICIOS}/users/${id}`;
 
     return this.http.get(url).pipe(
         map((resp: any) => {
@@ -86,7 +89,7 @@ export class UserService {
   }
   usersOnePUT(id: string, data: any){
 
-    let url = `${this._SERVICIOS}/users/${id}?t=${this._sessionService.token}`;
+    let url = `${this._SERVICIOS}/users/${id}`;
 
     return this.http.put(url, data).pipe(
         map((resp: any) => {
@@ -101,7 +104,7 @@ export class UserService {
   }
   usersOneDELETE(id: string){
 
-    let url = `${this._SERVICIOS}/users/${id}?t=${this._sessionService.token}`;
+    let url = `${this._SERVICIOS}/users/${id}`;
 
     return this.http.delete(url).pipe(
         map((resp: any) => {

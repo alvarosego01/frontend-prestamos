@@ -3,6 +3,13 @@
 
 
 @import './generals'
+@import '~primeicons/primeicons.css'
+
+
+ul,
+ol
+    text-decoration: none
+    list-style: none
 
 .navbar
     background-color: $primaryApp
@@ -23,3 +30,36 @@
 .allFooter
     width: 100%!important
     padding-left: 30px!important
+
+
+
+ul.opcGroupButtons
+    display: flex
+    width: 100%
+    justify-content: space-evenly
+    flex-wrap: wrap
+    padding: 0
+    li.opcElement
+        padding: 10px 15px
+        transition: $trans
+        .ico
+            display: flex
+            justify-content: center
+            i
+                margin: auto
+                transition: $trans
+                color: $primaryApp
+                font-size: 22px
+        .text
+            p
+                display: block
+                width: 100%
+                text-align: center
+                transition: $trans
+                margin-bottom: 0
+                // color: $primaryApp
+        &:hover
+            cursor: pointer
+            background-color: $primaryApp
+            i,p
+                color: white

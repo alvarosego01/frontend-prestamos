@@ -7,13 +7,15 @@ import { MessageService } from 'primeng/api';
 export class NotifyService {
 
   constructor(
-    public messageService: MessageService
+    public messageService: MessageService,
     ) {}
 
 
 
 
   prueba(){
+
+
 
       // this.messageService.
       this.messageService.add({severity: 'error',sticky: true ,summary: 'error Message', detail: 'User can not be empty!'});

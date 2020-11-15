@@ -1,7 +1,9 @@
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginVerifyGuard } from 'src/app/services/guards/guards.index';
+import { AdminGuard, AdminOrEnruterGuard, LoginVerifyGuard } from 'src/app/services/guards/guards.index';
 
-import { DashboardComponent, NotificationsComponent, ProfileComponent, SettingsComponent } from './dashboard.index';
+import { DashboardComponent, NotificationsComponent, ProfileComponent, SettingsComponent, InfoUserComponent } from './dashboard.index';
+import { AdminComponent } from './roles/admin/admin.index';
 
 
 
@@ -27,6 +29,21 @@ const dashboardRoutes: Routes = [
           path: "settings",
           component: SettingsComponent,
         },
+        {
+          path: "infoUser/:id",
+          component: InfoUserComponent,
+          canActivate: [AdminOrEnruterGuard],
+          canActivateChild: [AdminOrEnruterGuard],
+        },
+
+        {
+          path: "admin",
+          component: AdminComponent,
+          canActivate: [AdminGuard],
+          canActivateChild: [AdminGuard],
+          // canLoad: [ AuthGuard ],
+          loadChildren: () => import('./roles/admin/admin.routes').then( m => m._ADMIN_ROUTES )
+        },
 
         {
           path: "**",
@@ -43,4 +60,26 @@ const dashboardRoutes: Routes = [
 
 
 
-export const _DASHBOARD_ROUTES = RouterModule.forChild(dashboardRoutes);
+
+//   const routes: Routes = [
+//     {
+//         path: 'dashboard',
+//         component: PagesComponent,
+//         canActivate: [ AuthGuard ],
+//         canLoad: [ AuthGuard ],
+//         loadChildren: () => import('./child-routes.module').then( m => m.ChildRoutesModule )
+//     },
+// ];
+
+@NgModule({
+    imports: [ RouterModule.forChild(dashboardRoutes) ],
+    exports: [ RouterModule ]
+})
+export class _DASHBOARD_ROUTES {}
+
+
+
+
+
+// export const _DASHBOARD_ROUTES = RouterModule.forChild(dashboardRoutes);
+

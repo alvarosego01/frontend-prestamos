@@ -18,7 +18,7 @@ import { environment } from 'src/environments/environment';
 export class SessionService {
 
   usuario: any;
-  token: string;
+  token: string = null;
   _SERVICIOS: string = environment._SERVICE;
 
   constructor(
@@ -70,35 +70,35 @@ export class SessionService {
     return this.token && this.token.length > 5 ? true : false;
   }
 
-    /* -------------------------------------
-      <- Guardar en Storage ->
-      Descripción: Con esta funcion se almacenan
-      el id, el usuario, el token en el localstorage
-      para manejarse de manera dinamica sin importar
-      que se elimine el navegador
-    --------------------------------------- */
-    guardarStorage(id: string, token: string, usuario: any) {
-      localStorage.setItem("id", id);
-      localStorage.setItem("token", token);
-      // se almacena el usuario pero hay que tener cuidado por que la respuesta que se retorna es un objeto.. para esto se transforma en un string por que localstorage solo almacena strings
-      localStorage.setItem("user", JSON.stringify(usuario));
+  /* -------------------------------------
+    <- Guardar en Storage ->
+    Descripción: Con esta funcion se almacenan
+    el id, el usuario, el token en el localstorage
+    para manejarse de manera dinamica sin importar
+    que se elimine el navegador
+  --------------------------------------- */
+  guardarStorage(id: string, token: string, usuario: any) {
+    localStorage.setItem("id", id);
+    localStorage.setItem("token", token);
+    // se almacena el usuario pero hay que tener cuidado por que la respuesta que se retorna es un objeto.. para esto se transforma en un string por que localstorage solo almacena strings
+    localStorage.setItem("user", JSON.stringify(usuario));
 
-      this.usuario = usuario;
-      this.token = token;
+    this.usuario = usuario;
+    this.token = token;
 
-      // this.roleName = new RoleTransformPipe().transform(this.usuario.role);
-    }
+    // this.roleName = new RoleTransformPipe().transform(this.usuario.role);
+  }
 
-    logout() {
-      this.usuario = null;
-      this.token = null;
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-      localStorage.removeItem("id");
-      // una vez al deslogear se pasa al login
+  logout() {
+    this.usuario = null;
+    this.token = null;
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    localStorage.removeItem("id");
+    // una vez al deslogear se pasa al login
 
-      this.router.navigate(["/login"]);
-    }
+    this.router.navigate(["/login"]);
+  }
 
 
 

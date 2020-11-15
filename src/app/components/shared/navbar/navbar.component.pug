@@ -1,7 +1,7 @@
 .navbar-bg
 nav.navbar.navbar-expand-lg.main-navbar( [ngClass]="{'allNav': this._sessionService.estaLogueado() == false }")
 	form.form-inline.mr-auto
-		ul.navbar-nav.mr-3(*ngIf="this._sessionService.estaLogueado() == true")
+		ul.navbar-nav.mr-3( [ngClass]="{'hideButton': this._sessionService.estaLogueado() == false}" )
 			li
 				a.nav-link.nav-link-lg( data-toggle='sidebar', style="color: white")
 					i.fas.fa-bars

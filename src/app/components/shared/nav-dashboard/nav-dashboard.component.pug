@@ -4,9 +4,43 @@
     //-   a(href="index.html") Stisla
     //- .sidebar-brand.sidebar-brand-sm
     //-   a(href="index.html") St
-    ul.sidebar-menu
-      li.menu-header Panel de usuario
+    ul.sidebar-menu( *ngIf="this._sessionService.usuario.rol == 'Administrador'" )
+      li.menu-header Panel de Administración
+      li
+        a.nav-link([routerLink]="['/dashboard/admin/usersControl']", routerLinkActive="active")
+          i.fas.fa-user
+          |
+          span  Control de usuarios
+      li
+        a.nav-link([routerLink]="['/dashboard/admin/routesControl']", routerLinkActive="active")
+          i.fas.fa-user
+          |
+          span  Control de rutas
+      li
+        a.nav-link([routerLink]="['/dashboard/admin/chartsControl']", routerLinkActive="active")
+          i.fas.fa-user
+          |
+          span  Estadisticas
+      li
+        a.nav-link([routerLink]="['/dashboard/admin/rolesControl']", routerLinkActive="active")
+          i.fas.fa-user
+          |
+          span  Control de roles
+      li
+        a.nav-link([routerLink]="['/dashboard/admin/requestControl']", routerLinkActive="active")
+          i.fas.fa-user
+          |
+          span  Control de peticiones
 
+
+
+
+
+
+
+
+    ul.sidebar-menu
+      li.menu-header Panel de Usuario
       li
         a.nav-link([routerLink]="['/dashboard/profile']", routerLinkActive="active")
           i.fas.fa-user

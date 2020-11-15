@@ -21,14 +21,24 @@ import { NotifyService, SearchService, SessionService, UserService } from './ser
 
 
 
+import { GlobalModule } from './components/global/global.module';
+// import { _PUBLIC_ROUTES } from './pages/public/public.routes';
+import { DashboardModule } from './pages/dashboard/dashboard.module';
+// import { _APP_ROUTES } from './app.routes';
+import { AppRoutingModule } from './app-routing.module';
+
+
+
+
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth/auth.interceptor';
+// import { TokenInterceptor } from './../auth/token.interceptor';
+
+
+// prime NG
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
-
-import { GlobalModule } from './components/global/global.module';
-import { _PUBLIC_ROUTES } from './pages/public/public.routes';
-import { DashboardModule } from './pages/dashboard/dashboard.module';
-import { _APP_ROUTES } from './app.routes';
-
+import {DialogModule} from 'primeng/dialog';
 
 @NgModule({
   declarations: [
@@ -42,10 +52,13 @@ import { _APP_ROUTES } from './app.routes';
     BrowserModule,
     ToastModule,
     GlobalModule,
+    DialogModule,
     // _PUBLIC_ROUTES,
-    _APP_ROUTES,
+    // _APP_ROUTES,
+    AppRoutingModule,
     DashboardModule,
     PublicModule,
+    HttpClientModule
 
 
 
@@ -56,6 +69,8 @@ import { _APP_ROUTES } from './app.routes';
     SessionService,
     UserService,
     SearchService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+
   ],
   bootstrap: [AppComponent]
 })

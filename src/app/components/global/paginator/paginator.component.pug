@@ -1,1 +1,12 @@
-p paginator works!
+nav.d-inline-block
+  ul.pagination.mb-0
+    li.page-item.disabled
+      a.page-link(href="#", tabindex="-1")
+        i.fas.fa-chevron-left
+    li.page-item.active
+      a.page-link(href="#")
+        | 1
+        span.sr-only (current)
+    li.page-item
+      a.page-link(href="#")
+        i.fas.fa-chevron-right
