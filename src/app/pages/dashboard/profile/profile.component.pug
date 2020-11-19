@@ -25,6 +25,12 @@ section.section
                 .media-body
                   h6 Fecha de registro
                   p {{ this._sessionService.usuario.createdAt[0] }}, {{ this._sessionService.usuario.createdAt[1] }} {{ this._sessionService.usuario.createdAt[2] }}
+              .media(*ngIf="this._sessionService.usuario.last_session")
+                .media-icon
+                  i.fas.fa-calendar
+                .media-body
+                  h6 Última conexión
+                  p {{ this._sessionService.usuario.last_session[0] }}, {{ this._sessionService.usuario.last_session[1] }} {{ this._sessionService.usuario.last_session[2] }}
 
       .col-12.col-md-12.col-lg-7
         .card

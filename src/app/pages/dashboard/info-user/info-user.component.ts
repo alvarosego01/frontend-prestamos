@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GlobalService, SessionService, UserService } from 'src/app/services/services.index';
 
@@ -11,7 +12,12 @@ export class InfoUserComponent implements OnInit {
 
 
   infoUser: any = null;
-  display: boolean = false;
+
+
+  changeRoles: boolean = false;
+  deleteUser: boolean = false;
+
+  idUser: string;
 
   constructor(
     public router: Router,
@@ -21,10 +27,11 @@ export class InfoUserComponent implements OnInit {
     public _globalService: GlobalService
   ) {
 
-    activatedRoute.params.subscribe((params) => {
+    this.activatedRoute.params.subscribe((params) => {
       let id = params["id"];
+      this.idUser = id;
 
-      this.getUserProfile(id);
+      this.getUserProfile(this.idUser);
 
 
 
@@ -34,30 +41,73 @@ export class InfoUserComponent implements OnInit {
    }
 
   ngOnInit(): void {
+
+
+
   }
 
 
   async getUserProfile(id: string){
 
-    this._globalService.spinner = true;
     await this._usersService.usersOneGET(id).subscribe((resp) => {
 
       this.infoUser = resp.data;
 
+
+
+        console.log('infoUser', this.infoUser);
     }, (err) => {
       console.error(err);
     });
-    this._globalService.spinner = false;
+  }
+
+
+
+  closeRoleDialog(data){
+
+    this.changeRoles = data;
+    this.deleteUser = data;
+
+  }
+
+  sucess(data){
+
+    this.getUserProfile(this.idUser);
+    this.changeRoles = false;
+    this.deleteUser = false;
+
+  }
+
+  showDialog(type: string) {
+
+    // if(this.infoUser._id === this._sessionService.usuario._id){
+
+    //   this._notifyService.messageService.add({
+    //     severity: 'error',
+    //     summary: 'No'
+
+    //   });
+    //   return;
+
+    // }
+
+    if(type == 'roles'){
+      this.changeRoles = true;
+    }
+
+    if(type == 'deleteUser'){
+
+      this.deleteUser = true;
+
+    }
+
+
 
   }
 
 
 
 
-  showDialog() {
-      this.display = true;
-  }
+
+
 }
-
-
-

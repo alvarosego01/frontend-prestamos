@@ -327,7 +327,7 @@ $boxShadow2: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
 app-spinner
     position: fixed
     margin: auto
-    display: flex
+    display: none
     left: 0
     right: 0
     top: 0
@@ -336,3 +336,10 @@ app-spinner
     align-content: center
     align-items: center
     z-index: 99999
+    background-color: rgba(white, 0.75)!important
+    transition: $trans
+
+
+body.cursor-loader
+    app-spinner
+        display: flex!important

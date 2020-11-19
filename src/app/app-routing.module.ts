@@ -15,25 +15,6 @@ import { noLoginVerifyGuard } from './services/guards/guards.index';
 
 const routes: Routes = [
 
-  // path: '/dashboard' PagesRouting
-  // path: '/auth' AuthRouting
-  // path: '/medicos' MedicosRouting
-  // path: '/compras' ComprasRouting
-  // { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  // { path: '**', component: NopagefoundComponent },
-
-//   {
-//     path: 'login',
-//     component: LoginComponent,
-//     canActivate: [noLoginVerifyGuard],
-//     canActivateChild: [noLoginVerifyGuard],
-// },
-// {
-//     path: 'register',
-//     component: RegisterComponent,
-//     canActivate: [noLoginVerifyGuard],
-//     canActivateChild: [noLoginVerifyGuard],
-// },
 
 { path: '**', component: LoginComponent },
 { path: '', component: LoginComponent }

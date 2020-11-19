@@ -12,6 +12,7 @@ import { throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { SessionService } from './session.service';
 import { Router } from '@angular/router';
+import { GlobalService } from "./global.service";
 
 // import { environment } from '../environments/environment';
 
@@ -24,13 +25,13 @@ export class UserService {
 
   _SERVICIOS: string = environment._SERVICE;
 
-  
+
 
   constructor(
 
     public http: HttpClient,
     public router: Router,
-    public _sessionService: SessionService
+    public _sessionService: SessionService,
 
   ) {
 
@@ -45,10 +46,32 @@ export class UserService {
 
 
 
-  userRegisterPOST(data: any){
+  userGetEnroutersGET(paginate){
+
+    let url = `${this._SERVICIOS}/users/enrouters?paginate=${paginate}`;
+    return this.http.get(url).pipe(
+      map((resp: any) => {
+        return resp;
+      }),
+      catchError((err) => {
+        return throwError(err);
+    })
+    );
+
+  }
+
+//   auth
+// signup
+// reference
+  userRegisterPOST(data: any, idRef: string = null){
 
     let url = `${this._SERVICIOS}/auth/signup`;
 
+    if(idRef != null){
+      url = `${url}/reference/${idRef}`;
+    }
+
+    console.log('la url', url);
     return this.http.post(url, data).pipe(
         map((resp: any) => {
         return resp;
@@ -59,6 +82,7 @@ export class UserService {
     );
 
   }
+
   usersAllGET(paginate){
 
     let url = `${this._SERVICIOS}/users?paginate=${paginate}`;
@@ -73,9 +97,26 @@ export class UserService {
     );
 
   }
+
+  usersMyCollectorsGET(paginate, id: string){
+
+    let url = `${this._SERVICIOS}/users/myCollectors/${id}?paginate=${paginate}`;
+
+    return this.http.get(url).pipe(
+        map((resp: any) => {
+        return resp;
+    }),
+    catchError((err) => {
+        return throwError(err);
+    })
+    );
+
+  }
+
+
   usersOneGET(id: string){
 
-    let url = `${this._SERVICIOS}/users/${id}`;
+    let url = `${this._SERVICIOS}/users/getOne/${id}`;
 
     return this.http.get(url).pipe(
         map((resp: any) => {
@@ -116,6 +157,9 @@ export class UserService {
     );
 
   }
+
+
+
 
 
 

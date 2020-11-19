@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "node ./ng-add-pug-loader.js"
+    "postinstall": "node ./ng-add-pug-loader.js && node ./ng-add-pug-loader.js"
   },
   "private": true,
   "dependencies": {
@@ -24,6 +24,7 @@
     "@ngrx/schematics": "^10.0.0",
     "angular2-jwt": "^0.2.3",
     "html2pug": "^4.0.0",
+    "litepicker": "^1.5.7",
     "ng-cli-pug-loader": "^0.2.2",
     "ng-click-outside": "^7.0.1",
     "primeicons": "^4.0.0",

@@ -1,12 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminGuard, LoginVerifyGuard, noLoginVerifyGuard } from 'src/app/services/guards/guards.index';
+import { noLoginVerifyGuard } from 'src/app/services/guards/guards.index';
 import { LoginComponent, RegisterComponent } from './public.index';
-
-
-
-
-// LoginVerifyGuard
 
 
 const dashboardRoutes: Routes = [
@@ -27,18 +22,6 @@ const dashboardRoutes: Routes = [
 
   ];
 
-
-
-
-//   const routes: Routes = [
-//     {
-//         path: 'dashboard',
-//         component: PagesComponent,
-//         canActivate: [ AuthGuard ],
-//         canLoad: [ AuthGuard ],
-//         loadChildren: () => import('./child-routes.module').then( m => m.ChildRoutesModule )
-//     },
-// ];
 
 @NgModule({
     imports: [ RouterModule.forChild(dashboardRoutes) ],

@@ -1,12 +1,12 @@
 nav.d-inline-block
   ul.pagination.mb-0
-    li.page-item.disabled
-      a.page-link(href="#", tabindex="-1")
-        i.fas.fa-chevron-left
-    li.page-item.active
-      a.page-link(href="#")
-        | 1
-        span.sr-only (current)
     li.page-item
-      a.page-link(href="#")
+      a.page-link( (click)="this.globalPaginator('prev')" , [ngClass]="{'disabled': (this.paginator) && this.paginator.hasPrevPage == false}" ,tabindex="-1")
+        i.fas.fa-chevron-left
+    li.page-item( *ngFor="let item of this.repeat(this.paginator.pageCount); let i = index" )
+      a.page-link( (click)="this.globalPaginator(i+1)", [ngClass]="{'active': (this.paginator) && this.paginator.currentPage == i + 1}" )
+        | {{ i + 1 }}
+        span.sr-only (Actual)
+    li.page-item
+      a.page-link( (click)="this.globalPaginator('next')", [ngClass]="{'disabled': (this.paginator) && this.paginator.hasNextPage == false}" )
         i.fas.fa-chevron-right

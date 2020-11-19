@@ -1,0 +1,75 @@
+
+
+
+section.modalOptions.section
+    .setOptions
+      .row
+        p Rol de usuario actual: {{ this.user.rol.alias }}
+      .row
+        form.needs-validation&attributes({
+            '#f': 'ngForm',
+            '(ngSubmit)': 'setNewRole( f )',
+            'novalidate': ''
+            })
+            .form-divider
+              | Lista de roles
+            .row
+              .form-group.col-md-12.col-lg-12
+                label(for="roles") Roles
+                .selectric-wrapper.selectric-form-control.selectric-selectric.selectric-below.selectric-open
+                  .selectric-hide-select
+                    select#roles.form-control.selectric(ngModel, required, type="text", name="roles", tabindex="-1", (change)="selectRole($event.target.value)")
+                      option( *ngFor="let item of this.roles", [value]="item | json" ) {{item.alias}}
+                    .invalid-feedback
+                      | Por favor, debes seleccionar un Rol
+              .form-group.col-md-12.col-lg-12( *ngIf="this.setEnrouterOwner == true" )
+                .card(*ngIf='this.enrutadores == null || this.enrutadores.length == 0')
+                  .card-body.p-0
+                    app-hero( [type]="'primary'", [titulo]="'No hay enrutadores en este momento'", [subTitulo]="'Intente más tarde'" )
+
+                .card( *ngIf='this.enrutadores != null && this.enrutadores.length > 0' )
+                  .card-header
+                    h4.section-title Asigna el usuario cobrador a un enrutador
+                    .card-header-form
+                      form.needs-validation( #f="ngForm", (ngSubmit)="this.search( f )" )
+                        .input-group
+                          input.form-control( required ,ngModel ,type="text", name="arg" , placeholder="Busqueda")
+                          .input-group-btn
+                            button.noBorder.btn.btn-primary(type="submit", style="border-radius: 0!important")
+                              i.fas.fa-search
+                            button.btn.btn-primary(type="button", (click)="this.getEnrouters(1)") Todos
+                              //- i.fas.fa-search
+                          .invalid-feedback
+                            | Por favor, escribe un argumento de búsqueda
+                  .card-body.p-0
+                    .table-responsive
+                      table.table.table-striped.table-hover
+                        tbody
+                          tr
+
+                            th Nombre
+                            th Apellido
+                            th Estatus
+                            th Detalles
+                          tr(*ngFor='let it2 of this.enrutadores; let i = index', (click)="this.selectItem( it2._id )", [ngClass]="{ 'tableSelected' : this.enrutadorSelected === it2._id }")
+
+                            td
+                              p {{ it2.name }}
+                            td
+                              p {{ it2.last_name }}
+                            td
+                              .badge.badge-success {{ it2.status }}
+                            td
+                              a.btn.btn-primary([routerLink]="['/dashboard/infoUser', it2._id ]", routerLinkActive="active") Detalles
+
+                  app-paginator(*ngIf="( this.paginator != null ) && ( this.paginator.pageCount > 1 )", [paginator]="this.paginator", (newPageResponse)="this.newPageResponse($event)")
+
+            .row
+              .spaceButtons
+                button.btn.btn-primary( type="submit" )
+                  i.fas.fa-check
+                  | Aceptar
+                button.btn.btn-primary( type="button", (click)="this.closeDialog()" )
+                  i.fas.fa-times
+                  | Cerrar
+

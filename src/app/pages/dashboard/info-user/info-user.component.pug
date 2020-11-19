@@ -4,7 +4,7 @@ section.section
     .section-header
         h1 Información completa de usuario
 
-    .section-body
+    .section-body( *ngIf='this.infoUser != null' )
         h2.section-title {{ infoUser.name }} {{ infoUser.last_name }}
 
         .row.mt-sm-4
@@ -27,10 +27,10 @@ section.section
                                 .media-body
                                     h6 Fecha de registro
                                     p {{ infoUser.createdAt[0] }}, {{ infoUser.createdAt[1] }} {{ infoUser.createdAt[2] }}
-                            .media
+                            .media(*ngIf="this.infoUser.last_session")
                                 .media-icon
                                     i.fas.fa-calendar
-                                .media-body(*ngIf="this.infoUser.last_session")
+                                .media-body
                                     h6 Última conexión
                                     p {{ infoUser.last_session[0] }}, {{ infoUser.last_session[1] }} {{ infoUser.last_session[2] }}
 
@@ -101,37 +101,37 @@ section.section
                                 label(for="nroCelular") Teléfono Celular
                                 p {{ this.infoUser.nro_movil }}
 
-                .card
+                .card( *ngIf="(this.infoUser._id != this._sessionService.usuario._id) && (this._sessionService.usuario.rol.alias === 'Administrador')" )
                     .card-header
                         h4 Configuraciones de usuario
                     .card-body
                         .row
                             ul.opcGroupButtons
-                                li.opcElement
+                                li.opcElement( (click)="this.showDialog('roles')" )
                                     .ico
                                         i.fas.fa-sync
                                     .text
                                         p Cambiar rol
-                                li.opcElement
-                                    .ico
-                                        i.fas.fa-lock
-                                    .text
-                                        p Cambiar permisos
-                                li.opcElement
+                                //- li.opcElement
+                                //-     .ico
+                                //-         i.fas.fa-lock
+                                //-     .text
+                                //-         p Cambiar permisos
+                                li.opcElement( (click)="this.showDialog('deleteUser')" )
                                     .ico
                                         i.fas.fa-trash
                                     .text
                                         p Eliminar usuario
 
 
-p-dialog(header="Title", [(visible)]="display")
-    | Content
+p-dialog( *ngIf="(this._sessionService.usuario.rol.alias === 'Administrador')", header="Cambiar rol", [(visible)]="this.changeRoles", [modal]="true", [style]="{width: '75vw'}", [baseZIndex]="10000")
+    app-change-role-dialog( *ngIf="this.changeRoles == true" ,[user]="this.infoUser", (success)="this.sucess($event)" ,(close)="this.closeRoleDialog($event)" )
+p-dialog( *ngIf="(this._sessionService.usuario.rol.alias === 'Administrador')", header="Cambiar rol", [(visible)]="this.deleteUser", [modal]="true", [style]="{width: '75vw'}", [baseZIndex]="10000")
+    app-delete-userr-dialog( *ngIf="this.deleteUser == true" ,[user]="this.infoUser", (success)="this.sucess($event)" ,(close)="this.closeRoleDialog($event)" )
 
 
-i.pi.pi-check
-i.pi.pi-times
 
-button(type="button", (click)="showDialog()", icon="pi pi-info-circle", label="Show") PRUEBA
+//- button(type="button", (click)="showDialog()", icon="pi pi-info-circle", label="Show") PRUEBA
 
 //-   "_id" : ObjectId("5f86783c7e86161af01ffca5"),
 //-     "enrutator_id" : null,

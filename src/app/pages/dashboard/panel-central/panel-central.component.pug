@@ -1,0 +1,69 @@
+section.section
+  .section-header
+    h1 Inicio
+
+  .section-body
+    h2.section-title Te damos la bienvenida {{ this._sessionService.usuario.name }} {{ this._sessionService.usuario.last_name }}
+    p.section-lead
+      //- | Organize and adjust all settings about this site.
+    .row
+      .col-lg-6
+        .card.card-large-icons
+          .card-icon.bg-primary.text-white
+            i.fas.fa-user
+          .card-body
+            h4 Perfil de usuario
+            p Visualiza, gestiona y configura los parametros de tu cuenta
+            a.card-cta(href='features-setting-detail.html')
+              | Ver
+              i.fas.fa-chevron-right
+      .col-lg-6
+        .card.card-large-icons
+          .card-icon.bg-primary.text-white
+            i.fas.fa-chart-line
+          .card-body
+            h4 Estadísticas generales
+            p Visualiza graficos e información general en sistema
+            a.card-cta(href='features-setting-detail.html')
+              | Ver
+              i.fas.fa-chevron-right
+      .col-lg-6
+        .card.card-large-icons
+          .card-icon.bg-primary.text-white
+            i.fas.fa-bell
+          .card-body
+            h4 Notificaciones
+            p Visualiza tus últimas notificaciones
+            a.card-cta(href='features-setting-detail.html')
+              | Ver
+              i.fas.fa-chevron-right
+      .col-lg-6
+        .card.card-large-icons
+          .card-icon.bg-primary.text-white
+            i.fas.fa-cogs
+          .card-body
+            h4 Configuraciones
+            p Gestiona configuraciones generales del sistema y su comportamiento
+            a.card-cta(href='features-setting-detail.html')
+              | Ver
+              i.fas.fa-chevron-right
+      .col-lg-6
+        .card.card-large-icons
+          .card-icon.bg-primary.text-white
+            i.fas.fa-clipboard-list
+          .card-body
+            h4 Gestión de peticiones
+            p Visualiza y gestiona peticiones de cambios y borrados
+            a.card-cta(href='features-setting-detail.html')
+              | Ver
+              i.fas.fa-chevron-right
+      .col-lg-6
+        .card.card-large-icons
+          .card-icon.bg-primary.text-white
+            i.fas.fa-sign-out-alt
+          .card-body
+            h4 Cerrar sesión
+            p Esperamos que vuelvas pronto
+            a.card-cta.text-primary(href='features-setting-detail.html')
+              | Cerrar
+              i.fas.fa-chevron-right

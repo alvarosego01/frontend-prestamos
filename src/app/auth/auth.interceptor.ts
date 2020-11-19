@@ -23,20 +23,19 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
 
-    // if(this._sessionService.token){
-// 
-    // }
-    const token = this._sessionService.token;
-
-    if (!token) {
+    if (this._sessionService.estaLogueado() == false) {
+      // console.log('no esta logeado');
       return next.handle(req);
+    }else{
+
+      const token = this._sessionService.token;
+      // console.log('esta logeado' , token);
+      const headers = req.clone({
+        headers: req.headers.set('Authorization', `Bearer ${token}`)
+      });
+
+      return next.handle(headers);
     }
-
-    const headers = req.clone({
-      headers: req.headers.set('Authorization', `Bearer ${token}`)
-    });
-
-    return next.handle(headers);
 
   }
 

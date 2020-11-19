@@ -2,7 +2,7 @@ app-navbar
 app-nav-dashboard( *ngIf="this._sessionService.estaLogueado() == true" )
 #app
   p-toast
-  app-spinner(*ngIf="this._globalService.spinner == true")
+  app-spinner
   .main-wrapper.main-wrapper-1
     .main-content( [ngClass]="{'noSpace': this._sessionService.estaLogueado() == false }")
       app-public(*ngIf="this._globalService.spinner == false")

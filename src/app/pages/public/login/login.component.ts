@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     public router: Router
   ) {
 
-    
+
 
    }
 
@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
     }
 
 
-    this._globalService.spinner = true;
+    // this._globalService.spinner = true;
     await this._sessionService.login(user).subscribe((resp: I_responseInterface) => {
 
       this._notifyService.messageService.add({
@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
 
       console.log('respuesta', resp);
 
-      this._globalService.spinner = false;
+      // this._globalService.spinner = false;
       this.router.navigate(['/dashboard']);
     }, (err) => {
       console.error(err);
@@ -76,7 +76,7 @@ export class LoginComponent implements OnInit {
       });
 
 
-        this._globalService.spinner = false;
+        // this._globalService.spinner = false;
     });
 
 

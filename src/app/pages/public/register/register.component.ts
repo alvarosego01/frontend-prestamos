@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { I_responseInterface, I_users } from 'src/app/interfaces/interfaces.index';
 import { GlobalService, NotifyService, UserService } from 'src/app/services/services.index';
 
@@ -10,24 +11,56 @@ import { GlobalService, NotifyService, UserService } from 'src/app/services/serv
 })
 export class RegisterComponent implements OnInit {
 
+  params: any = null;
+
+  userRef: any;
 
   constructor(
     public _notifyService: NotifyService,
     public _userService: UserService,
-    private _globalService: GlobalService
+    public activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this._userService.prueba();
-    // window.scroll(0,0);
-    // if(this._sessionService.estaLogueado()){
-    //   this.router.navigate(['/dashboard']);
-    // }else{
 
-    // }
+    this.activatedRoute.queryParams.subscribe( params => {
+
+      this.params = params;
+
+    });
+
+
+    if( this.params != null && this.params.ref ){
+
+
+      this.getUserOne(this.params.ref);
+
+    }
 
   }
 
+
+  async getUserOne(id: string){
+
+    await this._userService.usersOneGET(id).subscribe((resp) => {
+
+      this.userRef = resp.data;
+
+      this._notifyService.messageService.add({
+        severity: 'success',
+        summary: 'Enrutador referenciado válido'
+      })
+
+    }, (err) => {
+        console.error(err);
+        this._notifyService.messageService.add({
+          severity: 'error',
+          summary: 'Enrutador referenciado no válido o inexistente'
+        })
+        this.userRef = null;
+    });
+
+  }
 
 
   async userRegister(forma: NgForm){
@@ -76,12 +109,18 @@ export class RegisterComponent implements OnInit {
       edad: forma.value.edad,
       email: forma.value.email,
       pass: forma.value.pass,
-      // enrutator_id: forma.value.
+      // enrutator_id: null
 
     }
 
-    this._globalService.spinner = true;
-    await this._userService.userRegisterPOST(user).subscribe((resp: I_responseInterface) => {
+    // if(this.userRef != null){
+      // }
+      let refs = ( this.userRef != null && this.userRef._id)? this.userRef._id: null;
+
+
+      console.log('la ref', refs);
+
+    await this._userService.userRegisterPOST(user, refs).subscribe((resp: I_responseInterface) => {
 
       this._notifyService.messageService.add({
         severity: 'success',
@@ -89,19 +128,22 @@ export class RegisterComponent implements OnInit {
 
       });
 
-      forma.reset();
-      this._globalService.spinner = false;
-    }, (err) => {
-      console.error(err);
-
-      this._notifyService.messageService.add({
-        severity: 'error',
-        summary: err.error.message
-
-      });
+      // forma.reset();
+    }, (ERR) => {
+      console.error(ERR);
 
 
-      this._globalService.spinner = false;
+        this._notifyService.messageService.add({
+          severity: 'error',
+          summary: ERR.error.message ||'Algo ha salido mal, intente más tarde',
+
+        });
+
+
+
+
+
+
     });
 
 

@@ -97,10 +97,10 @@ section.section
                 .form-group.col-md-12.col-lg-4
                   label.d-block(for="Cpass") Confirmar contraseña
                   input#Cpass.form-control(ngModel ,required, type="password", name="Cpass")
-
               .form-group
                 button.btn.btn-primary.btn-lg.btn-block(type='submit' tabindex='4')
                   | Registrar
+            app-hero( *ngIf='this.userRef != null' ,[type]="'primary'", [titulo]="'Registro de usuario como cobrador referido al enrutador:'", [subTitulo]="this.userRef.name+' '+this.userRef.last_name" )
         .mt-5.text-muted.text-center
           | ¿Ya eres usuario?
           a&attributes({

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NotifyService, SessionService } from 'src/app/services/services.index';
+import { GlobalService, NotifyService, SessionService } from 'src/app/services/services.index';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +10,8 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     public _sessionService: SessionService,
-    public _notifyService: NotifyService
+    public _notifyService: NotifyService,
+    public _globalService: GlobalService
   ) { }
 
   ngOnInit(): void {

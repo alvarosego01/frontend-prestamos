@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { GlobalService, UserService } from 'src/app/services/services.index';
+import { NgForm } from '@angular/forms';
+import { GlobalService, NotifyService, SearchService, UserService } from 'src/app/services/services.index';
 
 @Component({
   selector: 'app-users-control',
@@ -37,7 +38,8 @@ export class UsersControlComponent implements OnInit {
 
   constructor(
     public _userService: UserService,
-    public GlobalConfigService: GlobalService
+    public _searchService: SearchService,
+    public _notifyService: NotifyService
   ) {
 
     this.getAll();
@@ -49,12 +51,8 @@ export class UsersControlComponent implements OnInit {
   }
 
 
-
-
-
   async getAll(paginate: number = 1) {
 
-    this.GlobalConfigService.spinner = true;
     await this._userService.usersAllGET(paginate).subscribe((resp) => {
 
       this.registros = resp.data;
@@ -67,7 +65,6 @@ export class UsersControlComponent implements OnInit {
     }, (err) => {
       console.error(err);
     });
-    this.GlobalConfigService.spinner = false;
 
   }
 
@@ -78,7 +75,48 @@ export class UsersControlComponent implements OnInit {
 
 
 
+  async searchUser(forma: NgForm){
 
- 
+
+    if(forma.invalid){
+      return;
+    }
+
+
+      let arg: string = forma.value.arg;
+
+
+    await this._searchService.searchUserGet(arg).subscribe((resp) => {
+      var data = resp.data;
+
+      this.registros = data;
+
+      this.paginator = null
+
+
+      this._notifyService.messageService.add({
+        severity: 'success',
+        summary: resp.message,
+
+
+      });
+
+    }, (err) => {
+      console.error('error custom', err);
+
+      this._notifyService.messageService.add({
+        severity: 'warn',
+        summary: err.error.message,
+
+
+      });
+
+    });
+
+    forma.reset();
+
+
+  }
+
 
 }

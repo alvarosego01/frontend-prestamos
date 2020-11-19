@@ -29,7 +29,7 @@ fs.readFile(commonCliConfig, (err, data) => {
  * Set's directTemplateLoading: false to allow custom pug template loader to work
  * @see https://github.com/angular/angular-cli/issues/14534
  */
-const typescriptCliConfig = 'node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/webpack-configs/typescript.js';install
+const typescriptCliConfig = 'node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/webpack-configs/typescript.js';
 
 fs.readFile(typescriptCliConfig, (err, data) => {
   if (err) { throw err; }

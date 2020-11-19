@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AdminGuard } from 'src/app/services/guards/guards.index';
 import { ProfileComponent, NotificationsComponent, SettingsComponent } from '../../dashboard.index';
+import { PanelCentralComponent } from '../../panel-central/panel-central.component';
 
 
 import { AdminComponent, RequestsControlComponent, RolesControlComponent, RoutesControlComponent, StatsControlComponent, UsersControlComponent } from './admin.index';
@@ -54,44 +55,36 @@ import { AdminComponent, RequestsControlComponent, RolesControlComponent, Routes
 // RequestsControlComponent
 
 const adminRoutes: Routes = [
-    // {
-    //   path: "admin",
-    //   component: AdminComponent,
-    //   canActivate: [AdminGuard],
-    //   canActivateChild: [AdminGuard],
-    //   children: [
+
         {
-          path: "usersControl",
+          path: "usuarios",
           component: UsersControlComponent,
-          data: {
-            titulo: 'Control de usuarios'
-          }
         },
         {
-          path: "routesControl",
+          path: "rutas",
           component: RoutesControlComponent,
         },
         {
-          path: "chartsControl",
+          path: "estadisticas",
           component: StatsControlComponent,
         },
         {
-          path: "rolesControl",
+          path: "roles",
           component: RolesControlComponent,
         },
         {
-          path: "requestControl",
+          path: "peticiones",
           component: RequestsControlComponent,
         },
 
         {
           path: "**",
-          component: ProfileComponent,
+          component: AdminComponent,
         },
 
         {
           path: "",
-          component: ProfileComponent,
+          component: AdminComponent,
         },
       // ],
     // },

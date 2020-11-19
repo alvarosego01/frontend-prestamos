@@ -1,0 +1,46 @@
+.card
+  .card-header
+    h4 Lista de enrutadores
+    .card-header-form
+      form
+        .input-group
+          input.form-control(type="text", placeholder="Busqueda")
+          .input-group-btn
+            button.btn.btn-primary
+              i.fas.fa-search
+  .card-body.p-0
+    .table-responsive
+      table.table.table-striped
+        tbody
+          tr
+            th
+              .custom-checkbox.custom-control
+                input.custom-control-input#checkbox-all(type="checkbox", data-checkboxes="mygroup", data-checkbox-role="dad")
+                label.custom-control-label(for="checkbox-all")  
+            th Task Name
+            th Progress
+            th Members
+            th Due Date
+            th Status
+            th Action
+          tr
+            td.p-0.text-center
+              .custom-checkbox.custom-control
+                input.custom-control-input#checkbox-1(type="checkbox", data-checkboxes="mygroup")
+                label.custom-control-label(for="checkbox-1")  
+            td Create a mobile app
+            td.align-middle
+              .progress(data-height="4", data-toggle="tooltip", data-original-title="100%", style="height: 4px;")
+                .progress-bar.bg-success(data-width="100", style="width: 100px;")
+            td
+              img.rounded-circle(alt="image", src="assets/img/avatar/avatar-5.png", width="35", data-toggle="tooltip", data-original-title="Wildan Ahdian")
+            td 2018-01-20
+            td
+              .badge.badge-success Completed
+            td
+              a.btn.btn-secondary(href="#") Detail
+
+            td
+              .badge.badge-success Completed
+            td
+              a.btn.btn-secondary(href="#") Detail

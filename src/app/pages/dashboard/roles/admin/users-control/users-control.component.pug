@@ -5,19 +5,24 @@ section.section
     h1 Control de usuarios
 
   .section-body
-    h2.section-title Listado de usuarios en sistema
+    h2.section-title Listado de usuarios en sistema 
+      span( *ngIf='this.registros && this.registros.length > 0' ) - {{ this.registros.length }}
     .row
       .col-12
         .card
           .card-header
             h4
             .card-header-form
-              form
+              form.needs-validation( #f="ngForm", (ngSubmit)="this.searchUser( f )" )
                 .input-group
-                  input.form-control(type="text", placeholder="Busqueda")
+                  input.form-control( required ,ngModel ,type="text", name="arg" , placeholder="Busqueda")
                   .input-group-btn
-                    button.btn.btn-primary
+                    button.noBorder.btn.btn-primary(type="submit", style="border-radius: 0!important")
                       i.fas.fa-search
+                    button.btn.btn-primary(type="button", (click)="this.getAll(1)") Todos
+                      //- i.fas.fa-search
+                  .invalid-feedback
+                    | Por favor, escribe un argumento de búsqueda
           .card-body.p-0
             .table-responsive
               table.table.table-striped
@@ -42,12 +47,7 @@ section.section
                       p {{ it2.nro_movil}}
                     td
                       p {{ it2.email}}
-                    //- td
-                    //-   p {{ it2.pais}}
-                    //- td
-                    //-   p {{ it2.estado}}
-                    //- td
-                    //-   p {{ it2.ciudad}}
+
                     td
                       p {{ it2.rol.alias}}
                     td
@@ -57,7 +57,7 @@ section.section
                     td
                       .badge.badge-success {{ it2.status }}
                     td
-                      a.btn.btn-primary([routerLink]="['/dashboard/infoUser', it2._id ]", routerLinkActive="active") Detalles
+                      a.btn.btn-primary([routerLink]="['/dashboard/usuario', it2._id ]", routerLinkActive="active") Detalles
 
 
         app-paginator(*ngIf="( this.paginator != null ) && ( this.paginator.pageCount > 1 )", [paginator]="this.paginator", (newPageResponse)="this.newPageResponse($event)")

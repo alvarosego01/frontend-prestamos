@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CustomListsComponent, PaginatorComponent, SpinnerComponent } from './global.index';
-import { OpenModalComponent } from './open-modal/open-modal.component';
-
+import { CustomListsComponent, PaginatorComponent, SpinnerComponent, OpenModalComponent, HeroComponent } from './global.index';
+ 
 
 
 
 @NgModule({
-  declarations: [CustomListsComponent, PaginatorComponent, SpinnerComponent, OpenModalComponent],
+  declarations: [CustomListsComponent, PaginatorComponent, SpinnerComponent, OpenModalComponent, HeroComponent],
   imports: [
     CommonModule
   ],
@@ -15,7 +14,8 @@ import { OpenModalComponent } from './open-modal/open-modal.component';
     CustomListsComponent,
     PaginatorComponent,
     SpinnerComponent,
-    OpenModalComponent
+    OpenModalComponent,
+    HeroComponent
   ]
 })
 export class GlobalModule { }

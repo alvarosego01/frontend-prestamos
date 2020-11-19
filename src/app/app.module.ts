@@ -17,7 +17,20 @@ import { PublicModule } from './pages/public/public.module';
 // import { ServicesModule } from './services/services.module';
 
 import { BrowserModule } from '@angular/platform-browser';
-import { NotifyService, SearchService, SessionService, UserService } from './services/services.index';
+import {
+  AdminService,
+  CobradorService,
+  PermisionsService,
+  RolesService,
+  RouterService,
+  GlobalService,
+  NotifyService,
+  SessionService,
+  SearchService,
+  UserService,
+  LoaderService,
+
+} from './services/services.index';
 
 
 
@@ -39,6 +52,8 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import {DialogModule} from 'primeng/dialog';
+import { LoaderInterceptor } from './interceptor/loader.interceptor';
+import { interceptorProviders } from './interceptor/interceptorProvider';
 
 @NgModule({
   declarations: [
@@ -64,12 +79,21 @@ import {DialogModule} from 'primeng/dialog';
 
   ],
   providers: [
+
+    interceptorProviders,
     MessageService,
+    AdminService,
+    CobradorService,
+    PermisionsService,
+    RolesService,
+    RouterService,
+    GlobalService,
     NotifyService,
     SessionService,
-    UserService,
     SearchService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    UserService,
+    // LoaderService,
+
 
   ],
   bootstrap: [AppComponent]

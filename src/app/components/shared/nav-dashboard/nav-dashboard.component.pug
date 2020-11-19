@@ -7,47 +7,76 @@
     ul.sidebar-menu( *ngIf="this._sessionService.usuario.rol == 'Administrador'" )
       li.menu-header Panel de Administración
       li
-        a.nav-link([routerLink]="['/dashboard/admin/usersControl']", routerLinkActive="active")
+        a.nav-link([routerLink]="['/dashboard/admin/usuarios']", routerLinkActive="active")
           i.fas.fa-user
           |
           span  Control de usuarios
       li
-        a.nav-link([routerLink]="['/dashboard/admin/routesControl']", routerLinkActive="active")
+        a.nav-link([routerLink]="['/dashboard/admin/rutas']", routerLinkActive="active")
           i.fas.fa-user
           |
           span  Control de rutas
       li
-        a.nav-link([routerLink]="['/dashboard/admin/chartsControl']", routerLinkActive="active")
+        a.nav-link([routerLink]="['/dashboard/admin/estadisticas']", routerLinkActive="active")
           i.fas.fa-user
           |
           span  Estadisticas
       li
-        a.nav-link([routerLink]="['/dashboard/admin/rolesControl']", routerLinkActive="active")
+        a.nav-link([routerLink]="['/dashboard/admin/roles']", routerLinkActive="active")
           i.fas.fa-user
           |
           span  Control de roles
       li
-        a.nav-link([routerLink]="['/dashboard/admin/requestControl']", routerLinkActive="active")
+        a.nav-link([routerLink]="['/dashboard/admin/peticiones']", routerLinkActive="active")
+          i.fas.fa-user
+          |
+          span  Control de peticiones
+
+    ul.sidebar-menu( *ngIf="this._sessionService.usuario.rol == 'Enrutador'" )
+      li.menu-header Panel de Enrutador
+      li
+        a.nav-link([routerLink]="['/dashboard/enrutador/cobradores']", routerLinkActive="active")
+          i.fas.fa-user
+          |
+          span Mis cobradores
+      li
+        a.nav-link([routerLink]="['/dashboard/enrutador/rutas']", routerLinkActive="active")
+          i.fas.fa-user
+          |
+          span Mis rutas
+      li
+        a.nav-link([routerLink]="['/dashboard/enrutador/estadisticas']", routerLinkActive="active")
+          i.fas.fa-user
+          |
+          span Estadisticas
+
+      li
+        a.nav-link([routerLink]="['/dashboard/enrutador/peticiones']", routerLinkActive="active")
           i.fas.fa-user
           |
           span  Control de peticiones
 
 
 
-
-
-
-
-
     ul.sidebar-menu
       li.menu-header Panel de Usuario
       li
-        a.nav-link([routerLink]="['/dashboard/profile']", routerLinkActive="active")
+        a.nav-link([routerLink]="['/dashboard/central']", routerLinkActive="active")
+          i.fas.fa-user
+          |
+          span Inicio
+      li
+        a.nav-link([routerLink]="['/dashboard/perfil']", routerLinkActive="active")
           i.fas.fa-user
           |
           span Perfil de usuario
       li
-        a.nav-link([routerLink]="['/dashboard/settings']", routerLinkActive="active")
+        a.nav-link([routerLink]="['/dashboard/notificaciones']", routerLinkActive="active")
+          i.fas.fa-bell
+          |
+          span Notificaciones
+      li
+        a.nav-link([routerLink]="['/dashboard/configuraciones']", routerLinkActive="active")
           i.fas.fa-cogs
           |
           span Configuraciones
@@ -56,6 +85,17 @@
           i.fas.fa-sign-out-alt
           |
           span Cerrar sesión
+
+
+//- perfil
+//- notificaciones
+//- configuraciones
+//- usuario
+//- admin
+//- enrutador
+
+
+
       //- li.dropdown
       //-   a.nav-link.has-dropdown(href="#")
       //-     i.fas.fa-th
