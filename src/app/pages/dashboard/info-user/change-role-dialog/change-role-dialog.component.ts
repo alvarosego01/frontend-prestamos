@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AdminService, GlobalService, NotifyService, RolesService, SearchService, UserService } from 'src/app/services/services.index';
+import { AdminService, GlobalService, NotifyService, RolesService, SearchService, UserService } from 'src/app/services/services/services.index';
 
 import Litepicker from "litepicker";
 
@@ -58,8 +58,6 @@ console.log('abre esto');
 
 
   async ngOnInit() {
-
-
 
 
     await this.getRoles();
@@ -204,7 +202,7 @@ console.log('abre esto');
 
     value = JSON.parse(value);
 
-    if(value.alias == 'Cobrador'){
+    if(value.alias == 'COLLECTOR_ROLE'){
 
       this.setEnrouterOwner = true;
 

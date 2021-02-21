@@ -6,7 +6,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminGuard } from 'src/app/services/guards/guards.index';
 import { ProfileComponent, NotificationsComponent, SettingsComponent } from '../../dashboard.index';
 
-import { MisCobradoresComponent, MisRutasEnrouterComponent, StatsEnrouterComponent } from './enrutador.index';
+import { InfoRutaComponent } from '../../info-ruta/inforuta.index';
+
+import { MisClientesComponent, MisCobradoresComponent, MisRutasEnrouterComponent, RequestControlEnrouterComponent, StatsEnrouterComponent } from './enrutador.index';
 
 
 
@@ -22,7 +24,7 @@ const enrouterRoutes: Routes = [
     //   children: [
 
         {
-          path: "cobradores",
+          path: "vendedores",
           component: MisCobradoresComponent,
         },
         {
@@ -30,11 +32,19 @@ const enrouterRoutes: Routes = [
           component: MisRutasEnrouterComponent,
         },
         {
-          path: "peticiones",
-          component: MisCobradoresComponent,
+          path: "clientes",
+          component: MisClientesComponent,
         },
         {
-          path: "estadisticas",
+          path: "rutas/:id",
+          component: InfoRutaComponent,
+        },
+        {
+          path: "peticiones",
+          component: RequestControlEnrouterComponent,
+        },
+        {
+          path: "reportes",
           component: StatsEnrouterComponent,
         },
 

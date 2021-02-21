@@ -32,32 +32,65 @@ export class SearchService {
 
 
 
-  searchUserGet(arg: string){
+  searchUserGet(arg: string) {
 
     let url = `${this._SERVICIOS}/users/${arg}`;
 
     return this.http.get(url).pipe(
-        map((resp: any) => {
+      map((resp: any) => {
         return resp;
-    }),
-    catchError((err) => {
+      }),
+      catchError((err) => {
         return throwError(err);
-    })
+      })
     );
 
   }
 
-  searchUserEnrouterGet(arg: string){
+  searchUserEnrouterGet(arg: string) {
 
     let url = `${this._SERVICIOS}/usersEnrouters/${arg}`;
 
     return this.http.get(url).pipe(
-        map((resp: any) => {
+      map((resp: any) => {
         return resp;
-    }),
-    catchError((err) => {
+      }),
+      catchError((err) => {
         return throwError(err);
-    })
+      })
+    );
+
+  }
+
+
+  searchMyRoutesEnrouter(arg: string) {
+
+    let url = `${this._SERVICIOS}/getMyRoutes/${this._sessionService.usuario._id}/${arg}`;
+
+    return this.http.get(url).pipe(
+      map((resp: any) => {
+        return resp;
+      }),
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+
+  }
+
+
+
+  getCollectorsByEnrouterGET(arg: string, userId) {
+
+    let url = `${this._SERVICIOS}/getCollectorsByEnrouter/${userId}/${arg}`;
+
+    return this.http.get(url).pipe(
+      map((resp: any) => {
+        return resp;
+      }),
+      catchError((err) => {
+        return throwError(err);
+      })
     );
 
   }

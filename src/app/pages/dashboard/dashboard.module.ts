@@ -22,6 +22,10 @@ import { RouterModule } from '@angular/router';
 import {DialogModule} from 'primeng/dialog';
 import { EnrutadorModule } from './roles/enrutador/enrutador.module';
 
+import { InfoClienteModule } from './info-cliente/info-cliente.module';
+import { CobradorModule } from './roles/cobrador/cobrador.module';
+import { IncidenciasModule } from './incidencias/incidencias.module';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +37,11 @@ import { EnrutadorModule } from './roles/enrutador/enrutador.module';
     ChangeRoleDialogComponent,
     ChangePermisionDialogComponent,
     DeleteUserrDialogComponent,
-    PanelCentralComponent],
+    PanelCentralComponent,
+
+
+
+  ],
   imports: [
     CommonModule,
     BrowserModule,
@@ -44,9 +52,13 @@ import { EnrutadorModule } from './roles/enrutador/enrutador.module';
     BrowserAnimationsModule,
     GlobalModule,
     // PipesModule,
+    InfoClienteModule,
+    //
+    IncidenciasModule,
+    RouterModule,
     AdminModule,
     EnrutadorModule,
-    RouterModule
+    CobradorModule
     // _DASHBOARD_ROUTES
   ],
   exports: [

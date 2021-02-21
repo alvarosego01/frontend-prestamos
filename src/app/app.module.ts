@@ -29,8 +29,11 @@ import {
   SearchService,
   UserService,
   LoaderService,
+  FilesService,
+  ClientesService,
+  FormsResourcesService,
 
-} from './services/services.index';
+} from './services/services/services.index';
 
 
 
@@ -48,12 +51,29 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 // import { TokenInterceptor } from './../auth/token.interceptor';
 
 
+import { ClipboardModule } from 'ngx-clipboard';
+
 // prime NG
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
-import {DialogModule} from 'primeng/dialog';
+import { DialogModule } from 'primeng/dialog';
+import {FileUploadModule} from 'primeng/fileupload';
+
 import { LoaderInterceptor } from './interceptor/loader.interceptor';
 import { interceptorProviders } from './interceptor/interceptorProvider';
+
+
+
+import {IMaskModule} from 'angular-imask';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
+
+import { environment } from 'src/environments/environment';
+
+import { VisitsSocketService, WebSocketService } from './services/sockets/socket.index';
+const config: SocketIoConfig = {
+  url: environment._SERVICE , options: {}
+};
 
 @NgModule({
   declarations: [
@@ -64,22 +84,30 @@ import { interceptorProviders } from './interceptor/interceptorProvider';
 
   ],
   imports: [
+    IMaskModule,
     BrowserModule,
     ToastModule,
     GlobalModule,
     DialogModule,
+    FileUploadModule,
+    ReactiveFormsModule,
+    SocketIoModule.forRoot(config),
     // _PUBLIC_ROUTES,
     // _APP_ROUTES,
     AppRoutingModule,
     DashboardModule,
     PublicModule,
-    HttpClientModule
+    HttpClientModule,
+    ClipboardModule
+
 
 
 
   ],
   providers: [
-
+    VisitsSocketService,
+    WebSocketService,
+    FormsResourcesService,
     interceptorProviders,
     MessageService,
     AdminService,
@@ -92,6 +120,8 @@ import { interceptorProviders } from './interceptor/interceptorProvider';
     SessionService,
     SearchService,
     UserService,
+    FilesService,
+    ClientesService
     // LoaderService,
 
 

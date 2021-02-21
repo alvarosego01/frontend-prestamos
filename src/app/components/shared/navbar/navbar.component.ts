@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GlobalService, NotifyService, SessionService } from 'src/app/services/services.index';
+import { GlobalService, NotifyService, SessionService } from 'src/app/services/services/services.index';
 
 @Component({
   selector: 'app-navbar',

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { GlobalService, NotifyService, SearchService, UserService } from 'src/app/services/services.index';
+import { GlobalService, NotifyService, SearchService, UserService } from 'src/app/services/services/services.index';
 
 @Component({
   selector: 'app-users-control',
@@ -18,8 +18,8 @@ export class UsersControlComponent implements OnInit {
 
   headers: any = [
     "Foto",
-    "Nombre",
-    "Apellido",
+    "Nombre y apellido",
+    // "Apellido",
     "Edad",
     "Cédula",
     "Telf fijo",
@@ -28,7 +28,7 @@ export class UsersControlComponent implements OnInit {
     // "País",
     // "Estado/departamento",
     // "Ciudad",
-    "Rol",
+    // "Rol",
     "Creado en",
     "Ult. Sesión",
     "Status",
@@ -75,15 +75,15 @@ export class UsersControlComponent implements OnInit {
 
 
 
-  async searchUser(forma: NgForm){
+  async searchUser(forma: NgForm) {
 
 
-    if(forma.invalid){
+    if (forma.invalid) {
       return;
     }
 
 
-      let arg: string = forma.value.arg;
+    let arg: string = forma.value.arg;
 
 
     await this._searchService.searchUserGet(arg).subscribe((resp) => {

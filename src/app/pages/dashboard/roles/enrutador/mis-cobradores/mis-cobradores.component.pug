@@ -6,7 +6,7 @@ section.section
 
   .section-body
     h2.section-title Listado de cobradores referenciados a tu cuenta
-      span( *ngIf='this.registros && this.registros.length > 0' ) - {{ this.registros.length }}
+      span( *ngIf='this.paginator && this.paginator.itemCount > 0' ) - {{ this.paginator.itemCount }}
     .row
       .col-12
         .card
@@ -32,11 +32,13 @@ section.section
                 tbody
                   tr( *ngFor="let it2 of this.registros" )
                     td
-                      img.rounded-circle(alt="image", src="assets/img/avatar/avatar-5.png", width="35", data-toggle="tooltip", data-original-title="Wildan Ahdian")
+                      .avatarUser
+                        img.rounded-circle(alt="image", src="assets/img/avatar/avatar-2.png", width="50", data-toggle="tooltip" ,data-placement="right", title="", data-original-title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.")
+                        .role
+
                     td
-                      p {{ it2.name }}
-                    td
-                      p {{ it2.last_name }}
+                      p {{ it2.name }} {{ it2.last_name }}
+
                     td
                       p {{ it2.edad}}
                     td
@@ -48,8 +50,8 @@ section.section
                     td
                       p {{ it2.email}}
 
-                    td
-                      p {{ it2.rol.alias}}
+                    //- td
+                    //-   p {{ it2.rol.alias}}
                     td
                       p {{ it2.createdAt[1] }} {{ it2.createdAt[2] }}
                     td

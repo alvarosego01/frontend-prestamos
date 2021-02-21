@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { I_responseInterface, I_users } from 'src/app/interfaces/interfaces.index';
-import { GlobalService, NotifyService, UserService } from 'src/app/services/services.index';
+import { FormsResourcesService, GlobalService, NotifyService, UserService } from 'src/app/services/services/services.index';
 
 @Component({
   selector: 'app-register',
@@ -15,11 +15,87 @@ export class RegisterComponent implements OnInit {
 
   userRef: any;
 
+
+
+  form: FormGroup;
+
+
+  errorFields: any = {
+
+    nombres: {
+      required: "Por favor, escribe tus nombres"
+    },
+    apellidos: {
+      required: "Por favor, escribe tus apellidos"
+    },
+    cedula: {
+      required: "Por favor, escribe tu cédula "
+    },
+    // pais: {
+    //   required: "Por favor, selecciona un país "
+    // },
+    // estado: {
+    //   required: "Por favor, escribe un estado o departamento "
+    // },
+    // ciudad: {
+    //   required: "Por favor, escribe tu ciudad"
+    // },
+    direccion: {
+      required: "Por favor, escribe tu dirección "
+    },
+    edad: {
+      required: "Por favor, escribe tu edad"
+    },
+    nroFijo: {
+      required: "Por favor, escribe tu teléfono fijo "
+    },
+    nroCelular: {
+      required: "Por favor, escribe tu teléfono celular "
+    },
+    email: {
+      required: "Por favor, ingresa tu email",
+      email: 'Por favor, ingresa un email válido'
+    },
+    pass: {
+      required: "Por favor, escribe tu contraseña "
+    },
+    Cpass: {
+      required: "Por favor, escribe tu confirmación de contraseña "
+    },
+
+  }
+
+
+  passHide: boolean = false;
+
+
+  location: any = null;
+
+
+  countriesAuth: string = null;
+
+
   constructor(
     public _notifyService: NotifyService,
     public _userService: UserService,
-    public activatedRoute: ActivatedRoute
-  ) { }
+    public activatedRoute: ActivatedRoute,
+    public router: Router,
+    public _formResources: FormsResourcesService,
+    private formBuilder: FormBuilder,
+  ) {
+
+    // this.setPaises();
+
+  }
+
+
+  getLocation($event){
+
+    console.log('el retorno de esta vaina', $event);
+    this.location = $event;
+
+  }
+
 
   ngOnInit(): void {
 
@@ -37,6 +113,28 @@ export class RegisterComponent implements OnInit {
 
     }
 
+
+    this.form = this.formBuilder.group({
+
+
+      nombres: [ null, [Validators.required] ],
+      apellidos: [ null, [Validators.required] ],
+      cedula: [ null, [Validators.required] ],
+      // pais: [ null, [Validators.required] ],
+      // estado: [ null, [Validators.required] ],
+      // ciudad: [ null, [Validators.required] ],
+      direccion: [ null, [Validators.required] ],
+      edad: [ null, [Validators.required] ],
+      nroFijo: [ null, [Validators.required] ],
+      nroCelular: [ null, [Validators.required] ],
+      email: [null, [Validators.required, Validators.email]],
+      pass: [null, Validators.required],
+      Cpass: [ null, [Validators.required] ],
+
+
+    });
+
+
   }
 
 
@@ -48,14 +146,14 @@ export class RegisterComponent implements OnInit {
 
       this._notifyService.messageService.add({
         severity: 'success',
-        summary: 'Enrutador referenciado válido'
+        summary: 'Socio referenciado válido'
       })
 
     }, (err) => {
         console.error(err);
         this._notifyService.messageService.add({
           severity: 'error',
-          summary: 'Enrutador referenciado no válido o inexistente'
+          summary: 'Socio referenciado no válido o inexistente'
         })
         this.userRef = null;
     });
@@ -63,9 +161,12 @@ export class RegisterComponent implements OnInit {
   }
 
 
-  async userRegister(forma: NgForm){
+  async userRegister(  ){
 
-    if (forma.invalid ){
+    if (this.form.invalid ){
+
+
+      this._formResources.validateAllFormFields(this.form)
 
       this._notifyService.messageService.add({
         severity: 'error',
@@ -75,7 +176,7 @@ export class RegisterComponent implements OnInit {
 
     }
 
-    if(forma.value.edad <= 18){
+    if(this.form.value.edad <= 18){
 
       this._notifyService.messageService.add({
         severity: 'error',
@@ -84,7 +185,8 @@ export class RegisterComponent implements OnInit {
 
       return;
     }
-    if(String(forma.value.pass) !== String(forma.value.Cpass) ) {
+
+    if(String(this.form.value.pass) !== String(this.form.value.Cpass) ) {
 
       this._notifyService.messageService.add({
         severity: 'error',
@@ -94,21 +196,50 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
+    if( this.location != null ){
+
+      if( this.location.pais == null || this.location.pais == '' ){
+        this._notifyService.messageService.add({
+          severity: 'error',
+          summary: 'Debes seleccionar un país'
+        })
+
+        return;
+      }
+      if( this.location.estado == null || this.location.estado == '' ){
+        this._notifyService.messageService.add({
+          severity: 'error',
+          summary: 'Debes seleccionar un estado'
+        })
+
+        return;
+      }
+      if( this.location.ciudad == null || this.location.ciudad == '' ){
+        this._notifyService.messageService.add({
+          severity: 'error',
+          summary: 'Debes seleccionar una ciudad'
+        })
+
+        return;
+      }
+
+    }
+
 
     let user: I_users = {
 
-      name: forma.value.nombres,
-      last_name: forma.value.apellidos,
-      id_card: forma.value.cedula,
-      pais: forma.value.pais,
-      estado: forma.value.estado,
-      ciudad: forma.value.ciudad,
-      dir_domicilio: forma.value.direccion,
-      nro_movil: forma.value.nroCelular,
-      nro_fijo: forma.value.nroFijo,
-      edad: forma.value.edad,
-      email: forma.value.email,
-      pass: forma.value.pass,
+      name: this.form.value.nombres,
+      last_name: this.form.value.apellidos,
+      id_card: this.form.value.cedula,
+      pais: this.location.pais,
+      estado: this.location.estado,
+      ciudad: this.location.ciudad,
+      dir_domicilio: this.form.value.direccion,
+      nro_movil: this.form.value.nroCelular,
+      nro_fijo: this.form.value.nroFijo,
+      edad: this.form.value.edad,
+      email: this.form.value.email,
+      pass: this.form.value.pass,
       // enrutator_id: null
 
     }
@@ -128,7 +259,7 @@ export class RegisterComponent implements OnInit {
 
       });
 
-      // forma.reset();
+      // this.form.reset();
     }, (ERR) => {
       console.error(ERR);
 
@@ -148,5 +279,12 @@ export class RegisterComponent implements OnInit {
 
 
   }
+
+
+
+  toggleFieldTextType() {
+    this.passHide = !this.passHide;
+  }
+
 
 }

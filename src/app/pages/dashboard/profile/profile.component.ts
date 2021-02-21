@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { I_responseInterface, I_users } from 'src/app/interfaces/interfaces.index';
-import { GlobalService, NotifyService, SessionService, UserService } from 'src/app/services/services.index';
+import { GlobalService, NotifyService, SessionService, UserService } from 'src/app/services/services/services.index';
 
 @Component({
   selector: 'app-profile',

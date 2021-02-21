@@ -9,26 +9,27 @@ section.section
             h4 Iniciar sesión
           .card-body
 
-            form.needs-validation&attributes({
-              '#f': 'ngForm',
-              '(ngSubmit)': 'login( f )',
-              'novalidate': ''
-              })
-              .form-group
+            form( [formGroup]="form", (ngSubmit)="login()" )
+              .form-group( [ngClass]="this._formResources.displayFieldCss('email', this.form)" )
                 label(for='email') Email
-                input#email.form-control(ngModel type='email' name='email' tabindex='1' required autofocus='' style='background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC"); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;' autocomplete='off')
-                .invalid-feedback
-                  | Por favor, escribe tu email
-              .form-group
-                .d-block
-                  label.control-label(for='pass') Contraseña
-                input#pass.form-control(ngModel type='password' name='pass' tabindex='2' required style='background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC"); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;' autocomplete='off')
-                .invalid-feedback
-                  | Por favor, escribe tu contraseña
+                input#email.form-control( (change)="this.prueba()", type='email',formControlName="email" ,name='email', tabindex='1' )
+                app-field-error( *ngIf="this._formResources.isFieldValid('email', this.form) && this.form.get('email').errors.required ", [errorMsg]="this.errorFields.email.required" )
+                app-field-error( *ngIf="this._formResources.isFieldValid('email', this.form) && this.form.get('email').errors.email ", [errorMsg]="this.errorFields.email.email" )
+                //- | {{ this.form.value.email }}
+              .form-group( [ngClass]="this._formResources.displayFieldCss('pass', this.form)" )
+                label.control-label(for='pass') Contraseña
+                .input-group
+                  input#pass.form-control( [type]="this.passHide ? 'text' : 'password'" ,formControlName="pass" ,name='pass', tabindex='2' )
+                  .input-group-append
+                    span.input-group-text
+                      i.fa( [ngClass]="this._formResources.displayPassHide(this.passHide)" ,(click)="toggleFieldTextType()" )
+                app-field-error( *ngIf="this._formResources.isFieldValid('pass', this.form) && this.form.get('pass').errors.required ", [errorMsg]="this.errorFields.pass.required" )
 
               .form-group
-                button.btn.btn-primary.btn-lg.btn-block(type='submit' tabindex='4')
+                button.btn.btn-primary.btn-lg.btn-block(type='submit' tabindex='4', [disabled]="!form.valid")
                   | Entrar
+
+
 
         .mt-5.text-muted.text-center
           | ¿No tienes cuenta?

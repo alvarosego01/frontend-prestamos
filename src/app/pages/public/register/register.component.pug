@@ -9,96 +9,103 @@ section.section
           .card-header
             h4 Registro de usuario
           .card-body
-            form.needs-validation&attributes({
-              '#f': 'ngForm',
-              '(ngSubmit)': 'userRegister( f )',
-              'novalidate': ''
-              })
+            form( [formGroup]="form", (ngSubmit)="userRegister()" )
               .form-divider
                 | Información de usuario
               .row
                 .form-group.col-md-12.col-lg-4
                   label(for="nombres") Nombres
-                  input#nombres.form-control( ngModel, required, type="text", name="nombres", autofocus)
-                  .invalid-feedback
-                    | Por favor, escribe tu nombre
+                  input#nombres.form-control(  type="text",formControlName="nombres" ,name="nombres", autofocus)
+                  app-field-error( *ngIf="this._formResources.isFieldValid('nombres', this.form) && this.form.get('nombres').errors.required ", [errorMsg]="this.errorFields.nombres.required" )
                 .form-group.col-md-12.col-lg-4
                   label(for="apellidos") Apellidos
-                  input#apellidos.form-control( ngModel, required, type="text", name="apellidos")
-                  .invalid-feedback
-                    | Por favor, escribe tu apellido
+                  input#apellidos.form-control(  type="text",formControlName="apellidos" ,name="apellidos")
+                  app-field-error( *ngIf="this._formResources.isFieldValid('apellidos', this.form) && this.form.get('apellidos').errors.required ", [errorMsg]="this.errorFields.apellidos.required" )
                 .form-group.col-md-12.col-lg-4
                   label(for="cedula") Nro Identificación ó Cédula
-                  input#cedula.form-control( ngModel, required, type="text", name="cedula")
-                  .invalid-feedback
-                    | Por favor, escribe tu apellido
-              .row
-                .form-group.col-md-12.col-lg-4
-                  label(for="pais") País
-                  .selectric-wrapper.selectric-form-control.selectric-selectric.selectric-below.selectric-open
-                    .selectric-hide-select
-                      select#pais.form-control.selectric(ngModel, required, type="text", name="pais", tabindex="-1")
-                        option Colombia
-                        option Ecuador
-                      .invalid-feedback
-                        | Por favor, selecciona un país
+                  input#cedula.form-control(  type="text",formControlName="cedula" ,name="cedula")
+                  app-field-error( *ngIf="this._formResources.isFieldValid('cedula', this.form) && this.form.get('cedula').errors.required ", [errorMsg]="this.errorFields.cedula.required" )
+              app-location-field( (data)="getLocation($event)" )
+              //- .row
+              //-   .form-group.col-md-12.col-lg-4
+              //-     label(for="pais") País
+              //-     .selectric-wrapper.selectric-form-control.selectric-selectric.selectric-below.selectric-open
+              //-       .selectric-hide-select
+              //-         select#pais.form-control.selectric( *ngIf='this.location.paises && this.location.paises.length > 0' ,type="text",formControlName="pais" ,name="pais", tabindex="-1", (change)="this.selectPais($event.target.value)")
+              //-           option( *ngFor='let item of this.location.paises', [value]="item | json") {{ item.nativeName }}
 
-                .form-group.col-md-12.col-lg-4
-                  label(for="estado") Estado ó departamento
-                  input#estado.form-control( ngModel, required, type="text", name="estado", autofocus)
-                  .invalid-feedback
-                    | Por favor, escribe un estado ó departamento
+              //-         app-field-error( *ngIf="this._formResources.isFieldValid('pais', this.form) && this.form.get('pais').errors.required ", [errorMsg]="this.errorFields.pais.required" )
 
-                .form-group.col-md-12.col-lg-4
-                  label(for="ciudad") Ciudad
-                  input#ciudad.form-control( ngModel, required, type="text", name="ciudad")
-                  .invalid-feedback
-                    | Por favor, escribe tu ciudad
+
+              //-   .form-group.col-md-12.col-lg-4
+              //-     label(for="estado") Estado ó departamento
+              //-     .selectric-wrapper.selectric-form-control.selectric-selectric.selectric-below.selectric-open
+              //-       .selectric-hide-select
+              //-         select#estado.form-control.selectric( *ngIf='this.location.estados != null' ,type="text",formControlName="estado" ,name="estado", tabindex="-1", (change)="this.selectEstado($event.target.value)")
+              //-           option( *ngFor='let item of this.location.estados | keyvalue', [value]="item.value") {{ item.value }}
+
+              //-         app-field-error( *ngIf="this._formResources.isFieldValid('estado', this.form) && this.form.get('estado').errors.required ", [errorMsg]="this.errorFields.estado.required" )
+
+
+
+                //- .form-group.col-md-12.col-lg-4
+                //-   label(for="ciudad") Ciudad
+                //-   input#ciudad.form-control(  type="text",formControlName="ciudad" ,name="ciudad")
+                //-   app-field-error( *ngIf="this._formResources.isFieldValid('ciudad', this.form) && this.form.get('ciudad').errors.required ", [errorMsg]="this.errorFields.ciudad.required" )
+
               .row
                 .form-group.col-md-12
                   label(for="direccion") Dirección
-                  input#direccion.form-control( ngModel, required, type="text", name="direccion", autofocus)
-                  .invalid-feedback
-                    | Por favor, escribe tu nombre
+                  input#direccion.form-control(  type="text",formControlName="direccion" ,name="direccion", autofocus)
+                  app-field-error( *ngIf="this._formResources.isFieldValid('direccion', this.form) && this.form.get('direccion').errors.required ", [errorMsg]="this.errorFields.direccion.required" )
+
 
               .row
                 .form-group.col-md-12.col-lg-4
                   label(for="edad") Edad
-                  input#edad.form-control( ngModel, required, type="number", name="edad")
-                  .invalid-feedback
-                    | Por favor, escribe tu edad
+                  input#edad.form-control(  type="number",formControlName="edad" ,name="edad")
+                  app-field-error( *ngIf="this._formResources.isFieldValid('edad', this.form) && this.form.get('edad').errors.required ", [errorMsg]="this.errorFields.edad.required" )
+
 
                 .form-group.col-md-12.col-lg-4
                   label(for="nroFijo") Teléfono fijo
-                  input#nroFijo.form-control( ngModel, type="tel", name="nroFijo", autofocus)
-                  .invalid-feedback
-                    | Por favor, escribe un teléfono fijo
+                  input#nroFijo.form-control( ngModel, type="tel",formControlName="nroFijo" ,name="nroFijo", autofocus)
+                  app-field-error( *ngIf="this._formResources.isFieldValid('nroFijo', this.form) && this.form.get('nroFijo').errors.required ", [errorMsg]="this.errorFields.nroFijo.required", [imask]="this._formResources.phoneMask()" )
+
 
                 .form-group.col-md-12.col-lg-4
                   label(for="nroCelular") Teléfono Celular
-                  input#nroCelular.form-control( ngModel, required,type="tel", name="nroCelular", autofocus)
-                  .invalid-feedback
-                    | Por favor, escribe un teléfono Celular
+                  input#nroCelular.form-control( type="tel",formControlName="nroCelular" ,name="nroCelular", autofocus)
+                  app-field-error( *ngIf="this._formResources.isFieldValid('nroCelular', this.form) && this.form.get('nroCelular').errors.required ", [errorMsg]="this.errorFields.nroCelular.required", [imask]="this._formResources.phoneMask()" )
+
 
               .form-divider
                 | Datos de acceso
               .row
                 .form-group.col-md-12.col-lg-4
                   label(for="email") Email
-                  input#email.form-control( ngModel ,required ,type="email", name="email")
-                  .invalid-feedback
-                    | Por favor, escribe tu email
+                  input#email.form-control( type="email",formControlName="email" ,name="email")
+                  app-field-error( *ngIf="this._formResources.isFieldValid('email', this.form) && this.form.get('email').errors.required ", [errorMsg]="this.errorFields.email.required" )
+                  app-field-error( *ngIf="this._formResources.isFieldValid('email', this.form) && this.form.get('email').errors.email ", [errorMsg]="this.errorFields.email.email" )
+
                 .form-group.col-md-12.col-lg-4
                   label.d-block(for="pass") Contraseña
-                  input#pass.form-control.pwstrength(ngModel ,required , type="password", data-indicator="pwindicator", name="pass")
-                  #pwindicator.pwindicator
-                    .bar
-                    .label
+                  .input-group
+                    input#pass.form-control( [type]="this.passHide ? 'text' : 'password'" ,formControlName="pass" ,name='pass' )
+                    .input-group-append
+                      span.input-group-text
+                        i.fa( [ngClass]="this._formResources.displayPassHide(this.passHide)" ,(click)="toggleFieldTextType()" )
+                  app-field-error( *ngIf="this._formResources.isFieldValid('pass', this.form) && this.form.get('pass').errors.required ", [errorMsg]="this.errorFields.pass.required" )
                 .form-group.col-md-12.col-lg-4
                   label.d-block(for="Cpass") Confirmar contraseña
-                  input#Cpass.form-control(ngModel ,required, type="password", name="Cpass")
+                  .input-group
+                    input#Cpass.form-control( [type]="this.passHide ? 'text' : 'password'" ,formControlName="Cpass" ,name='Cpass' )
+                    .input-group-append
+                      span.input-group-text
+                        i.fa( [ngClass]="this._formResources.displayPassHide(this.passHide)" ,(click)="toggleFieldTextType()" )
+                  app-field-error( *ngIf="this._formResources.isFieldValid('Cpass', this.form) && this.form.get('Cpass').errors.required ", [errorMsg]="this.errorFields.Cpass.required" )
               .form-group
-                button.btn.btn-primary.btn-lg.btn-block(type='submit' tabindex='4')
+                button.btn.btn-primary.btn-lg.btn-block(type='submit' tabindex='4', [disabled]="!form.valid")
                   | Registrar
             app-hero( *ngIf='this.userRef != null' ,[type]="'primary'", [titulo]="'Registro de usuario como cobrador referido al enrutador:'", [subTitulo]="this.userRef.name+' '+this.userRef.last_name" )
         .mt-5.text-muted.text-center

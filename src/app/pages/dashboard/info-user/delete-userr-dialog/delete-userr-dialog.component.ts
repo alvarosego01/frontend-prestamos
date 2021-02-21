@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { NotifyService, UserService } from 'src/app/services/services.index';
+import { NotifyService, UserService } from 'src/app/services/services/services.index';
 
 @Component({
   selector: 'app-delete-userr-dialog',

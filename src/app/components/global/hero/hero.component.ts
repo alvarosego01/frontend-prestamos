@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-hero',
@@ -13,12 +13,23 @@ export class HeroComponent implements OnInit {
   @Input("titulo") titulo: string = null;
   @Input("subTitulo") subTitulo: string = null;
 
-  @Input("link") link: string = null;
+  @Input("icono") icono: string = null;
   @Input("boton") boton: string = null;
+
+
+  @Output() accionBoton  =  new EventEmitter<boolean>();
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+
+  funcionboton(){
+
+
+    this.accionBoton.emit(true);
+
   }
 
 }

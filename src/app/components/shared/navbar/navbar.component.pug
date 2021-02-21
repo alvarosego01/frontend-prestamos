@@ -17,69 +17,13 @@ nav.navbar.navbar-expand-lg.main-navbar( [ngClass]="{'allNav': this._sessionServ
 
 	ul.navbar-nav.navbar-right(*ngIf="this._sessionService.estaLogueado() == true")
 
-		//- li.dropdown.dropdown-list-toggle
-		//- 	a.nav-link.notification-toggle.nav-link-lg.beep(href='#' data-toggle='dropdown')
-		//- 		i.far.fa-bell
-		//- 	.dropdown-menu.dropdown-list.dropdown-menu-right
-		//- 		.dropdown-header
-		//- 			| Notifications
-		//- 			.float-right
-		//- 				a(href='#') Mark All As Read
-		//- 		.dropdown-list-content.dropdown-list-icons
-		//- 			a.dropdown-item.dropdown-item-unread(href='#')
-		//- 				.dropdown-item-icon.bg-primary.text-white
-		//- 					i.fas.fa-code
-		//- 				.dropdown-item-desc
-		//- 					| Template update is available now!
-		//- 					.time.text-primary 2 Min Ago
-		//- 			a.dropdown-item(href='#')
-		//- 				.dropdown-item-icon.bg-info.text-white
-		//- 					i.far.fa-user
-		//- 				.dropdown-item-desc
-		//- 					b You
-		//- 					|  and
-		//- 					b Dedik Sugiharto
-		//- 					|  are now friends
-		//- 					.time 10 Hours Ago
-		//- 			a.dropdown-item(href='#')
-		//- 				.dropdown-item-icon.bg-success.text-white
-		//- 					i.fas.fa-check
-		//- 				.dropdown-item-desc
-		//- 					b Kusnaedi
-		//- 					|  has moved task
-		//- 					b Fix bug header
-		//- 					|  to
-		//- 					b Done
-		//- 					.time 12 Hours Ago
-		//- 			a.dropdown-item(href='#')
-		//- 				.dropdown-item-icon.bg-danger.text-white
-		//- 					i.fas.fa-exclamation-triangle
-		//- 				.dropdown-item-desc
-		//- 					| Low disk space. Let's clean it!
-		//- 					.time 17 Hours Ago
-		//- 			a.dropdown-item(href='#')
-		//- 				.dropdown-item-icon.bg-info.text-white
-		//- 					i.fas.fa-bell
-		//- 				.dropdown-item-desc
-		//- 					| Welcome to Stisla template!
-		//- 					.time Yesterday
-		//- 		.dropdown-footer.text-center
-		//- 			a(href='#')
-		//- 				| View All
-		//- 				i.fas.fa-chevron-right
 		li.dropdown
 			a.nav-link.dropdown-toggle.nav-link-lg.nav-link-user(href='#' data-toggle='dropdown')
 				img.rounded-circle.mr-1(alt='image' src='assets/img/avatar/avatar-1.png')
 				.d-sm-none.d-lg-inline-block {{ this._sessionService.usuario.name }} {{ this._sessionService.usuario.last_name }}
 			.dropdown-menu.dropdown-menu-right
 				.dropdown-title
-					//- | Logged in 5 min ago
-				//- a.dropdown-item.has-icon(href='features-profile.html')
-				//- 	i.far.fa-user
-				//- 	|  Perfil de usuario
-				//- a.dropdown-item.has-icon(href='features-settings.html')
-				//- 	i.fas.fa-cog
-				//- 	|  Configuraciones
+
 				.dropdown-divider
 				a.dropdown-item.has-icon.text-danger( (click)="this.logout()" )
 					i.fas.fa-sign-out-alt

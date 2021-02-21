@@ -98,20 +98,6 @@ export class UserService {
 
   }
 
-  usersMyCollectorsGET(paginate, id: string){
-
-    let url = `${this._SERVICIOS}/users/myCollectors/${id}?paginate=${paginate}`;
-
-    return this.http.get(url).pipe(
-        map((resp: any) => {
-        return resp;
-    }),
-    catchError((err) => {
-        return throwError(err);
-    })
-    );
-
-  }
 
 
   usersOneGET(id: string){

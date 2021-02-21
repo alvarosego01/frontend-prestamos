@@ -4,7 +4,7 @@
     //-   a(href="index.html") Stisla
     //- .sidebar-brand.sidebar-brand-sm
     //-   a(href="index.html") St
-    ul.sidebar-menu( *ngIf="this._sessionService.usuario.rol == 'Administrador'" )
+    ul.sidebar-menu( *ngIf="this._sessionService.usuario.rolName == 'ADMIN_ROLE'" )
       li.menu-header Panel de Administración
       li
         a.nav-link([routerLink]="['/dashboard/admin/usuarios']", routerLinkActive="active")
@@ -17,41 +17,76 @@
           |
           span  Control de rutas
       li
-        a.nav-link([routerLink]="['/dashboard/admin/estadisticas']", routerLinkActive="active")
+        a.nav-link([routerLink]="['/dashboard/admin/clientes']", routerLinkActive="active")
           i.fas.fa-user
           |
-          span  Estadisticas
+          span  Control de clientes
       li
-        a.nav-link([routerLink]="['/dashboard/admin/roles']", routerLinkActive="active")
+        a.nav-link([routerLink]="['/dashboard/admin/reportes']", routerLinkActive="active")
           i.fas.fa-user
           |
-          span  Control de roles
+          span  Reportes
+      //- li
+      //-   a.nav-link([routerLink]="['/dashboard/admin/roles']", routerLinkActive="active")
+      //-     i.fas.fa-user
+      //-     |
+      //-     span  Control de roles
       li
         a.nav-link([routerLink]="['/dashboard/admin/peticiones']", routerLinkActive="active")
           i.fas.fa-user
           |
           span  Control de peticiones
 
-    ul.sidebar-menu( *ngIf="this._sessionService.usuario.rol == 'Enrutador'" )
+    ul.sidebar-menu( *ngIf="this._sessionService.usuario.rolName == 'ENRUTATOR_ROLE'" )
       li.menu-header Panel de Enrutador
       li
-        a.nav-link([routerLink]="['/dashboard/enrutador/cobradores']", routerLinkActive="active")
+        a.nav-link([routerLink]="['/dashboard/socio/vendedores']", routerLinkActive="active")
           i.fas.fa-user
           |
-          span Mis cobradores
+          span Mis vendedores
       li
-        a.nav-link([routerLink]="['/dashboard/enrutador/rutas']", routerLinkActive="active")
+        a.nav-link([routerLink]="['/dashboard/socio/clientes']", routerLinkActive="active")
+          i.fas.fa-user
+          |
+          span Mis clientes
+      li
+        a.nav-link([routerLink]="['/dashboard/socio/rutas']", routerLinkActive="active")
           i.fas.fa-user
           |
           span Mis rutas
       li
-        a.nav-link([routerLink]="['/dashboard/enrutador/estadisticas']", routerLinkActive="active")
+        a.nav-link([routerLink]="['/dashboard/socio/reportes']", routerLinkActive="active")
           i.fas.fa-user
           |
-          span Estadisticas
+          span Reportes
 
       li
-        a.nav-link([routerLink]="['/dashboard/enrutador/peticiones']", routerLinkActive="active")
+        a.nav-link([routerLink]="['/dashboard/socio/peticiones']", routerLinkActive="active")
+          i.fas.fa-user
+          |
+          span  Control de peticiones
+
+
+    ul.sidebar-menu( *ngIf="this._sessionService.usuario.rolName == 'COLLECTOR_ROLE'" )
+      li.menu-header Panel de Enrutador
+      //- li
+      //-   a.nav-link([routerLink]="['/dashboard/socio/vendedores']", routerLinkActive="active")
+      //-     i.fas.fa-user
+      //-     |
+      //-     span Mis cobradores
+      li
+        a.nav-link([routerLink]="['/dashboard/vendedor/rutas']", routerLinkActive="active")
+          i.fas.fa-user
+          |
+          span Mis rutas
+      li
+        a.nav-link([routerLink]="['/dashboard/vendedor/reportes']", routerLinkActive="active")
+          i.fas.fa-user
+          |
+          span Reportes
+
+      li
+        a.nav-link([routerLink]="['/dashboard/vendedor/peticiones']", routerLinkActive="active")
           i.fas.fa-user
           |
           span  Control de peticiones
@@ -81,7 +116,7 @@
           |
           span Configuraciones
       li
-        a.nav-link((click)="this.logout()")
+        a.nav-link( (click)="this.logout()" )
           i.fas.fa-sign-out-alt
           |
           span Cerrar sesión

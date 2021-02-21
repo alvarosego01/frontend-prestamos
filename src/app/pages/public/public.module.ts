@@ -10,10 +10,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { GlobalModule } from 'src/app/components/global/global.module';
 // import { _APP_ROUTES } from 'src/app/app.routes';
 
 import { RouterModule } from '@angular/router';
+
+import { GlobalModule } from 'src/app/components/global/global.module';
 
 @NgModule({
   declarations: [

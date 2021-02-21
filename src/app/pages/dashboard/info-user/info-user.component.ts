@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { GlobalService, SessionService, UserService } from 'src/app/services/services.index';
+import { GlobalService, NotifyService, SessionService, UserService } from 'src/app/services/services/services.index';
 
 @Component({
   selector: 'app-info-user',
@@ -24,7 +24,8 @@ export class InfoUserComponent implements OnInit {
     public activatedRoute: ActivatedRoute,
     public _usersService: UserService,
     public _sessionService: SessionService,
-    public _globalService: GlobalService
+    public _globalService: GlobalService,
+    private _notifyService: NotifyService
   ) {
 
     this.activatedRoute.params.subscribe((params) => {
@@ -55,9 +56,22 @@ export class InfoUserComponent implements OnInit {
 
 
 
-        console.log('infoUser', this.infoUser);
+
     }, (err) => {
       console.error(err);
+
+        this._notifyService.messageService.add({
+        severity: 'error',
+        summary: err.error.message
+      });
+
+      if(this._sessionService.usuario.rolName == 'ADMIN_ROLE'){
+        this.router.navigate(["/dashboard/admin/usuarios"]);
+      }
+      if(this._sessionService.usuario.rolName == 'ENRUTATOR_ROLE'){
+        this.router.navigate(["/dashboard/socio/vendedores"]);
+      }
+
     });
   }
 

@@ -11,6 +11,10 @@ import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
+import { WebSocketService } from "../sockets/web-socket.service";
+
+// import { WebSocketService } from "../sockets/socket.index";
+
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +25,13 @@ export class SessionService {
   token: string = null;
   _SERVICIOS: string = environment._SERVICE;
 
+
+  usersOnline: any = null;
+
   constructor(
     public http: HttpClient,
-    public router: Router // private _notifyService: NotifyService, // //    public GlobalConfigService:GlobalConfigService
+    public router: Router, // private _notifyService: NotifyService, // //    public GlobalConfigService:GlobalConfigService
+    private _webSocketService: WebSocketService
   ) {
     // se llama al cargar storage siemp que se inicialize el servicio para que tengan datos manejables.
     this.cargarStorage();
@@ -38,7 +46,7 @@ export class SessionService {
       map((resp: any) => {
         this.guardarStorage(resp.data._id, resp.data.token, resp.data);
 
-
+        this.setListeners();
         return resp;
       }),
       catchError((err) => {
@@ -90,6 +98,13 @@ export class SessionService {
   }
 
   logout() {
+
+    this._webSocketService.emit('logout-user', {idUser: this.usuario._id}, resp => {
+
+      console.log('Se manda logout event emit');
+
+    })
+
     this.usuario = null;
     this.token = null;
     localStorage.removeItem("token");
@@ -97,10 +112,43 @@ export class SessionService {
     localStorage.removeItem("id");
     // una vez al deslogear se pasa al login
 
+    let l: any = [
+      'ADM-anuncio-login'
+    ]
+    this._webSocketService.removeAllListener(l);
+
+
     this.router.navigate(["/login"]);
   }
 
 
+
+
+ async setListeners(){
+
+    await this._webSocketService.checkConnect().subscribe(async (resp) => {
+      if(this.estaLogueado() == true){
+
+        if(this.usuario.rolName == "ADMIN_ROLE"){
+
+          await this._webSocketService.listen('ADM-onlineList').subscribe((resp) => {
+
+
+            console.log('los en lnea', resp);
+
+          }, (err) => {
+            console.error(err);
+          });
+
+        }
+
+      }
+    }, (err) => {
+        console.error(err);
+    });
+
+
+  }
 
 
 }

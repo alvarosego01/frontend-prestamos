@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NotifyService, SessionService } from 'src/app/services/services.index';
+import { NotifyService, SessionService } from 'src/app/services/services/services.index';
 
 @Component({
   selector: 'app-nav-dashboard',
@@ -9,7 +9,7 @@ import { NotifyService, SessionService } from 'src/app/services/services.index';
 export class NavDashboardComponent implements OnInit {
 
 
- 
+
 
   constructor(
     public _sessionService: SessionService,

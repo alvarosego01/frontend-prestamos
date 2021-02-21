@@ -5,9 +5,9 @@ app-nav-dashboard( *ngIf="this._sessionService.estaLogueado() == true" )
   app-spinner
   .main-wrapper.main-wrapper-1
     .main-content( [ngClass]="{'noSpace': this._sessionService.estaLogueado() == false }")
-      app-public(*ngIf="this._globalService.spinner == false")
+      app-public
       //- router-outlet
-      app-dashboard(*ngIf="this._globalService.spinner == true")
+      //- app-dashboard
 app-footer
 
 

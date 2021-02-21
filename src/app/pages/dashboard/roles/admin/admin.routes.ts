@@ -8,7 +8,7 @@ import { ProfileComponent, NotificationsComponent, SettingsComponent } from '../
 import { PanelCentralComponent } from '../../panel-central/panel-central.component';
 
 
-import { AdminComponent, RequestsControlComponent, RolesControlComponent, RoutesControlComponent, StatsControlComponent, UsersControlComponent } from './admin.index';
+import { AdminComponent, ClientesControlComponent, RequestsControlComponent, RolesControlComponent, RoutesControlComponent, StatsControlComponent, UsersControlComponent } from './admin.index';
 
 
 // {
@@ -65,7 +65,11 @@ const adminRoutes: Routes = [
           component: RoutesControlComponent,
         },
         {
-          path: "estadisticas",
+          path: "clientes",
+          component: ClientesControlComponent,
+        },
+        {
+          path: "reportes",
           component: StatsControlComponent,
         },
         {

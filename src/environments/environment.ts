@@ -4,7 +4,12 @@
 
 export const environment = {
   production: false,
-  _SERVICE: 'http://localhost:3500'
+  _PAGEURL: 'http://localhost:4200',
+  _SERVICE: 'http://localhost:3500',
+  _BATTUTA_KEY: "c0be4b0884898f42490650530743591e",
+  _API_COUNTRIES: "https://restcountries.eu/rest/v2/regionalbloc/usan",
+  _API_LOCATION: "https://geodata.solutions/api/api.php",
+  _KEY_LOCATION: "BFULyTjXQMauipTYy1i8yHFGgfB4dGWgPJ51BAi9pUPxQUL7ggQiZVYbg58cIaUQDBE"
 };
 
 /*

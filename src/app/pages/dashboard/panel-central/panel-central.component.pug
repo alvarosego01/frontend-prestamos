@@ -3,8 +3,10 @@ section.section
     h1 Inicio
 
   .section-body
+
     h2.section-title Te damos la bienvenida {{ this._sessionService.usuario.name }} {{ this._sessionService.usuario.last_name }}
-    p.section-lead
+
+    app-hero( *ngIf="this._sessionService.usuario.rolName === 'ENRUTATOR_ROLE'" ,(accionBoton)="this.copyReferLink($event)", [type]="'success'", [titulo]="'¿Quieres registrar a un cobrador cómo tu referido?'", [boton]="'Copiar link'" ,[subTitulo]="'Copia este enlace y envialo a tus cobradores '+this._PAGEURL" )
       //- | Organize and adjust all settings about this site.
     .row
       .col-lg-6
@@ -14,7 +16,7 @@ section.section
           .card-body
             h4 Perfil de usuario
             p Visualiza, gestiona y configura los parametros de tu cuenta
-            a.card-cta(href='features-setting-detail.html')
+            a.card-cta([routerLink]="['/dashboard/perfil']", routerLinkActive="active")
               | Ver
               i.fas.fa-chevron-right
       .col-lg-6
@@ -22,9 +24,9 @@ section.section
           .card-icon.bg-primary.text-white
             i.fas.fa-chart-line
           .card-body
-            h4 Estadísticas generales
+            h4 Reportes
             p Visualiza graficos e información general en sistema
-            a.card-cta(href='features-setting-detail.html')
+            a.card-cta([routerLink]="['/dashboard/'+ this.typeRoute +'/reportes']", routerLinkActive="active")
               | Ver
               i.fas.fa-chevron-right
       .col-lg-6
@@ -34,7 +36,7 @@ section.section
           .card-body
             h4 Notificaciones
             p Visualiza tus últimas notificaciones
-            a.card-cta(href='features-setting-detail.html')
+            a.card-cta([routerLink]="['/dashboard/notificaciones']", routerLinkActive="active")
               | Ver
               i.fas.fa-chevron-right
       .col-lg-6
@@ -44,7 +46,7 @@ section.section
           .card-body
             h4 Configuraciones
             p Gestiona configuraciones generales del sistema y su comportamiento
-            a.card-cta(href='features-setting-detail.html')
+            a.card-cta([routerLink]="['/dashboard/configuraciones']", routerLinkActive="active")
               | Ver
               i.fas.fa-chevron-right
       .col-lg-6
@@ -54,7 +56,7 @@ section.section
           .card-body
             h4 Gestión de peticiones
             p Visualiza y gestiona peticiones de cambios y borrados
-            a.card-cta(href='features-setting-detail.html')
+            a.card-cta([routerLink]="['/dashboard/'+ this.typeRoute +'/peticiones']", routerLinkActive="active")
               | Ver
               i.fas.fa-chevron-right
       .col-lg-6
@@ -64,6 +66,6 @@ section.section
           .card-body
             h4 Cerrar sesión
             p Esperamos que vuelvas pronto
-            a.card-cta.text-primary(href='features-setting-detail.html')
+            a.card-cta.text-primary( (click)="this.logout()" )
               | Cerrar
               i.fas.fa-chevron-right

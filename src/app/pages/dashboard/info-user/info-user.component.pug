@@ -34,18 +34,18 @@ section.section
                                     h6 Última conexión
                                     p {{ infoUser.last_session[0] }}, {{ infoUser.last_session[1] }} {{ infoUser.last_session[2] }}
 
-                .card.profile-widget(*ngIf="this.infoUser.rol.rol == 'Cobrador' || this.infoUser.rol.rol == 'Enrutador'")
-                    .profile-widget-header
+                //- .card.profile-widget(*ngIf="this.infoUser.rol.rol == 'COLLECTOR_ROLE' || this.infoUser.rol.rol == 'ENRUTATOR_ROLE'")
+                //-     .profile-widget-header
 
-                    .card-footer.text-left
-                        .font-weight-bold.mb-2 Balance de actividades
-                        .list-unstyled.list-unstyled-border.mt-4
-                            .media
-                                .media-icon
-                                    i.fas.fa-calendar
-                                .media-body
-                                    h6 Fecha de registro
-                                    p {{ infoUser.createdAt[0] }}, {{ infoUser.createdAt[1] }} {{ infoUser.createdAt[2] }}
+                //-     .card-footer.text-left
+                //-         .font-weight-bold.mb-2 Balance de actividades
+                //-         .list-unstyled.list-unstyled-border.mt-4
+                //-             .media
+                //-                 .media-icon
+                //-                     i.fas.fa-calendar
+                //-                 .media-body
+                //-                     h6 Fecha de registro
+                //-                     p {{ infoUser.createdAt[0] }}, {{ infoUser.createdAt[1] }} {{ infoUser.createdAt[2] }}
 
 
             .col-12.col-md-12.col-lg-7
@@ -101,7 +101,7 @@ section.section
                                 label(for="nroCelular") Teléfono Celular
                                 p {{ this.infoUser.nro_movil }}
 
-                .card( *ngIf="(this.infoUser._id != this._sessionService.usuario._id) && (this._sessionService.usuario.rol.alias === 'Administrador')" )
+                .card( *ngIf="(this.infoUser._id != this._sessionService.usuario._id) && (this._sessionService.usuario.rolName === 'Administrador')" )
                     .card-header
                         h4 Configuraciones de usuario
                     .card-body
@@ -124,9 +124,9 @@ section.section
                                         p Eliminar usuario
 
 
-p-dialog( *ngIf="(this._sessionService.usuario.rol.alias === 'Administrador')", header="Cambiar rol", [(visible)]="this.changeRoles", [modal]="true", [style]="{width: '75vw'}", [baseZIndex]="10000")
+p-dialog( *ngIf="(this._sessionService.usuario.rolName === 'Administrador')", header="Cambiar rol", [(visible)]="this.changeRoles", [modal]="true", [style]="{width: '75vw'}", [baseZIndex]="10000")
     app-change-role-dialog( *ngIf="this.changeRoles == true" ,[user]="this.infoUser", (success)="this.sucess($event)" ,(close)="this.closeRoleDialog($event)" )
-p-dialog( *ngIf="(this._sessionService.usuario.rol.alias === 'Administrador')", header="Cambiar rol", [(visible)]="this.deleteUser", [modal]="true", [style]="{width: '75vw'}", [baseZIndex]="10000")
+p-dialog( *ngIf="(this._sessionService.usuario.rolName === 'Administrador')", header="Cambiar rol", [(visible)]="this.deleteUser", [modal]="true", [style]="{width: '75vw'}", [baseZIndex]="10000")
     app-delete-userr-dialog( *ngIf="this.deleteUser == true" ,[user]="this.infoUser", (success)="this.sucess($event)" ,(close)="this.closeRoleDialog($event)" )
 
 

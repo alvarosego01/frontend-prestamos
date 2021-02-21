@@ -2,11 +2,24 @@
 
 @import "~src/generals"
 
+
+
+
+
 .hideButton
     display: none!important
 
 .navbar
     right: 0!important
+nav
+    a.sidebar-gone-show
+        @include responsivo(general)
+            display: none!important
+        @include responsivo(resto)
+            display: none!important
+    a
+        display: flex!important
+        align-items: center
 
 ul.navbar-nav
     li.nav-item
@@ -36,3 +49,4 @@ ul.navbar-nav
             a.active
                 background-color: $primaryApp
                 color: white
+

@@ -9,10 +9,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { GlobalModule } from 'src/app/components/global/global.module';
+import { AddRutaComponent } from './mis-rutas-enrouter/add-ruta/add-ruta.component';
+
+import { DialogModule } from 'primeng/dialog';
+
+import { InfoRutaModule } from '../../info-ruta/info-ruta.module';
+import { MisClientesComponent } from './mis-clientes/mis-clientes.component';
+import { AddClienteComponent } from './mis-clientes/add-cliente/add-cliente.component';
 
 @NgModule({
-  declarations: [EnrutadorComponent, MisCobradoresComponent, MisRutasEnrouterComponent, StatsEnrouterComponent, RequestControlEnrouterComponent],
+  declarations: [EnrutadorComponent, MisCobradoresComponent, MisRutasEnrouterComponent, StatsEnrouterComponent, RequestControlEnrouterComponent, AddRutaComponent, MisClientesComponent, AddClienteComponent],
   imports: [
+    DialogModule,
     CommonModule,
     BrowserModule,
     HttpClientModule,
@@ -20,7 +28,8 @@ import { GlobalModule } from 'src/app/components/global/global.module';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     GlobalModule,
-    RouterModule
+    RouterModule,
+    InfoRutaModule
   ]
 })
 export class EnrutadorModule { }

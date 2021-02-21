@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { UserService, SearchService, NotifyService, SessionService } from 'src/app/services/services.index';
+import { CobradorGuard } from 'src/app/services/guards/guards.index';
+import { UserService, SearchService, NotifyService, SessionService, CobradorService } from 'src/app/services/services/services.index';
 
 @Component({
   selector: 'app-mis-cobradores',
@@ -17,10 +18,12 @@ export class MisCobradoresComponent implements OnInit {
   registros: any = [];
 
 
+
+
   headers: any = [
     "Foto",
-    "Nombre",
-    "Apellido",
+    "Nombre y apellido",
+    // "Apellido",
     "Edad",
     "Cédula",
     "Telf fijo",
@@ -29,7 +32,7 @@ export class MisCobradoresComponent implements OnInit {
     // "País",
     // "Estado/departamento",
     // "Ciudad",
-    "Rol",
+    // "Rol",
     "Creado en",
     "Ult. Sesión",
     "Status",
@@ -42,7 +45,8 @@ export class MisCobradoresComponent implements OnInit {
     public _userService: UserService,
     public _searchService: SearchService,
     public _notifyService: NotifyService,
-    private _sessionService: SessionService
+    private _sessionService: SessionService,
+    public _cobradoresService: CobradorService
   ) {
 
     this.getAll();
@@ -56,7 +60,7 @@ export class MisCobradoresComponent implements OnInit {
 
   async getAll(paginate: number = 1) {
 
-    await this._userService.usersMyCollectorsGET(paginate, this._sessionService.usuario._id ).subscribe((resp) => {
+    await this._cobradoresService.usersMyCollectorsGET(paginate, this._sessionService.usuario._id ).subscribe((resp) => {
 
       this.registros = resp.data;
 

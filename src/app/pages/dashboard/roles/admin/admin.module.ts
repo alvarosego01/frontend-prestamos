@@ -11,12 +11,13 @@ import { AdminComponent, RequestsControlComponent, RolesControlComponent, Routes
 
 import { _ADMIN_ROUTES } from './admin.routes';
 import { RouterModule } from '@angular/router';
+import { ClientesControlComponent } from './clientes-control/clientes-control.component';
 
 @NgModule({
   declarations: [
     AdminComponent,
     UsersControlComponent,
-    RoutesControlComponent, StatsControlComponent, RolesControlComponent, RequestsControlComponent],
+    RoutesControlComponent, StatsControlComponent, RolesControlComponent, RequestsControlComponent, ClientesControlComponent],
   imports: [
     CommonModule,
     BrowserModule,

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { GlobalService } from 'src/app/services/services.index';
+import { GlobalService } from 'src/app/services/services/services.index';
 
 @Component({
   selector: 'app-paginator',

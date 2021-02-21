@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 
-import { GlobalService, LoaderService } from '../services/services.index';
+import { GlobalService, LoaderService } from '../services/services/services.index';
 
 @Injectable()
 export class LoaderInterceptor implements HttpInterceptor {
@@ -22,7 +22,7 @@ export class LoaderInterceptor implements HttpInterceptor {
 
     if (this.count === 0) {
       this.loaderService.setHttpProgressStatus(true);
- 
+
     }
     this.count++;
     console.log('this.count',this.count);
