@@ -1,0 +1,76 @@
+section.section
+  .section-header
+    h1 Mis clientes
+    .section-header-button
+      button.btn.btn-primary( (click)="this.showDialog('newClient')" ) Crear nuevo cliente
+  .section-body
+    h2.section-title Control de clientes
+    .row.mt-4
+      .col-12
+        .card(*ngIf='this.misRutas.length == 0')
+          .card-body
+            app-hero( [type]="'primary'", [titulo]="'Sin resultados'", [subTitulo]="'No tienes clientes añadidos actualmente'" )
+        .card( *ngIf='this.misRutas.length > 0' )
+          .card-header
+            h4
+            .card-header-form
+              //- form.needs-validation( #f="ngForm", (ngSubmit)="this.search( f )" )
+              //-   .input-group
+              //-     input.form-control( required ,ngModel ,type="text", name="arg" , placeholder="Busqueda")
+              //-     .input-group-btn
+              //-       button.noBorder.btn.btn-primary(type="submit", style="border-radius: 0!important")
+              //-         i.fas.fa-search
+              //-       button.btn.btn-primary(type="button", (click)="this.getAll(1)") Todos
+              //-         //- i.fas.fa-search
+              //-     .invalid-feedback
+              //-       | Por favor, escribe un argumento de búsqueda
+          .card-body
+            .table-responsive
+              table.table.table-striped( )
+                tbody
+                  tr
+                    th
+                    th Nombre
+                    th Apellido
+                    th Edad
+                    th Identificación
+                    th Teléfono
+                    th Email
+                    th Creado en
+                    //- th Opciones
+                  tr( *ngFor="let item of this.misRutas" )
+                    td
+                      .avatarUser
+                        img.rounded-circle(alt="image", src="assets/img/avatar/avatar-2.png", width="35", data-toggle="tooltip" ,data-placement="right", title="", data-original-title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.")
+                        .role
+                    td
+                      p {{ item.name }}
+                    td
+                      p {{ item.last_name }}
+                    td
+                      p {{ item.edad }}
+
+                    td
+                      p {{ item.card_id }}
+                    td
+                      p {{ item.phone }}
+                    td
+                      p {{ item.mail }}
+
+                    td
+                      p {{ item.createdAt[1] }}
+                    td
+                      //- a.btn.btn-primary([routerLink]="['/dashboard/cliente/', item._id ]", routerLinkActive="active") Detalles
+
+
+            .float-right
+
+
+
+
+
+
+
+//- modals
+p-dialog( *ngIf="(this._sessionService.usuario.rolName  === 'ENRUTATOR_ROLE')", header="Añadir nuevo cliente", [(visible)]="this.modalnewClient", [modal]="true", [style]="{width: '75vw'}", [baseZIndex]="10000")
+  app-add-cliente( *ngIf="this.modalnewClient == true" , (success)="this.sucessnewClient($event)" ,(close)="this.closeModal($event)" )
