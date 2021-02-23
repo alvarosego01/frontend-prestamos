@@ -7,7 +7,7 @@ import { i_Visit } from './interfaces/interfaces.index';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.pug',
+  templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent  implements OnInit, AfterViewInit {

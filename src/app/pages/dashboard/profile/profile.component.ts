@@ -5,7 +5,7 @@ import { GlobalService, NotifyService, SessionService, UserService } from 'src/a
 
 @Component({
   selector: 'app-profile',
-  templateUrl: './profile.component.pug',
+  templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.sass']
 })
 export class ProfileComponent implements OnInit {

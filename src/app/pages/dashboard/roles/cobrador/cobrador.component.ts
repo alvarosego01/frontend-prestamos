@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-cobrador',
-  templateUrl: './cobrador.component.pug',
+  templateUrl: './cobrador.component.html',
   styleUrls: ['./cobrador.component.sass']
 })
 export class CobradorComponent implements OnInit {

@@ -7,7 +7,7 @@ import { ClipboardService } from 'ngx-clipboard'
 
 @Component({
   selector: 'app-panel-central',
-  templateUrl: './panel-central.component.pug',
+  templateUrl: './panel-central.component.html',
   styleUrls: ['./panel-central.component.sass']
 })
 export class PanelCentralComponent implements OnInit {

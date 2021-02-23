@@ -3,7 +3,7 @@ import { SessionService } from 'src/app/services/services/services.index';
 
 @Component({
   selector: 'app-footer',
-  templateUrl: './footer.component.pug',
+  templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.sass']
 })
 export class FooterComponent implements OnInit {

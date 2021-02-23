@@ -4,7 +4,7 @@ import { NotifyService, GlobalService, RouterService, SessionService, ClientesSe
 
 @Component({
   selector: 'app-add-new-nodo',
-  templateUrl: './add-new-nodo.component.pug',
+  templateUrl: './add-new-nodo.component.html',
   styleUrls: ['./add-new-nodo.component.sass']
 })
 export class AddNewNodoComponent implements OnInit {

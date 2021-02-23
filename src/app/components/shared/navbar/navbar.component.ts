@@ -3,7 +3,7 @@ import { GlobalService, NotifyService, SessionService } from 'src/app/services/s
 
 @Component({
   selector: 'app-navbar',
-  templateUrl: './navbar.component.pug',
+  templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.sass']
 })
 export class NavbarComponent implements OnInit {

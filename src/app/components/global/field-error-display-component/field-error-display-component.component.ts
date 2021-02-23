@@ -3,7 +3,7 @@ import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-field-error',
-  templateUrl: './field-error-display-component.component.pug',
+  templateUrl: './field-error-display-component.component.html',
   styleUrls: ['./field-error-display-component.component.sass']
 })
 export class FieldErrorDisplayComponentComponent implements OnInit {

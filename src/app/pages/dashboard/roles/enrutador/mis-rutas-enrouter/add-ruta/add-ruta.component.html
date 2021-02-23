@@ -1,0 +1,71 @@
+<!--
+section.modalOptions.section
+    .setOptions
+      .card
+        form.needs-validation( [formGroup]="form", #f="ngForm" ,(ngSubmit)="this.addNew()" )
+          .card-header
+            h4 Información de nueva ruta
+          .card-body
+            .row
+              .form-group.col-md-12.col-lg-12
+                label(for="nombre") Nombre de la ruta
+                input#nombre.form-control( formControlName="Nombre", type="text", name="Nombre")
+                app-field-error( *ngIf="this._formResources.isFieldValid('Nombre', this.form) && this.form.get('Nombre').errors.required ", [errorMsg]="this.errorFields.Nombre.required" )
+              //- .form-group.col-md-12.col-lg-6
+              //-   label(for="Departamento") Departamento
+              //-   input#Departamento.form-control( ngModel, required, type="text", name="Departamento")
+              //-   .invalid-feedback
+              //-     | Por favor, escribe tu apellido
+              //- .form-group.col-md-12.col-lg-6
+              //-   label(for="Ciudad") Ciudad
+              //-   input#Ciudad.form-control( ngModel, required, type="text", name="Ciudad")
+              //-   .invalid-feedback
+              //-     | Por favor, escribe tu apellido
+            .row
+              app-location-field( (data)="getLocation($event)" )
+            //- .row
+            //-   .form-group.col-md-12.col-lg-12
+            //-     label.col-form-label Imagen de la ruta
+            //-     div.imagenField
+            //-       #image-preview.image-preview(style="background-image: none; background-size: cover; background-position: center center;")
+            //-         label#image-label(for="image-upload") Seleccionar imagen
+            //-         input#image-upload(type="file", name="image", accept="image/*", (change)="selectFiles($event)")
+
+          .card-footer
+            .row
+              .spaceButtons
+                button.btn.btn-primary( type="submit" )
+                  i.fas.fa-check
+                  | Aceptar
+                button.btn.btn-primary( type="button", (click)="this.closeDialog()" )
+                  i.fas.fa-times
+                  | Cerrar
+ -->
+
+
+ <section class="modalOptions section">
+  <div class="setOptions">
+      <div class="card">
+          <form class="needs-validation" [formGroup]="form" #f="ngForm" (ngSubmit)="this.addNew()">
+              <div class="card-header">
+                  <h4>Información de nueva ruta</h4>
+              </div>
+              <div class="card-body">
+                  <div class="row">
+                      <div class="form-group col-md-12 col-lg-12"><label for="nombre">Nombre de la ruta</label><input class="form-control" id="nombre" formControlName="Nombre" type="text" name="Nombre" />
+                          <app-field-error *ngIf="this._formResources.isFieldValid('Nombre', this.form) &amp;&amp; this.form.get('Nombre').errors.required " [errorMsg]="this.errorFields.Nombre.required"></app-field-error>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <app-location-field (data)="getLocation($event)"></app-location-field>
+                  </div>
+              </div>
+              <div class="card-footer">
+                  <div class="row">
+                      <div class="spaceButtons"><button class="btn btn-primary" type="submit"><i class="fas fa-check"></i>Aceptar</button><button class="btn btn-primary" type="button" (click)="this.closeDialog()"><i class="fas fa-times"></i>Cerrar</button></div>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
+</section>

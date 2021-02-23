@@ -1,0 +1,56 @@
+<!-- .navbar-bg
+nav.navbar.navbar-expand-lg.main-navbar( [ngClass]="{'allNav': this._sessionService.estaLogueado() == false }")
+	div.mr-auto( style="display: flex" )
+		ul.navbar-nav.mr-3( [ngClass]="{'hideButton': this._sessionService.estaLogueado() == false}" )
+			li
+				a.nav-link.nav-link-lg( data-toggle='sidebar', style="color: white")
+					i.fas.fa-bars
+		a.navbar-brand( style="color: white" ) Proyecto
+		.nav-collapse(*ngIf="this._sessionService.estaLogueado() == false")
+			a.sidebar-gone-show.nav-collapse-toggle.nav-link(style="color: white")
+				i.fas.fa-bars
+			ul.navbar-nav
+				li.nav-item
+					a.nav-link( [routerLink]="['/register']", routerLinkActive="active") Registro de usuario
+				li.nav-item
+					a.nav-link( [routerLink]="['/login']", routerLinkActive="active") Iniciar sesión
+
+	ul.navbar-nav.navbar-right(*ngIf="this._sessionService.estaLogueado() == true")
+
+		li.dropdown
+			a.nav-link.dropdown-toggle.nav-link-lg.nav-link-user(href='#' data-toggle='dropdown')
+				img.rounded-circle.mr-1(alt='image' src='assets/img/avatar/avatar-1.png')
+				.d-sm-none.d-lg-inline-block {{ this._sessionService.usuario.name }} {{ this._sessionService.usuario.last_name }}
+			.dropdown-menu.dropdown-menu-right
+				.dropdown-title
+
+				.dropdown-divider
+				a.dropdown-item.has-icon.text-danger( (click)="this.logout()" )
+					i.fas.fa-sign-out-alt
+					|  Cerrar sesión -->
+
+
+<div class="navbar-bg"></div>
+<nav class="navbar navbar-expand-lg main-navbar" [ngClass]="{'allNav': this._sessionService.estaLogueado() == false }">
+    <div class="mr-auto" style="display: flex">
+        <ul class="navbar-nav mr-3" [ngClass]="{'hideButton': this._sessionService.estaLogueado() == false}">
+            <li><a class="nav-link nav-link-lg" data-toggle="sidebar" style="color: white"><i class="fas fa-bars"></i></a></li>
+        </ul><a class="navbar-brand" style="color: white">Proyecto</a>
+        <div class="nav-collapse" *ngIf="this._sessionService.estaLogueado() == false"><a class="sidebar-gone-show nav-collapse-toggle nav-link" style="color: white"><i class="fas fa-bars"></i></a>
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" [routerLink]="['/register']" routerLinkActive="active">Registro de usuario</a></li>
+                <li class="nav-item"><a class="nav-link" [routerLink]="['/login']" routerLinkActive="active">Iniciar sesión</a></li>
+            </ul>
+        </div>
+    </div>
+    <ul class="navbar-nav navbar-right" *ngIf="this._sessionService.estaLogueado() == true">
+        <li class="dropdown"><a class="nav-link dropdown-toggle nav-link-lg nav-link-user" href="#" data-toggle="dropdown"><img class="rounded-circle mr-1" alt="image" src="assets/img/avatar/avatar-1.png" />
+                <div class="d-sm-none d-lg-inline-block">{{ this._sessionService.usuario.name }} {{ this._sessionService.usuario.last_name }}</div>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <div class="dropdown-title"></div>
+                <div class="dropdown-divider"></div><a class="dropdown-item has-icon text-danger" (click)="this.logout()"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
+            </div>
+        </li>
+    </ul>
+</nav>

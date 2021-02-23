@@ -8,7 +8,7 @@ import { ClientesService, SessionService, CobradorService, FormsResourcesService
 
 @Component({
   selector: 'app-control-cobro-collector',
-  templateUrl: './control-cobro-collector.component.pug',
+  templateUrl: './control-cobro-collector.component.html',
   styleUrls: ['./control-cobro-collector.component.sass']
 })
 export class ControlCobroCollectorComponent implements OnInit {

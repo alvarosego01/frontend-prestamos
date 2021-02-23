@@ -3,7 +3,7 @@ import { NotifyService, SessionService } from 'src/app/services/services/service
 
 @Component({
   selector: 'app-nav-dashboard',
-  templateUrl: './nav-dashboard.component.pug',
+  templateUrl: './nav-dashboard.component.html',
   styleUrls: ['./nav-dashboard.component.sass']
 })
 export class NavDashboardComponent implements OnInit {

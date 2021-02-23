@@ -8,7 +8,7 @@ import { CobradorService, SearchService, SessionService } from 'src/app/services
 
 @Component({
   selector: 'app-mis-rutas-collector',
-  templateUrl: './mis-rutas-collector.component.pug',
+  templateUrl: './mis-rutas-collector.component.html',
   styleUrls: ['./mis-rutas-collector.component.sass']
 })
 export class MisRutasCollectorComponent implements OnInit {

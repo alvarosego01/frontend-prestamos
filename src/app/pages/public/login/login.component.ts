@@ -7,7 +7,7 @@ import { VisitsSocketService } from 'src/app/services/sockets/socket.index';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.pug',
+  templateUrl: './login.component.html',
   styleUrls: ['./login.component.sass']
 })
 export class LoginComponent implements OnInit {

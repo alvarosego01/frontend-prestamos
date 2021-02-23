@@ -1,0 +1,8 @@
+<!-- footer.main-footer( [ngClass]="{'allFooter': this._sessionService.estaLogueado() == false }")
+  .footer-left
+    | Proyecto 2020
+ -->
+
+<footer class="main-footer" [ngClass]="{'allFooter': this._sessionService.estaLogueado() == false }">
+    <div class="footer-left">Proyecto 2020</div>
+</footer>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-incidencias',
-  templateUrl: './incidencias.component.pug',
+  templateUrl: './incidencias.component.html',
   styleUrls: ['./incidencias.component.sass']
 })
 export class IncidenciasComponent implements OnInit {

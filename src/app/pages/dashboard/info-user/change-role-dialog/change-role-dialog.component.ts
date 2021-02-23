@@ -6,7 +6,7 @@ import Litepicker from "litepicker";
 
 @Component({
   selector: 'app-change-role-dialog',
-  templateUrl: './change-role-dialog.component.pug',
+  templateUrl: './change-role-dialog.component.html',
   styleUrls: ['./change-role-dialog.component.sass']
 })
 export class ChangeRoleDialogComponent implements OnInit {

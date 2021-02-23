@@ -1,0 +1,289 @@
+<!--
+
+section.section
+    .section-header
+        h1 Información completa de usuario
+
+    .section-body( *ngIf='this.infoUser != null' )
+        h2.section-title {{ infoUser.name }} {{ infoUser.last_name }}
+
+        .row.mt-sm-4
+            .col-12.col-md-12.col-lg-5
+                .card.profile-widget
+                    .profile-widget-header
+                        img.rounded-circle.profile-widget-picture(alt='image' src='assets/img/avatar/avatar-1.png')
+                        .profile-widget-items
+
+                            .profile-widget-item
+                                .profile-widget-item-label Rol
+                                .profile-widget-item-value {{ infoUser.rol.alias }}
+
+                    .card-footer.text-left
+                        .font-weight-bold.mb-2 Información de usuario
+                        .list-unstyled.list-unstyled-border.mt-4
+                            .media
+                                .media-icon
+                                    i.fas.fa-calendar
+                                .media-body
+                                    h6 Fecha de registro
+                                    p {{ infoUser.createdAt[0] }}, {{ infoUser.createdAt[1] }} {{ infoUser.createdAt[2] }}
+                            .media(*ngIf="this.infoUser.last_session")
+                                .media-icon
+                                    i.fas.fa-calendar
+                                .media-body
+                                    h6 Última conexión
+                                    p {{ infoUser.last_session[0] }}, {{ infoUser.last_session[1] }} {{ infoUser.last_session[2] }}
+
+                //- .card.profile-widget(*ngIf="this.infoUser.rol.rol == 'COLLECTOR_ROLE' || this.infoUser.rol.rol == 'ENRUTATOR_ROLE'")
+                //-     .profile-widget-header
+
+                //-     .card-footer.text-left
+                //-         .font-weight-bold.mb-2 Balance de actividades
+                //-         .list-unstyled.list-unstyled-border.mt-4
+                //-             .media
+                //-                 .media-icon
+                //-                     i.fas.fa-calendar
+                //-                 .media-body
+                //-                     h6 Fecha de registro
+                //-                     p {{ infoUser.createdAt[0] }}, {{ infoUser.createdAt[1] }} {{ infoUser.createdAt[2] }}
+
+
+            .col-12.col-md-12.col-lg-7
+                .card.card-primary
+                    .card-header
+                        h4 Información de usuario
+                    .card-body
+                        .row
+                            .form-group.col-md-12.col-lg-4
+                                label(for="nombres") Nombres
+                                p {{ this.infoUser.name }}
+
+                            .form-group.col-md-12.col-lg-4
+                                label(for="apellidos") Apellidos
+                                p {{ this.infoUser.last_name }}
+
+                            .form-group.col-md-12.col-lg-4
+                                label(for="cedula") Nro Identificación ó Cédula
+                                p {{ this.infoUser.id_card }}
+
+
+
+                        .row
+                            .form-group.col-md-12.col-lg-4
+                                label(for="pais") País
+                                p {{ this.infoUser.pais }}
+
+
+                            .form-group.col-md-12.col-lg-4
+                                label(for="estado") Estado ó departamento
+                                p {{ this.infoUser.ciudad }}
+
+
+                            .form-group.col-md-12.col-lg-4
+                                label(for="ciudad") Ciudad
+                                p {{ this.infoUser.estado }}
+
+                        .row
+                            .form-group.col-md-12
+                                label(for="direccion") Dirección
+                                p {{ this.infoUser.dir_domicilio }}
+
+                        .row
+                            .form-group.col-md-12.col-lg-4
+                                label(for="edad") Edad
+                                p {{ this.infoUser.edad }}
+
+                            .form-group.col-md-12.col-lg-4
+                                label(for="nroFijo") Teléfono fijo
+                                p {{ this.infoUser.nro_fijo }}
+
+                            .form-group.col-md-12.col-lg-4
+                                label(for="nroCelular") Teléfono Celular
+                                p {{ this.infoUser.nro_movil }}
+
+                .card( *ngIf="(this.infoUser._id != this._sessionService.usuario._id) && (this._sessionService.usuario.rolName === 'Administrador')" )
+                    .card-header
+                        h4 Configuraciones de usuario
+                    .card-body
+                        .row
+                            ul.opcGroupButtons
+                                li.opcElement( (click)="this.showDialog('roles')" )
+                                    .ico
+                                        i.fas.fa-sync
+                                    .text
+                                        p Cambiar rol
+                                //- li.opcElement
+                                //-     .ico
+                                //-         i.fas.fa-lock
+                                //-     .text
+                                //-         p Cambiar permisos
+                                li.opcElement( (click)="this.showDialog('deleteUser')" )
+                                    .ico
+                                        i.fas.fa-trash
+                                    .text
+                                        p Eliminar usuario
+
+
+p-dialog( *ngIf="(this._sessionService.usuario.rolName === 'Administrador')", header="Cambiar rol", [(visible)]="this.changeRoles", [modal]="true", [style]="{width: '75vw'}", [baseZIndex]="10000")
+    app-change-role-dialog( *ngIf="this.changeRoles == true" ,[user]="this.infoUser", (success)="this.sucess($event)" ,(close)="this.closeRoleDialog($event)" )
+p-dialog( *ngIf="(this._sessionService.usuario.rolName === 'Administrador')", header="Cambiar rol", [(visible)]="this.deleteUser", [modal]="true", [style]="{width: '75vw'}", [baseZIndex]="10000")
+    app-delete-userr-dialog( *ngIf="this.deleteUser == true" ,[user]="this.infoUser", (success)="this.sucess($event)" ,(close)="this.closeRoleDialog($event)" )
+
+
+
+//- button(type="button", (click)="showDialog()", icon="pi pi-info-circle", label="Show") PRUEBA
+
+//-   "_id" : ObjectId("5f86783c7e86161af01ffca5"),
+//-     "enrutator_id" : null,
+//-     "last_session" : [
+//-         "miércoles",
+//-         "14 de octubre de 2020",
+//-         "1:01 AM"
+//-     ],
+//-     "updatedAt" : [
+//-         "miércoles",
+//-         "14 de octubre de 2020",
+//-         "12:23 PM"
+//-     ],
+//-     "createdAt" : [
+//-         "miércoles",
+//-         "14 de octubre de 2020",
+//-         "1:01 AM"
+//-     ],
+//-     "rol" : ObjectId("5f8594252675cb18ec300163"),
+//-     "status" : "ACTIVE",
+//-     "photo" : null,
+//-     "edad" : 22,
+//-     "nro_fijo" : "dsfadf",
+//-     "nro_movil" : "adfadsf",
+//-     "dir_domicilio" : "asfafasdasdsadsadsdasd",
+//-     "ciudad" : "34sdf",
+//-     "estado" : "1234",
+//-     "pais" : "Colombia",
+//-     "id_card" : "12345",
+//-     "last_name" : "Seg",
+//-     "name" : "alvarooooo",
+//-     "deleted" : false,
+//-     "email" : "alvarosego01@gmail.com",
+//-     "pass" : "$2a$15$.spA0.Z80p4ClhTxGMKkYehISdj398CaJAcZglSBhu74hBcUUQzLG",
+//-     "__v" : 0 -->
+
+
+
+<section class="section">
+    <div class="section-header">
+        <h1>Información completa de usuario</h1>
+    </div>
+    <div class="section-body" *ngIf="this.infoUser != null">
+        <h2 class="section-title">{{ infoUser.name }} {{ infoUser.last_name }}</h2>
+        <div class="row mt-sm-4">
+            <div class="col-12 col-md-12 col-lg-5">
+                <div class="card profile-widget">
+                    <div class="profile-widget-header"><img class="rounded-circle profile-widget-picture" alt="image" src="assets/img/avatar/avatar-1.png" />
+                        <div class="profile-widget-items">
+                            <div class="profile-widget-item">
+                                <div class="profile-widget-item-label">Rol</div>
+                                <div class="profile-widget-item-value">{{ infoUser.rol.alias }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-left">
+                        <div class="font-weight-bold mb-2">Información de usuario</div>
+                        <div class="list-unstyled list-unstyled-border mt-4">
+                            <div class="media">
+                                <div class="media-icon"><i class="fas fa-calendar"></i></div>
+                                <div class="media-body">
+                                    <h6>Fecha de registro</h6>
+                                    <p>{{ infoUser.createdAt[0] }}, {{ infoUser.createdAt[1] }} {{ infoUser.createdAt[2] }}</p>
+                                </div>
+                            </div>
+                            <div class="media" *ngIf="this.infoUser.last_session">
+                                <div class="media-icon"><i class="fas fa-calendar"></i></div>
+                                <div class="media-body">
+                                    <h6>Última conexión</h6>
+                                    <p>{{ infoUser.last_session[0] }}, {{ infoUser.last_session[1] }} {{ infoUser.last_session[2] }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-7">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h4>Información de usuario</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="form-group col-md-12 col-lg-4"><label for="nombres">Nombres</label>
+                                <p>{{ this.infoUser.name }}</p>
+                            </div>
+                            <div class="form-group col-md-12 col-lg-4"><label for="apellidos">Apellidos</label>
+                                <p>{{ this.infoUser.last_name }}</p>
+                            </div>
+                            <div class="form-group col-md-12 col-lg-4"><label for="cedula">Nro Identificación ó Cédula</label>
+                                <p>{{ this.infoUser.id_card }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12 col-lg-4"><label for="pais">País</label>
+                                <p>{{ this.infoUser.pais }}</p>
+                            </div>
+                            <div class="form-group col-md-12 col-lg-4"><label for="estado">Estado ó departamento</label>
+                                <p>{{ this.infoUser.ciudad }}</p>
+                            </div>
+                            <div class="form-group col-md-12 col-lg-4"><label for="ciudad">Ciudad</label>
+                                <p>{{ this.infoUser.estado }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12"><label for="direccion">Dirección</label>
+                                <p>{{ this.infoUser.dir_domicilio }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12 col-lg-4"><label for="edad">Edad</label>
+                                <p>{{ this.infoUser.edad }}</p>
+                            </div>
+                            <div class="form-group col-md-12 col-lg-4"><label for="nroFijo">Teléfono fijo</label>
+                                <p>{{ this.infoUser.nro_fijo }}</p>
+                            </div>
+                            <div class="form-group col-md-12 col-lg-4"><label for="nroCelular">Teléfono Celular</label>
+                                <p>{{ this.infoUser.nro_movil }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" *ngIf="(this.infoUser._id != this._sessionService.usuario._id) &amp;&amp; (this._sessionService.usuario.rolName === 'Administrador')">
+                    <div class="card-header">
+                        <h4>Configuraciones de usuario</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <ul class="opcGroupButtons">
+                                <li class="opcElement" (click)="this.showDialog('roles')">
+                                    <div class="ico"><i class="fas fa-sync"></i></div>
+                                    <div class="text">
+                                        <p>Cambiar rol</p>
+                                    </div>
+                                </li>
+                                <li class="opcElement" (click)="this.showDialog('deleteUser')">
+                                    <div class="ico"><i class="fas fa-trash"></i></div>
+                                    <div class="text">
+                                        <p>Eliminar usuario</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<p-dialog *ngIf="(this._sessionService.usuario.rolName === 'Administrador')" header="Cambiar rol" [(visible)]="this.changeRoles" [modal]="true" [style]="{width: '75vw'}" [baseZIndex]="10000">
+    <app-change-role-dialog *ngIf="this.changeRoles == true" [user]="this.infoUser" (success)="this.sucess($event)" (close)="this.closeRoleDialog($event)"></app-change-role-dialog>
+</p-dialog>
+<p-dialog *ngIf="(this._sessionService.usuario.rolName === 'Administrador')" header="Cambiar rol" [(visible)]="this.deleteUser" [modal]="true" [style]="{width: '75vw'}" [baseZIndex]="10000">
+    <app-delete-userr-dialog *ngIf="this.deleteUser == true" [user]="this.infoUser" (success)="this.sucess($event)" (close)="this.closeRoleDialog($event)"></app-delete-userr-dialog>
+</p-dialog>

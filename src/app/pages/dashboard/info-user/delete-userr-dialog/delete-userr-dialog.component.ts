@@ -4,7 +4,7 @@ import { NotifyService, UserService } from 'src/app/services/services/services.i
 
 @Component({
   selector: 'app-delete-userr-dialog',
-  templateUrl: './delete-userr-dialog.component.pug',
+  templateUrl: './delete-userr-dialog.component.html',
   styleUrls: ['./delete-userr-dialog.component.sass']
 })
 export class DeleteUserrDialogComponent implements OnInit {

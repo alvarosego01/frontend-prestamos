@@ -5,7 +5,7 @@ import { GlobalService, NotifyService, SessionService, UserService } from 'src/a
 
 @Component({
   selector: 'app-info-user',
-  templateUrl: './info-user.component.pug',
+  templateUrl: './info-user.component.html',
   styleUrls: ['./info-user.component.sass']
 })
 export class InfoUserComponent implements OnInit {

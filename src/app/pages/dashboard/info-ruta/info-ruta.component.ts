@@ -4,7 +4,7 @@ import { SessionService, GlobalService, RouterService, NotifyService } from 'src
 
 @Component({
   selector: 'app-info-ruta',
-  templateUrl: './info-ruta.component.pug',
+  templateUrl: './info-ruta.component.html',
   styleUrls: ['./info-ruta.component.sass']
 })
 export class InfoRutaComponent implements OnInit {

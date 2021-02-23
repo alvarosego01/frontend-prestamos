@@ -5,7 +5,7 @@ import { UserService, SearchService, NotifyService, SessionService, CobradorServ
 
 @Component({
   selector: 'app-mis-cobradores',
-  templateUrl: './mis-cobradores.component.pug',
+  templateUrl: './mis-cobradores.component.html',
   styleUrls: ['./mis-cobradores.component.sass']
 })
 export class MisCobradoresComponent implements OnInit {

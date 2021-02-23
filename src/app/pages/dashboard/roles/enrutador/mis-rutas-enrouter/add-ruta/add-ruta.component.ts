@@ -4,7 +4,7 @@ import { NotifyService, GlobalService, RouterService, SessionService, FormsResou
 
 @Component({
   selector: 'app-add-ruta',
-  templateUrl: './add-ruta.component.pug',
+  templateUrl: './add-ruta.component.html',
   styleUrls: ['./add-ruta.component.sass']
 })
 export class AddRutaComponent implements OnInit {

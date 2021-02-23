@@ -4,7 +4,7 @@ import { GlobalService, NotifyService, SearchService, UserService } from 'src/ap
 
 @Component({
   selector: 'app-users-control',
-  templateUrl: './users-control.component.pug',
+  templateUrl: './users-control.component.html',
   styleUrls: ['./users-control.component.sass']
 })
 export class UsersControlComponent implements OnInit {

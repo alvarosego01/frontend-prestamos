@@ -4,7 +4,7 @@ import {  NotifyService, GlobalService, SearchService, SessionService, RouterSer
 
 @Component({
   selector: 'app-mis-rutas-enrouter',
-  templateUrl: './mis-rutas-enrouter.component.pug',
+  templateUrl: './mis-rutas-enrouter.component.html',
   styleUrls: ['./mis-rutas-enrouter.component.sass']
 })
 export class MisRutasEnrouterComponent implements OnInit {

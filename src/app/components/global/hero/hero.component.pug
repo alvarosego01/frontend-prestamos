@@ -1,8 +1,0 @@
-.hero.text-white( [ngClass]="{'bg-primary': this.type === 'primary', 'bg-success': this.type === 'success'}" )
-  .hero-inner
-    h2( *ngIf='this.titulo != null' ) {{ this.titulo }}
-    p.lead( *ngIf='this.subTitulo != null' ) {{ this.subTitulo }}
-    .mt-4( *ngIf='this.boton != null' )
-        a.btn.btn-outline-white.btn-lg.btn-icon.icon-left( (click)="this.funcionboton()" )
-          i( *ngIf='this.icono != null', [class]="this.icono" )
-          | {{ this.boton }}

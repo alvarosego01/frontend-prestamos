@@ -2,7 +2,7 @@ import { Component, Input, OnInit, EventEmitter, Output} from '@angular/core';
 
 @Component({
   selector: 'app-custom-lists',
-  templateUrl: './custom-lists.component.pug',
+  templateUrl: './custom-lists.component.html',
   styleUrls: ['./custom-lists.component.sass']
 })
 export class CustomListsComponent implements OnInit {

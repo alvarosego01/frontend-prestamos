@@ -7,7 +7,7 @@ import { CobradorService, SessionService } from 'src/app/services/services/servi
 
 @Component({
   selector: 'app-info-ruta-collector',
-  templateUrl: './info-ruta-collector.component.pug',
+  templateUrl: './info-ruta-collector.component.html',
   styleUrls: ['./info-ruta-collector.component.sass']
 })
 export class InfoRutaCollectorComponent implements OnInit {

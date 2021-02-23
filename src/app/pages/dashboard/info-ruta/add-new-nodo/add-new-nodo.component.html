@@ -1,0 +1,340 @@
+<!--
+section.modalOptions.section
+    .setOptions
+      .card
+        form( [formGroup]="form", #f="ngForm" ,(ngSubmit)="this.addNew()")
+          .card-header
+            h4 Información de nuevo cliente
+          .card-body
+            .row
+              .form-group.col-md-12.col-lg-3
+                label(for="Venta") Venta
+                input#Venta.form-control(  type="number", formControlName="venta" , name="venta")
+                app-field-error( *ngIf="this._formResources.isFieldValid('venta', this.form) && this.form.get('venta').errors.required ", [errorMsg]="this.errorFields.venta.required" )
+              .form-group.col-md-12.col-lg-3
+                label(for="interes") Interés
+                input#interes.form-control(  type="number", formControlName="interes" , name="interes")
+                app-field-error( *ngIf="this._formResources.isFieldValid('interes', this.form) && this.form.get('interes').errors.required ", [errorMsg]="this.errorFields.interes.required" )
+              .form-group.col-md-12.col-lg-3
+                label(for="ncuotas") Número de cuotas
+                input#ncuotas.form-control(  type="number", formControlName="ncuotas" , name="ncuotas")
+                app-field-error( *ngIf="this._formResources.isFieldValid('ncuotas', this.form) && this.form.get('ncuotas').errors.required ", [errorMsg]="this.errorFields.ncuotas.required" )
+              .form-group.col-md-12.col-lg-3
+                label(for="domicilio") Dirección
+                input#domicilio.form-control(  type="text", formControlName="domicilio" , name="domicilio")
+                app-field-error( *ngIf="this._formResources.isFieldValid('domicilio', this.form) && this.form.get('domicilio').errors.required ", [errorMsg]="this.errorFields.domicilio.required" )
+            .row
+              .form-group.col-md-12.col-lg-6
+                label(for="concurrencia") Concurrencia de cobro
+                .selectric-wrapper.selectric-form-control.selectric-selectric.selectric-below.selectric-open
+                  .selectric-hide-select
+                    select#concurrencia.form-control.selectric( type="text", formControlName="concurrencia" , name="concurrencia", tabindex="-1")
+                      option(value="Diario") Diario
+                      option(value="Semanal") Semanal
+                      option(value="Mensual") Mensual
+                      option(value="Otro") Otro
+                    app-field-error( *ngIf="this._formResources.isFieldValid('concurrencia', this.form) && this.form.get('concurrencia').errors.required ", [errorMsg]="this.errorFields.concurrencia.required" )
+              .form-group.col-md-12.col-lg-6(*ngIf="this.form.value.concurrencia === 'Otro'")
+                label(for="concurrenciaCustom") Escribe una concurrencia
+                input#concurrenciaCustom.form-control( [disabled]="this.form.value.concurrencia != 'Otro'" ,type="number", formControlName="concurrenciaCustom" , name="concurrenciaCustom")
+                app-field-error( *ngIf="this._formResources.isFieldValid('concurrenciaCustom', this.form) && this.form.get('concurrenciaCustom').errors.required ", [errorMsg]="this.errorFields.concurrenciaCustom.required" )
+
+            //- .row
+            //-   .form-group.col-md-12.col-lg-6
+            //-     label(for="posicion") Posición del cliente
+            //-     .selectric-wrapper.selectric-form-control.selectric-selectric.selectric-below.selectric-open
+            //-       .selectric-hide-select
+            //-         select#posicion.form-control.selectric(   type="text", formControlName="posicion" , name="posicion", tabindex="-1")
+            //-           option(value="Primero") Primer lugar
+            //-           option(value="Ultimo") Último lugar
+            //-           option(value="Medio") En medio
+            //-           option(value="Especifico") Especifico
+            //-         app-field-error( *ngIf="this._formResources.isFieldValid('posicion', this.form) && this.form.get('posicion').errors.required ", [errorMsg]="this.errorFields.posicion.required" )
+
+            //-   .form-group.col-md-12.col-lg-6(*ngIf="this.form.value.posicion === 'Especifico'")
+            //-     label(for="posicionCustom") Escribe el lugar de posición para el cliente
+            //-     input#posicionCustom.form-control( [disabled]="this.form.value.posicion != 'Especifico'", type="number", formControlName="posicionCustom" , name="posicionCustom")
+            //-     app-field-error( *ngIf="this._formResources.isFieldValid('posicionCustom', this.form) && this.form.get('posicionCustom').errors.required ", [errorMsg]="this.errorFields.posicionCustom.required" )
+            .row
+              .form-group.col-md-12.col-lg-12
+                 .card
+                  .card-header
+                    h4.section-title Selecciona el cliente de la venta
+                    .card-header-form
+                      //- form.needs-validation( #f="ngForm", (ngSubmit)="this.search( f )" )
+                      //-   .input-group
+                      //-     input.form-control( required ,ngModel ,type="text" , name="arg" , placeholder="Busqueda")
+                      //-     .input-group-btn
+                      //-       button.noBorder.btn.btn-primary(type="submit", style="border-radius: 0!important")
+                      //-         i.fas.fa-search
+                      //-       button.btn.btn-primary(type="button", (click)="this.getAllCollectorsByEnrouter(1)") Todos
+                      //-         //- i.fas.fa-search
+
+                  .card-body.p-0
+                    .table-responsive
+                      table.table.table-striped
+                        tbody
+                          tr
+                            th
+                            th Nombre
+                            th Apellido
+                            th Edad
+                            th Identificación
+                            th Teléfono
+                            th Email
+                            th Creado en
+                            //- th Opciones
+                          //- tr( *ngFor="let item of this.misClientes" )
+                          tr.selectItem(*ngFor='let item of this.misClientes; let i = index', (click)="this.selectCliente( item._id )", [ngClass]="{ 'tableSelected' : this.clienteSelected === item._id }")
+                            td
+                              .avatarUser
+                                img.rounded-circle(alt="image", src="assets/img/avatar/avatar-2.png", width="35", data-toggle="tooltip" ,data-placement="right", title="", data-original-title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.")
+                                .role
+                            td
+                              p {{ item.name }}
+                            td
+                              p {{ item.last_name }}
+                            td
+                              p {{ item.edad }}
+
+                            td
+                              p {{ item.card_id }}
+                            td
+                              p {{ item.phone }}
+                            td
+                              p {{ item.mail }}
+
+                            td
+                              p {{ item.createdAt[1] }}
+                            td
+                          //- app-paginator(*ngIf="( this.paginator != null ) && ( this.paginator.pageCount > 1 )", [paginator]="this.paginator", (newPageResponse)="this.newPageResponse       ($event)")
+            .row
+              .form-group.col-md-12.col-lg-12
+                 .card
+                  .card-header
+                    h4.section-title Asigna un usuario cobrador a un cliente
+                    .card-header-form
+                      form.needs-validation( #f="ngForm", (ngSubmit)="this.search( f )" )
+                        .input-group
+                          input.form-control( required ,ngModel ,type="text" , name="arg" , placeholder="Busqueda")
+                          .input-group-btn
+                            button.noBorder.btn.btn-primary(type="submit", style="border-radius: 0!important")
+                              i.fas.fa-search
+                            button.btn.btn-primary(type="button", (click)="this.getAllCollectorsByEnrouter(1)") Todos
+                              //- i.fas.fa-search
+
+                  .card-body.p-0
+                    .table-responsive
+                      table.table.table-striped.table-hover
+                        tbody
+                          tr
+                            th Foto
+                            th Nombre y apellido
+                            th Estatus
+                            th N° de clientes
+                            th Detalles
+                          tr.selectItem(*ngFor='let it2 of this.cobradores; let i = index', (click)="this.selectItem( it2._id )", [ngClass]="{ 'tableSelected' : this.cobradorSelected === it2._id }")
+                            td
+                              .avatarUser
+                                img.rounded-circle(alt="image", src="assets/img/avatar/avatar-2.png", width="35", data-toggle="tooltip" ,data-placement="right", title="", data-original-title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.")
+                                .role
+                            td
+                              p {{ it2.name }} {{ it2.last_name }}
+                            td
+                              .badge.badge-success {{ it2.status }}
+
+                            td
+                              p nro clientes //
+
+
+                            td
+                              a.btn.btn-primary([routerLink]="['/dashboard/infoUser', it2._id ]", routerLinkActive="active") Detalles
+                  app-paginator(*ngIf="( this.paginator != null ) && ( this.paginator.pageCount > 1 )", [paginator]="this.paginator", (newPageResponse)="this.newPageResponse($event)")
+
+
+          .card-footer
+            .row
+              .spaceButtons
+                button.btn.btn-primary( type="submit", *ngIf='this.confirmNotCollector == false' )
+                  i.fas.fa-check
+                  | Aceptar
+                //- button.btn.btn-primary( type="submit", *ngIf='this.confirmNotCollector == true' )
+                //-   i.fas.fa-check
+                //-   | ¿Crear cliente sin cobrador designado?
+                button.btn.btn-primary( type="button", (click)="this.closeDialog()" )
+                  i.fas.fa-times
+                  | Cerrar
+
+
+
+
+//- cobrador_id
+//- card_id
+//- name
+//- last_name
+//- dir_domicilio
+//- edad
+//- perce_pagos
+//- prestado
+//- concurrencia
+
+
+//- app-paginator(*ngIf="( this.paginator != null ) && ( this.paginator.pageCount > 1 )", [paginator]="this.paginator", (newPageResponse)="this.newPageResponse($event)") -->
+
+
+
+<section class="modalOptions section">
+  <div class="setOptions">
+      <div class="card">
+          <form [formGroup]="form" #f="ngForm" (ngSubmit)="this.addNew()">
+              <div class="card-header">
+                  <h4>Información de nuevo cliente</h4>
+              </div>
+              <div class="card-body">
+                  <div class="row">
+                      <div class="form-group col-md-12 col-lg-3"><label for="Venta">Venta</label><input class="form-control" id="Venta" type="number" formControlName="venta" name="venta" />
+                          <app-field-error *ngIf="this._formResources.isFieldValid('venta', this.form) &amp;&amp; this.form.get('venta').errors.required " [errorMsg]="this.errorFields.venta.required"></app-field-error>
+                      </div>
+                      <div class="form-group col-md-12 col-lg-3"><label for="interes">Interés</label><input class="form-control" id="interes" type="number" formControlName="interes" name="interes" />
+                          <app-field-error *ngIf="this._formResources.isFieldValid('interes', this.form) &amp;&amp; this.form.get('interes').errors.required " [errorMsg]="this.errorFields.interes.required"></app-field-error>
+                      </div>
+                      <div class="form-group col-md-12 col-lg-3"><label for="ncuotas">Número de cuotas</label><input class="form-control" id="ncuotas" type="number" formControlName="ncuotas" name="ncuotas" />
+                          <app-field-error *ngIf="this._formResources.isFieldValid('ncuotas', this.form) &amp;&amp; this.form.get('ncuotas').errors.required " [errorMsg]="this.errorFields.ncuotas.required"></app-field-error>
+                      </div>
+                      <div class="form-group col-md-12 col-lg-3"><label for="domicilio">Dirección</label><input class="form-control" id="domicilio" type="text" formControlName="domicilio" name="domicilio" />
+                          <app-field-error *ngIf="this._formResources.isFieldValid('domicilio', this.form) &amp;&amp; this.form.get('domicilio').errors.required " [errorMsg]="this.errorFields.domicilio.required"></app-field-error>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="form-group col-md-12 col-lg-6"><label for="concurrencia">Concurrencia de cobro</label>
+                          <div class="selectric-wrapper selectric-form-control selectric-selectric selectric-below selectric-open">
+                              <div class="selectric-hide-select"><select class="form-control selectric" id="concurrencia" type="text" formControlName="concurrencia" name="concurrencia" tabindex="-1">
+                                      <option value="Diario">Diario</option>
+                                      <option value="Semanal">Semanal</option>
+                                      <option value="Mensual">Mensual</option>
+                                      <option value="Otro">Otro</option>
+                                  </select>
+                                  <app-field-error *ngIf="this._formResources.isFieldValid('concurrencia', this.form) &amp;&amp; this.form.get('concurrencia').errors.required " [errorMsg]="this.errorFields.concurrencia.required"></app-field-error>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group col-md-12 col-lg-6" *ngIf="this.form.value.concurrencia === 'Otro'"><label for="concurrenciaCustom">Escribe una concurrencia</label><input class="form-control" id="concurrenciaCustom" [disabled]="this.form.value.concurrencia != 'Otro'" type="number" formControlName="concurrenciaCustom" name="concurrenciaCustom" />
+                          <app-field-error *ngIf="this._formResources.isFieldValid('concurrenciaCustom', this.form) &amp;&amp; this.form.get('concurrenciaCustom').errors.required " [errorMsg]="this.errorFields.concurrenciaCustom.required"></app-field-error>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="form-group col-md-12 col-lg-12">
+                          <div class="card">
+                              <div class="card-header">
+                                  <h4 class="section-title">Selecciona el cliente de la venta</h4>
+                                  <div class="card-header-form"></div>
+                              </div>
+                              <div class="card-body p-0">
+                                  <div class="table-responsive">
+                                      <table class="table table-striped">
+                                          <tbody>
+                                              <tr>
+                                                  <th></th>
+                                                  <th>Nombre</th>
+                                                  <th>Apellido</th>
+                                                  <th>Edad</th>
+                                                  <th>Identificación</th>
+                                                  <th>Teléfono</th>
+                                                  <th>Email</th>
+                                                  <th>Creado en</th>
+                                              </tr>
+                                              <tr class="selectItem" *ngFor="let item of this.misClientes; let i = index" (click)="this.selectCliente( item._id )" [ngClass]="{ 'tableSelected' : this.clienteSelected === item._id }">
+                                                  <td>
+                                                      <div class="avatarUser"><img class="rounded-circle" alt="image" src="assets/img/avatar/avatar-2.png" width="35" data-toggle="tooltip" data-placement="right" title="" data-original-title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." />
+                                                          <div class="role"></div>
+                                                      </div>
+                                                  </td>
+                                                  <td>
+                                                      <p>{{ item.name }}</p>
+                                                  </td>
+                                                  <td>
+                                                      <p>{{ item.last_name }}</p>
+                                                  </td>
+                                                  <td>
+                                                      <p>{{ item.edad }}</p>
+                                                  </td>
+                                                  <td>
+                                                      <p>{{ item.card_id }}</p>
+                                                  </td>
+                                                  <td>
+                                                      <p>{{ item.phone }}</p>
+                                                  </td>
+                                                  <td>
+                                                      <p>{{ item.mail }}</p>
+                                                  </td>
+                                                  <td>
+                                                      <p>{{ item.createdAt[1] }}</p>
+                                                  </td>
+                                                  <td></td>
+                                              </tr>
+                                          </tbody>
+                                      </table>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="form-group col-md-12 col-lg-12">
+                          <div class="card">
+                              <div class="card-header">
+                                  <h4 class="section-title">Asigna un usuario cobrador a un cliente</h4>
+                                  <div class="card-header-form">
+                                      <form class="needs-validation" #f="ngForm" (ngSubmit)="this.search( f )">
+                                          <div class="input-group"><input class="form-control" required="required" ngModel="ngModel" type="text" name="arg" placeholder="Busqueda" />
+                                              <div class="input-group-btn"><button class="noBorder btn btn-primary" type="submit" style="border-radius: 0!important"><i class="fas fa-search"></i></button><button class="btn btn-primary" type="button" (click)="this.getAllCollectorsByEnrouter(1)">Todos</button></div>
+                                          </div>
+                                      </form>
+                                  </div>
+                              </div>
+                              <div class="card-body p-0">
+                                  <div class="table-responsive">
+                                      <table class="table table-striped table-hover">
+                                          <tbody>
+                                              <tr>
+                                                  <th>Foto</th>
+                                                  <th>Nombre y apellido</th>
+                                                  <th>Estatus</th>
+                                                  <th>N° de clientes</th>
+                                                  <th>Detalles</th>
+                                              </tr>
+                                              <tr class="selectItem" *ngFor="let it2 of this.cobradores; let i = index" (click)="this.selectItem( it2._id )" [ngClass]="{ 'tableSelected' : this.cobradorSelected === it2._id }">
+                                                  <td>
+                                                      <div class="avatarUser"><img class="rounded-circle" alt="image" src="assets/img/avatar/avatar-2.png" width="35" data-toggle="tooltip" data-placement="right" title="" data-original-title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." />
+                                                          <div class="role"></div>
+                                                      </div>
+                                                  </td>
+                                                  <td>
+                                                      <p>{{ it2.name }} {{ it2.last_name }}</p>
+                                                  </td>
+                                                  <td>
+                                                      <div class="badge badge-success">{{ it2.status }}</div>
+                                                  </td>
+                                                  <td>
+                                                      <p>nro clientes //</p>
+                                                  </td>
+                                                  <td><a class="btn btn-primary" [routerLink]="['/dashboard/infoUser', it2._id ]" routerLinkActive="active">Detalles</a></td>
+                                              </tr>
+                                          </tbody>
+                                      </table>
+                                  </div>
+                              </div>
+                              <app-paginator *ngIf="( this.paginator != null ) &amp;&amp; ( this.paginator.pageCount &gt; 1 )" [paginator]="this.paginator" (newPageResponse)="this.newPageResponse($event)"></app-paginator>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="card-footer">
+                  <div class="row">
+                      <div class="spaceButtons"><button class="btn btn-primary" type="submit" *ngIf="this.confirmNotCollector == false"><i class="fas fa-check"></i>Aceptar</button><button class="btn btn-primary" type="button" (click)="this.closeDialog()"><i class="fas fa-times"></i>Cerrar</button></div>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
+</section>

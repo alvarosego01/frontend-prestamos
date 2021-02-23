@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-statsRoute-general',
-  templateUrl: './stats-general.component.pug',
+  templateUrl: './stats-general.component.html',
   styleUrls: ['./stats-general.component.sass']
 })
 export class StatsGeneralComponent implements OnInit {

@@ -4,7 +4,7 @@ import { FormsResourcesService } from 'src/app/services/services/services.index'
 
 @Component({
   selector: 'app-location-field',
-  templateUrl: './location-field.component.pug',
+  templateUrl: './location-field.component.html',
   styleUrls: ['./location-field.component.sass']
 })
 export class LocationFieldComponent implements OnInit {

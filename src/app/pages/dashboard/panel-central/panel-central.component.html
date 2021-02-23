@@ -1,0 +1,140 @@
+<!-- section.section
+  .section-header
+    h1 Inicio
+
+  .section-body
+
+    h2.section-title Te damos la bienvenida {{ this._sessionService.usuario.name }} {{ this._sessionService.usuario.last_name }}
+
+    app-hero( *ngIf="this._sessionService.usuario.rolName === 'ENRUTATOR_ROLE'" ,(accionBoton)="this.copyReferLink($event)", [type]="'success'", [titulo]="'¿Quieres registrar a un cobrador cómo tu referido?'", [boton]="'Copiar link'" ,[subTitulo]="'Copia este enlace y envialo a tus cobradores '+this._PAGEURL" )
+      //- | Organize and adjust all settings about this site.
+    .row
+      .col-lg-6
+        .card.card-large-icons
+          .card-icon.bg-primary.text-white
+            i.fas.fa-user
+          .card-body
+            h4 Perfil de usuario
+            p Visualiza, gestiona y configura los parametros de tu cuenta
+            a.card-cta([routerLink]="['/dashboard/perfil']", routerLinkActive="active")
+              | Ver
+              i.fas.fa-chevron-right
+      .col-lg-6
+        .card.card-large-icons
+          .card-icon.bg-primary.text-white
+            i.fas.fa-chart-line
+          .card-body
+            h4 Reportes
+            p Visualiza graficos e información general en sistema
+            a.card-cta([routerLink]="['/dashboard/'+ this.typeRoute +'/reportes']", routerLinkActive="active")
+              | Ver
+              i.fas.fa-chevron-right
+      .col-lg-6
+        .card.card-large-icons
+          .card-icon.bg-primary.text-white
+            i.fas.fa-bell
+          .card-body
+            h4 Notificaciones
+            p Visualiza tus últimas notificaciones
+            a.card-cta([routerLink]="['/dashboard/notificaciones']", routerLinkActive="active")
+              | Ver
+              i.fas.fa-chevron-right
+      .col-lg-6
+        .card.card-large-icons
+          .card-icon.bg-primary.text-white
+            i.fas.fa-cogs
+          .card-body
+            h4 Configuraciones
+            p Gestiona configuraciones generales del sistema y su comportamiento
+            a.card-cta([routerLink]="['/dashboard/configuraciones']", routerLinkActive="active")
+              | Ver
+              i.fas.fa-chevron-right
+      .col-lg-6
+        .card.card-large-icons
+          .card-icon.bg-primary.text-white
+            i.fas.fa-clipboard-list
+          .card-body
+            h4 Gestión de peticiones
+            p Visualiza y gestiona peticiones de cambios y borrados
+            a.card-cta([routerLink]="['/dashboard/'+ this.typeRoute +'/peticiones']", routerLinkActive="active")
+              | Ver
+              i.fas.fa-chevron-right
+      .col-lg-6
+        .card.card-large-icons
+          .card-icon.bg-primary.text-white
+            i.fas.fa-sign-out-alt
+          .card-body
+            h4 Cerrar sesión
+            p Esperamos que vuelvas pronto
+            a.card-cta.text-primary( (click)="this.logout()" )
+              | Cerrar
+              i.fas.fa-chevron-right -->
+
+
+
+
+              <section class="section">
+                <div class="section-header">
+                    <h1>Inicio</h1>
+                </div>
+                <div class="section-body">
+                    <h2 class="section-title">Te damos la bienvenida {{ this._sessionService.usuario.name }} {{ this._sessionService.usuario.last_name }}</h2>
+                    <app-hero *ngIf="this._sessionService.usuario.rolName === 'ENRUTATOR_ROLE'" (accionBoton)="this.copyReferLink($event)" [type]="'success'" [titulo]="'¿Quieres registrar a un cobrador cómo tu referido?'" [boton]="'Copiar link'" [subTitulo]="'Copia este enlace y envialo a tus cobradores '+this._PAGEURL"></app-hero>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="card card-large-icons">
+                                <div class="card-icon bg-primary text-white"><i class="fas fa-user"></i></div>
+                                <div class="card-body">
+                                    <h4>Perfil de usuario</h4>
+                                    <p>Visualiza, gestiona y configura los parametros de tu cuenta</p><a class="card-cta" [routerLink]="['/dashboard/perfil']" routerLinkActive="active">Ver<i class="fas fa-chevron-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card card-large-icons">
+                                <div class="card-icon bg-primary text-white"><i class="fas fa-chart-line"></i></div>
+                                <div class="card-body">
+                                    <h4>Reportes</h4>
+                                    <p>Visualiza graficos e información general en sistema</p><a class="card-cta" [routerLink]="['/dashboard/'+ this.typeRoute +'/reportes']" routerLinkActive="active">Ver<i class="fas fa-chevron-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card card-large-icons">
+                                <div class="card-icon bg-primary text-white"><i class="fas fa-bell"></i></div>
+                                <div class="card-body">
+                                    <h4>Notificaciones</h4>
+                                    <p>Visualiza tus últimas notificaciones</p><a class="card-cta" [routerLink]="['/dashboard/notificaciones']" routerLinkActive="active">Ver<i class="fas fa-chevron-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card card-large-icons">
+                                <div class="card-icon bg-primary text-white"><i class="fas fa-cogs"></i></div>
+                                <div class="card-body">
+                                    <h4>Configuraciones</h4>
+                                    <p>Gestiona configuraciones generales del sistema y su comportamiento</p><a class="card-cta" [routerLink]="['/dashboard/configuraciones']" routerLinkActive="active">Ver<i class="fas fa-chevron-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card card-large-icons">
+                                <div class="card-icon bg-primary text-white"><i class="fas fa-clipboard-list"></i></div>
+                                <div class="card-body">
+                                    <h4>Gestión de peticiones</h4>
+                                    <p>Visualiza y gestiona peticiones de cambios y borrados</p><a class="card-cta" [routerLink]="['/dashboard/'+ this.typeRoute +'/peticiones']" routerLinkActive="active">Ver<i class="fas fa-chevron-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card card-large-icons">
+                                <div class="card-icon bg-primary text-white"><i class="fas fa-sign-out-alt"></i></div>
+                                <div class="card-body">
+                                    <h4>Cerrar sesión</h4>
+                                    <p>Esperamos que vuelvas pronto</p><a class="card-cta text-primary" (click)="this.logout()">Cerrar<i class="fas fa-chevron-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>

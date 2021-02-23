@@ -3,7 +3,7 @@ import { NotifyService, SessionService } from 'src/app/services/services/service
 
 @Component({
   selector: 'app-file-manager',
-  templateUrl: './file-manager.component.pug',
+  templateUrl: './file-manager.component.html',
   styleUrls: ['./file-manager.component.sass']
 })
 

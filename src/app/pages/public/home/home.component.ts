@@ -5,7 +5,7 @@ import { NotifyService, UserService } from 'src/app/services/services/services.i
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.pug',
+  templateUrl: './home.component.html',
   styleUrls: ['./home.component.sass']
 })
 export class HomeComponent implements OnInit {

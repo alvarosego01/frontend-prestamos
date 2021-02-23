@@ -4,7 +4,7 @@ import { GlobalService } from 'src/app/services/services/services.index';
 
 @Component({
   selector: 'app-paginator',
-  templateUrl: './paginator.component.pug',
+  templateUrl: './paginator.component.html',
   styleUrls: ['./paginator.component.sass']
 })
 export class PaginatorComponent implements OnInit {

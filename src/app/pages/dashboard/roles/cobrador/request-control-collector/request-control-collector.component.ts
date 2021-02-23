@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-request-control-collector',
-  templateUrl: './request-control-collector.component.pug',
+  templateUrl: './request-control-collector.component.html',
   styleUrls: ['./request-control-collector.component.sass']
 })
 export class RequestControlCollectorComponent implements OnInit {

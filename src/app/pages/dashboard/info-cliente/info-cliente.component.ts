@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-info-cliente',
-  templateUrl: './info-cliente.component.pug',
+  templateUrl: './info-cliente.component.html',
   styleUrls: ['./info-cliente.component.sass']
 })
 export class InfoClienteComponent implements OnInit {

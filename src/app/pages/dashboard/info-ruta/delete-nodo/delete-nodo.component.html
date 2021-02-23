@@ -1,0 +1,25 @@
+<!--
+section.modalOptions.section
+  .setOptions( *ngIf='this._cliente != null' )
+    div.row
+      app-hero( [type]="'primary'", [titulo]="'¿Deseas eliminar el registro de cliente? '+this._cliente.name+' '+this._cliente.last_name", [subTitulo]="'¿Estás seguro?'" )
+    .row
+      .spaceButtons
+        button.btn.btn-danger( (click)="deleteUser()" )
+          i.fas.fa-check
+          | Eliminar cliente
+        button.btn.btn-primary( type="button", (click)="this.closeDialog()" )
+          i.fas.fa-times
+          | Cerrar -->
+
+
+          <section class="modalOptions section">
+            <div class="setOptions" *ngIf="this._cliente != null">
+                <div class="row">
+                    <app-hero [type]="'primary'" [titulo]="'¿Deseas eliminar el registro de cliente? '+this._cliente.name+' '+this._cliente.last_name" [subTitulo]="'¿Estás seguro?'"></app-hero>
+                </div>
+                <div class="row">
+                    <div class="spaceButtons"><button class="btn btn-danger" (click)="deleteUser()"><i class="fas fa-check"></i>Eliminar cliente</button><button class="btn btn-primary" type="button" (click)="this.closeDialog()"><i class="fas fa-times"></i>Cerrar</button></div>
+                </div>
+            </div>
+        </section>

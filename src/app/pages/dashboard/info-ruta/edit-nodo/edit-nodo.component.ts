@@ -4,7 +4,7 @@ import { NotifyService, GlobalService, RouterService, SessionService, ClientesSe
 
 @Component({
   selector: 'app-edit-nodo',
-  templateUrl: './edit-nodo.component.pug',
+  templateUrl: './edit-nodo.component.html',
   styleUrls: ['./edit-nodo.component.sass']
 })
 export class EditNodoComponent implements OnInit {

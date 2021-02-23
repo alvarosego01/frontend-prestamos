@@ -1,0 +1,210 @@
+<!-- section.section
+  .section-header
+    h1 Editar perfil
+
+  .section-body
+    h2.section-title Hola, {{ this._sessionService.usuario.name }} {{ this._sessionService.usuario.last_name }}
+
+    .row.mt-sm-4
+      .col-12.col-md-12.col-lg-5
+        .card.profile-widget
+          .profile-widget-header
+            img.rounded-circle.profile-widget-picture(alt='image' src='assets/img/avatar/avatar-1.png')
+            .profile-widget-items
+
+              .profile-widget-item
+                .profile-widget-item-label Rol
+                .profile-widget-item-value {{ this._sessionService.usuario.rol }}
+
+          .card-footer.text-left
+            .font-weight-bold.mb-2 Información de usuario
+            .list-unstyled.list-unstyled-border.mt-4
+              .media
+                .media-icon
+                  i.fas.fa-calendar
+                .media-body
+                  h6 Fecha de registro
+                  p {{ this._sessionService.usuario.createdAt[0] }}, {{ this._sessionService.usuario.createdAt[1] }} {{ this._sessionService.usuario.createdAt[2] }}
+              .media(*ngIf="this._sessionService.usuario.last_session")
+                .media-icon
+                  i.fas.fa-calendar
+                .media-body
+                  h6 Última conexión
+                  p {{ this._sessionService.usuario.last_session[0] }}, {{ this._sessionService.usuario.last_session[1] }} {{ this._sessionService.usuario.last_session[2] }}
+
+      .col-12.col-md-12.col-lg-7
+        .card
+          form.needs-validation&attributes({
+              '#f': 'ngForm',
+              '(ngSubmit)': 'userEdit( f )',
+              'novalidate': ''
+              })
+            .card-header
+              h4 Editar información
+            .card-body
+              .row
+                .form-group.col-md-12.col-lg-4
+                  label(for="nombres") Nombres
+                  input#nombres.form-control( [(ngModel)]="this.nombres" ,ngModel, required, type="text", name="nombres", autofocus)
+                  .invalid-feedback
+                    | Por favor, escribe tu nombre
+                .form-group.col-md-12.col-lg-4
+                  label(for="apellidos") Apellidos
+                  input#apellidos.form-control( [(ngModel)]="this.apellidos" ,ngModel, required, type="text", name="apellidos")
+                  .invalid-feedback
+                    | Por favor, escribe tu apellido
+                .form-group.col-md-12.col-lg-4
+                  label(for="cedula") Nro Identificación ó Cédula
+                  input#cedula.form-control( [(ngModel)]="this.cedula" ,ngModel, required, type="text", name="cedula")
+                  .invalid-feedback
+                    | Por favor, escribe tu apellido
+              .row
+                .form-group.col-md-12.col-lg-4
+                  label(for="pais") País
+                  .selectric-wrapper.selectric-form-control.selectric-selectric.selectric-below.selectric-open
+                    .selectric-hide-select
+                      select#pais.form-control.selectric( [(ngModel)]="this.pais" ,ngModel, required, type="text", name="pais", tabindex="-1")
+                        option Colombia
+                        option Ecuador
+                      .invalid-feedback
+                        | Por favor, selecciona un país
+
+                .form-group.col-md-12.col-lg-4
+                  label(for="estado") Estado ó departamento
+                  input#estado.form-control( [(ngModel)]="this.estado" ,ngModel, required, type="text", name="estado", autofocus)
+                  .invalid-feedback
+                    | Por favor, escribe un estado ó departamento
+
+                .form-group.col-md-12.col-lg-4
+                  label(for="ciudad") Ciudad
+                  input#ciudad.form-control( [(ngModel)]="this.ciudad" ,ngModel, required, type="text", name="ciudad")
+                  .invalid-feedback
+                    | Por favor, escribe tu ciudad
+              .row
+                .form-group.col-md-12
+                  label(for="direccion") Dirección
+                  input#direccion.form-control( [(ngModel)]="this.direccion" ,ngModel, required, type="text", name="direccion", autofocus)
+                  .invalid-feedback
+                    | Por favor, escribe tu nombre
+
+              .row
+                .form-group.col-md-12.col-lg-4
+                  label(for="edad") Edad
+                  input#edad.form-control( [(ngModel)]="this.edad" ,ngModel, required, type="number", name="edad")
+                  .invalid-feedback
+                    | Por favor, escribe tu edad
+
+                .form-group.col-md-12.col-lg-4
+                  label(for="nroFijo") Teléfono fijo
+                  input#nroFijo.form-control( [(ngModel)]="this.nroFijo" ,ngModel, type="tel", name="nroFijo", autofocus)
+                  .invalid-feedback
+                    | Por favor, escribe un teléfono fijo
+
+                .form-group.col-md-12.col-lg-4
+                  label(for="nroCelular") Teléfono Celular
+                  input#nroCelular.form-control( [(ngModel)]="this.nroCelular" ,ngModel, required,type="tel", name="nroCelular", autofocus)
+                  .invalid-feedback
+                    | Por favor, escribe un teléfono Celular
+
+            .card-footer.text-right
+              button.btn.btn-primary Guardar cambios -->
+
+
+<section class="section">
+    <div class="section-header">
+        <h1>Editar perfil</h1>
+    </div>
+    <div class="section-body">
+        <h2 class="section-title">Hola, {{ this._sessionService.usuario.name }} {{ this._sessionService.usuario.last_name }}</h2>
+        <div class="row mt-sm-4">
+            <div class="col-12 col-md-12 col-lg-5">
+                <div class="card profile-widget">
+                    <div class="profile-widget-header"><img class="rounded-circle profile-widget-picture" alt="image" src="assets/img/avatar/avatar-1.png" />
+                        <div class="profile-widget-items">
+                            <div class="profile-widget-item">
+                                <div class="profile-widget-item-label">Rol</div>
+                                <div class="profile-widget-item-value">{{ this._sessionService.usuario.rol }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-left">
+                        <div class="font-weight-bold mb-2">Información de usuario</div>
+                        <div class="list-unstyled list-unstyled-border mt-4">
+                            <div class="media">
+                                <div class="media-icon"><i class="fas fa-calendar"></i></div>
+                                <div class="media-body">
+                                    <h6>Fecha de registro</h6>
+                                    <p>{{ this._sessionService.usuario.createdAt[0] }}, {{ this._sessionService.usuario.createdAt[1] }} {{ this._sessionService.usuario.createdAt[2] }}</p>
+                                </div>
+                            </div>
+                            <div class="media" *ngIf="this._sessionService.usuario.last_session">
+                                <div class="media-icon"><i class="fas fa-calendar"></i></div>
+                                <div class="media-body">
+                                    <h6>Última conexión</h6>
+                                    <p>{{ this._sessionService.usuario.last_session[0] }}, {{ this._sessionService.usuario.last_session[1] }} {{ this._sessionService.usuario.last_session[2] }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-7">
+                <div class="card">
+                    <form class="needs-validation" #f="ngForm" (ngSubmit)="userEdit( f )" novalidate="">
+                        <div class="card-header">
+                            <h4>Editar información</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="form-group col-md-12 col-lg-4"><label for="nombres">Nombres</label><input class="form-control" id="nombres" [(ngModel)]="this.nombres" ngModel="ngModel" required="required" type="text" name="nombres" autofocus="autofocus" />
+                                    <div class="invalid-feedback">Por favor, escribe tu nombre</div>
+                                </div>
+                                <div class="form-group col-md-12 col-lg-4"><label for="apellidos">Apellidos</label><input class="form-control" id="apellidos" [(ngModel)]="this.apellidos" ngModel="ngModel" required="required" type="text" name="apellidos" />
+                                    <div class="invalid-feedback">Por favor, escribe tu apellido</div>
+                                </div>
+                                <div class="form-group col-md-12 col-lg-4"><label for="cedula">Nro Identificación ó Cédula</label><input class="form-control" id="cedula" [(ngModel)]="this.cedula" ngModel="ngModel" required="required" type="text" name="cedula" />
+                                    <div class="invalid-feedback">Por favor, escribe tu apellido</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-12 col-lg-4"><label for="pais">País</label>
+                                    <div class="selectric-wrapper selectric-form-control selectric-selectric selectric-below selectric-open">
+                                        <div class="selectric-hide-select"><select class="form-control selectric" id="pais" [(ngModel)]="this.pais" ngModel="ngModel" required="required" type="text" name="pais" tabindex="-1">
+                                                <option>Colombia</option>
+                                                <option>Ecuador</option>
+                                            </select>
+                                            <div class="invalid-feedback">Por favor, selecciona un país</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-12 col-lg-4"><label for="estado">Estado ó departamento</label><input class="form-control" id="estado" [(ngModel)]="this.estado" ngModel="ngModel" required="required" type="text" name="estado" autofocus="autofocus" />
+                                    <div class="invalid-feedback">Por favor, escribe un estado ó departamento</div>
+                                </div>
+                                <div class="form-group col-md-12 col-lg-4"><label for="ciudad">Ciudad</label><input class="form-control" id="ciudad" [(ngModel)]="this.ciudad" ngModel="ngModel" required="required" type="text" name="ciudad" />
+                                    <div class="invalid-feedback">Por favor, escribe tu ciudad</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-12"><label for="direccion">Dirección</label><input class="form-control" id="direccion" [(ngModel)]="this.direccion" ngModel="ngModel" required="required" type="text" name="direccion" autofocus="autofocus" />
+                                    <div class="invalid-feedback">Por favor, escribe tu nombre</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-12 col-lg-4"><label for="edad">Edad</label><input class="form-control" id="edad" [(ngModel)]="this.edad" ngModel="ngModel" required="required" type="number" name="edad" />
+                                    <div class="invalid-feedback">Por favor, escribe tu edad</div>
+                                </div>
+                                <div class="form-group col-md-12 col-lg-4"><label for="nroFijo">Teléfono fijo</label><input class="form-control" id="nroFijo" [(ngModel)]="this.nroFijo" ngModel="ngModel" type="tel" name="nroFijo" autofocus="autofocus" />
+                                    <div class="invalid-feedback">Por favor, escribe un teléfono fijo</div>
+                                </div>
+                                <div class="form-group col-md-12 col-lg-4"><label for="nroCelular">Teléfono Celular</label><input class="form-control" id="nroCelular" [(ngModel)]="this.nroCelular" ngModel="ngModel" required="required" type="tel" name="nroCelular" autofocus="autofocus" />
+                                    <div class="invalid-feedback">Por favor, escribe un teléfono Celular</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer text-right"><button class="btn btn-primary">Guardar cambios</button></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

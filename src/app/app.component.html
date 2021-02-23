@@ -1,0 +1,26 @@
+<!-- app-navbar
+app-nav-dashboard( *ngIf="this._sessionService.estaLogueado() == true" )
+#app
+  p-toast
+  app-spinner
+  .main-wrapper.main-wrapper-1
+    .main-content( [ngClass]="{'noSpace': this._sessionService.estaLogueado() == false }")
+      app-public
+      //- router-outlet
+      //- app-dashboard
+app-footer
+
+
+ -->
+ <app-navbar></app-navbar>
+ <app-nav-dashboard *ngIf="this._sessionService.estaLogueado() == true"></app-nav-dashboard>
+ <div id="app">
+     <p-toast></p-toast>
+     <app-spinner></app-spinner>
+     <div class="main-wrapper main-wrapper-1">
+         <div class="main-content" [ngClass]="{'noSpace': this._sessionService.estaLogueado() == false }">
+             <app-public></app-public>
+         </div>
+     </div>
+ </div>
+ <app-footer></app-footer>

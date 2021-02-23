@@ -5,7 +5,7 @@ import { ClientesService, GlobalService, NotifyService, RouterService, SearchSer
 
 @Component({
   selector: 'app-mis-clientes',
-  templateUrl: './mis-clientes.component.pug',
+  templateUrl: './mis-clientes.component.html',
   styleUrls: ['./mis-clientes.component.sass']
 })
 export class MisClientesComponent implements OnInit {

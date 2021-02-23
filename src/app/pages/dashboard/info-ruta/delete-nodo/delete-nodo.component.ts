@@ -4,7 +4,7 @@ import { UserService, NotifyService, ClientesService } from 'src/app/services/se
 
 @Component({
   selector: 'app-delete-nodo',
-  templateUrl: './delete-nodo.component.pug',
+  templateUrl: './delete-nodo.component.html',
   styleUrls: ['./delete-nodo.component.sass']
 })
 export class DeleteNodoComponent implements OnInit {
