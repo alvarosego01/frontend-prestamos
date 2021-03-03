@@ -91,7 +91,7 @@ p-dialog( *ngIf="(this._sessionService.usuario.rolName  === 'ENRUTATOR_ROLE')", 
                         <app-hero [type]="'primary'" [titulo]="'Sin resultados'" [subTitulo]="'No tienes rutas asignadas actualmente'"></app-hero>
                     </div>
                 </div>
-                <div class="card" *ngIf="this.misRutas.length &gt; 0">
+                <div class="card" *ngIf="this.misRutas.length > 0">
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-striped">

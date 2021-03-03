@@ -125,7 +125,7 @@ p-dialog( *ngIf="(this._sessionService.usuario.rolName  === 'COLLECTOR_ROLE')", 
         </div>
     </div>
     <div class="section-body" *ngIf="this.infoRoute != null">
-        <app-panel-slize *ngIf="this.infoRoute.negocios_id &amp;&amp; this.infoRoute.negocios_id.length &gt; 0">
+        <app-panel-slize *ngIf="this.infoRoute.negocios_id && this.infoRoute.negocios_id.length > 0">
             <app-statsRoute-general [_ruta]="this.infoRoute"></app-statsRoute-general>
         </app-panel-slize>
         <h2 class="section-title">{{ this.infoRoute.titleRoute }} - Creado en: {{ this.infoRoute.createdAt[0]+' '+this.infoRoute.createdAt[1]+' '+this.infoRoute.createdAt[2] }}</h2>

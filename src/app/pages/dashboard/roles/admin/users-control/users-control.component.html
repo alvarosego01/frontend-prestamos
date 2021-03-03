@@ -127,7 +127,7 @@ section.section
       <h1>Control de usuarios</h1>
   </div>
   <div class="section-body">
-      <h2 class="section-title">Listado de usuarios en sistema<span *ngIf="this.paginator &amp;&amp; this.paginator.itemCount &gt; 0">- {{ this.paginator.itemCount }}</span></h2>
+      <h2 class="section-title">Listado de usuarios en sistema<span *ngIf="this.paginator && this.paginator.itemCount &gt; 0">- {{ this.paginator.itemCount }}</span></h2>
       <div class="row">
           <div class="col-12">
               <div class="card">
@@ -191,7 +191,7 @@ section.section
                       </div>
                   </div>
               </div>
-              <app-paginator *ngIf="( this.paginator != null ) &amp;&amp; ( this.paginator.pageCount &gt; 1 )" [paginator]="this.paginator" (newPageResponse)="this.newPageResponse($event)"></app-paginator>
+              <app-paginator *ngIf="( this.paginator != null ) && ( this.paginator.pageCount &gt; 1 )" [paginator]="this.paginator" (newPageResponse)="this.newPageResponse($event)"></app-paginator>
           </div>
       </div>
   </div>

@@ -100,6 +100,8 @@ console.log('abre esto');
 
       this.paginator = resp.paginator;
 
+      console.log('thisenrutadores', this.enrutadores);
+
     }, (err) => {
       console.error(err);
     });
@@ -202,7 +204,10 @@ console.log('abre esto');
 
     value = JSON.parse(value);
 
-    if(value.alias == 'COLLECTOR_ROLE'){
+
+    console.log('value', value);
+
+    if(value.rol == 'COLLECTOR_ROLE'){
 
       this.setEnrouterOwner = true;
 

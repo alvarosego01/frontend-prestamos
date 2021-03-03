@@ -193,16 +193,16 @@ section.modalOptions.section
               <div class="card-body">
                   <div class="row">
                       <div class="form-group col-md-12 col-lg-3"><label for="Venta">Venta</label><input class="form-control" id="Venta" type="number" formControlName="venta" name="venta" />
-                          <app-field-error *ngIf="this._formResources.isFieldValid('venta', this.form) &amp;&amp; this.form.get('venta').errors.required " [errorMsg]="this.errorFields.venta.required"></app-field-error>
+                          <app-field-error *ngIf="this._formResources.isFieldValid('venta', this.form) && this.form.get('venta').errors.required " [errorMsg]="this.errorFields.venta.required"></app-field-error>
                       </div>
                       <div class="form-group col-md-12 col-lg-3"><label for="interes">Interés</label><input class="form-control" id="interes" type="number" formControlName="interes" name="interes" />
-                          <app-field-error *ngIf="this._formResources.isFieldValid('interes', this.form) &amp;&amp; this.form.get('interes').errors.required " [errorMsg]="this.errorFields.interes.required"></app-field-error>
+                          <app-field-error *ngIf="this._formResources.isFieldValid('interes', this.form) && this.form.get('interes').errors.required " [errorMsg]="this.errorFields.interes.required"></app-field-error>
                       </div>
                       <div class="form-group col-md-12 col-lg-3"><label for="ncuotas">Número de cuotas</label><input class="form-control" id="ncuotas" type="number" formControlName="ncuotas" name="ncuotas" />
-                          <app-field-error *ngIf="this._formResources.isFieldValid('ncuotas', this.form) &amp;&amp; this.form.get('ncuotas').errors.required " [errorMsg]="this.errorFields.ncuotas.required"></app-field-error>
+                          <app-field-error *ngIf="this._formResources.isFieldValid('ncuotas', this.form) && this.form.get('ncuotas').errors.required " [errorMsg]="this.errorFields.ncuotas.required"></app-field-error>
                       </div>
                       <div class="form-group col-md-12 col-lg-3"><label for="domicilio">Dirección</label><input class="form-control" id="domicilio" type="text" formControlName="domicilio" name="domicilio" />
-                          <app-field-error *ngIf="this._formResources.isFieldValid('domicilio', this.form) &amp;&amp; this.form.get('domicilio').errors.required " [errorMsg]="this.errorFields.domicilio.required"></app-field-error>
+                          <app-field-error *ngIf="this._formResources.isFieldValid('domicilio', this.form) && this.form.get('domicilio').errors.required " [errorMsg]="this.errorFields.domicilio.required"></app-field-error>
                       </div>
                   </div>
                   <div class="row">
@@ -214,12 +214,12 @@ section.modalOptions.section
                                       <option value="Mensual">Mensual</option>
                                       <option value="Otro">Otro</option>
                                   </select>
-                                  <app-field-error *ngIf="this._formResources.isFieldValid('concurrencia', this.form) &amp;&amp; this.form.get('concurrencia').errors.required " [errorMsg]="this.errorFields.concurrencia.required"></app-field-error>
+                                  <app-field-error *ngIf="this._formResources.isFieldValid('concurrencia', this.form) && this.form.get('concurrencia').errors.required " [errorMsg]="this.errorFields.concurrencia.required"></app-field-error>
                               </div>
                           </div>
                       </div>
                       <div class="form-group col-md-12 col-lg-6" *ngIf="this.form.value.concurrencia === 'Otro'"><label for="concurrenciaCustom">Escribe una concurrencia</label><input class="form-control" id="concurrenciaCustom" [disabled]="this.form.value.concurrencia != 'Otro'" type="number" formControlName="concurrenciaCustom" name="concurrenciaCustom" />
-                          <app-field-error *ngIf="this._formResources.isFieldValid('concurrenciaCustom', this.form) &amp;&amp; this.form.get('concurrenciaCustom').errors.required " [errorMsg]="this.errorFields.concurrenciaCustom.required"></app-field-error>
+                          <app-field-error *ngIf="this._formResources.isFieldValid('concurrenciaCustom', this.form) && this.form.get('concurrenciaCustom').errors.required " [errorMsg]="this.errorFields.concurrenciaCustom.required"></app-field-error>
                       </div>
                   </div>
                   <div class="row">
@@ -324,7 +324,7 @@ section.modalOptions.section
                                       </table>
                                   </div>
                               </div>
-                              <app-paginator *ngIf="( this.paginator != null ) &amp;&amp; ( this.paginator.pageCount &gt; 1 )" [paginator]="this.paginator" (newPageResponse)="this.newPageResponse($event)"></app-paginator>
+                              <app-paginator *ngIf="( this.paginator != null ) && ( this.paginator.pageCount &gt; 1 )" [paginator]="this.paginator" (newPageResponse)="this.newPageResponse($event)"></app-paginator>
                           </div>
                       </div>
                   </div>

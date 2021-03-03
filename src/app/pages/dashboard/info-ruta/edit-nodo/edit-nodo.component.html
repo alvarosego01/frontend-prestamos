@@ -140,21 +140,21 @@ section.modalOptions.section
               <div class="card-body">
                   <div class="row">
                       <div class="form-group col-md-12 col-lg-4"><label for="nombre">Nombre</label><input class="form-control" id="nombre" type="text" [(ngModel)]="this.name" formControlName="name" name="name" />
-                          <app-field-error *ngIf="this._formResources.isFieldValid('name', this.form) &amp;&amp; this.form.get('name').errors.required " [errorMsg]="this.errorFields.name.required"></app-field-error>
+                          <app-field-error *ngIf="this._formResources.isFieldValid('name', this.form) && this.form.get('name').errors.required " [errorMsg]="this.errorFields.name.required"></app-field-error>
                       </div>
                       <div class="form-group col-md-12 col-lg-4"><label for="Apellido">Apellido</label><input class="form-control" id="Apellido" type="text" [(ngModel)]="this.last_name" formControlName="last_name" name="last_name" />
-                          <app-field-error *ngIf="this._formResources.isFieldValid('last_name', this.form) &amp;&amp; this.form.get('last_name').errors.required " [errorMsg]="this.errorFields.last_name.required"></app-field-error>
+                          <app-field-error *ngIf="this._formResources.isFieldValid('last_name', this.form) && this.form.get('last_name').errors.required " [errorMsg]="this.errorFields.last_name.required"></app-field-error>
                       </div>
                       <div class="form-group col-md-12 col-lg-4"><label for="Edad">Edad</label><input class="form-control" id="Edad" type="number" [(ngModel)]="this.edad" formControlName="edad" name="edad" />
-                          <app-field-error *ngIf="this._formResources.isFieldValid('edad', this.form) &amp;&amp; this.form.get('edad').errors.required " [errorMsg]="this.errorFields.edad.required"></app-field-error>
+                          <app-field-error *ngIf="this._formResources.isFieldValid('edad', this.form) && this.form.get('edad').errors.required " [errorMsg]="this.errorFields.edad.required"></app-field-error>
                       </div>
                   </div>
                   <div class="row">
                       <div class="form-group col-md-12 col-lg-6"><label for="Identificacion">Identificación</label><input class="form-control" id="Identificacion" type="text" [(ngModel)]="this.card_id" formControlName="card_id" name="card_id" />
-                          <app-field-error *ngIf="this._formResources.isFieldValid('card_id', this.form) &amp;&amp; this.form.get('card_id').errors.required " [errorMsg]="this.errorFields.card_id.required"></app-field-error>
+                          <app-field-error *ngIf="this._formResources.isFieldValid('card_id', this.form) && this.form.get('card_id').errors.required " [errorMsg]="this.errorFields.card_id.required"></app-field-error>
                       </div>
                       <div class="form-group col-md-12 col-lg-6"><label for="domicilio">Dirección de domicilio</label><input class="form-control" id="domicilio" type="text" [(ngModel)]="this.domicilio" formControlName="domicilio" name="domicilio" />
-                          <app-field-error *ngIf="this._formResources.isFieldValid('domicilio', this.form) &amp;&amp; this.form.get('domicilio').errors.required " [errorMsg]="this.errorFields.domicilio.required"></app-field-error>
+                          <app-field-error *ngIf="this._formResources.isFieldValid('domicilio', this.form) && this.form.get('domicilio').errors.required " [errorMsg]="this.errorFields.domicilio.required"></app-field-error>
                       </div>
                   </div>
                   <div class="row">
@@ -206,7 +206,7 @@ section.modalOptions.section
                                       </table>
                                   </div>
                               </div>
-                              <app-paginator *ngIf="( this.paginator != null ) &amp;&amp; ( this.paginator.pageCount &gt; 1 )" [paginator]="this.paginator" (newPageResponse)="this.newPageResponse($event)"></app-paginator>
+                              <app-paginator *ngIf="( this.paginator != null ) && ( this.paginator.pageCount &gt; 1 )" [paginator]="this.paginator" (newPageResponse)="this.newPageResponse($event)"></app-paginator>
                           </div>
                       </div>
                   </div>

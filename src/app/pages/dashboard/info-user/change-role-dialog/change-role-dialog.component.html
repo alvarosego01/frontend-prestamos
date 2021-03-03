@@ -101,7 +101,7 @@ section.modalOptions.section
                               <app-hero [type]="'primary'" [titulo]="'No hay enrutadores en este momento'" [subTitulo]="'Intente más tarde'"></app-hero>
                           </div>
                       </div>
-                      <div class="card" *ngIf="this.enrutadores != null &amp;&amp; this.enrutadores.length &gt; 0">
+                      <div class="card" *ngIf="this.enrutadores != null && this.enrutadores.length > 0">
                           <div class="card-header">
                               <h4 class="section-title">Asigna el usuario cobrador a un enrutador</h4>
                               <div class="card-header-form">
@@ -139,7 +139,7 @@ section.modalOptions.section
                                   </table>
                               </div>
                           </div>
-                          <app-paginator *ngIf="( this.paginator != null ) &amp;&amp; ( this.paginator.pageCount &gt; 1 )" [paginator]="this.paginator" (newPageResponse)="this.newPageResponse($event)"></app-paginator>
+                          <app-paginator *ngIf="( this.paginator != null ) && ( this.paginator.pageCount &gt; 1 )" [paginator]="this.paginator" (newPageResponse)="this.newPageResponse($event)"></app-paginator>
                       </div>
                   </div>
               </div>

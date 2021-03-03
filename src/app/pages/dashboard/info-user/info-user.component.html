@@ -101,7 +101,7 @@ section.section
                                 label(for="nroCelular") Teléfono Celular
                                 p {{ this.infoUser.nro_movil }}
 
-                .card( *ngIf="(this.infoUser._id != this._sessionService.usuario._id) && (this._sessionService.usuario.rolName === 'Administrador')" )
+                .card( *ngIf="(this.infoUser._id != this._sessionService.usuario._id) && (this._sessionService.usuario.rolName === 'ADMIN_ROLE')" )
                     .card-header
                         h4 Configuraciones de usuario
                     .card-body
@@ -124,9 +124,9 @@ section.section
                                         p Eliminar usuario
 
 
-p-dialog( *ngIf="(this._sessionService.usuario.rolName === 'Administrador')", header="Cambiar rol", [(visible)]="this.changeRoles", [modal]="true", [style]="{width: '75vw'}", [baseZIndex]="10000")
+p-dialog( *ngIf="(this._sessionService.usuario.rolName === 'ADMIN_ROLE')", header="Cambiar rol", [(visible)]="this.changeRoles", [modal]="true", [style]="{width: '75vw'}", [baseZIndex]="10000")
     app-change-role-dialog( *ngIf="this.changeRoles == true" ,[user]="this.infoUser", (success)="this.sucess($event)" ,(close)="this.closeRoleDialog($event)" )
-p-dialog( *ngIf="(this._sessionService.usuario.rolName === 'Administrador')", header="Cambiar rol", [(visible)]="this.deleteUser", [modal]="true", [style]="{width: '75vw'}", [baseZIndex]="10000")
+p-dialog( *ngIf="(this._sessionService.usuario.rolName === 'ADMIN_ROLE')", header="Cambiar rol", [(visible)]="this.deleteUser", [modal]="true", [style]="{width: '75vw'}", [baseZIndex]="10000")
     app-delete-userr-dialog( *ngIf="this.deleteUser == true" ,[user]="this.infoUser", (success)="this.sucess($event)" ,(close)="this.closeRoleDialog($event)" )
 
 
@@ -254,7 +254,7 @@ p-dialog( *ngIf="(this._sessionService.usuario.rolName === 'Administrador')", he
                         </div>
                     </div>
                 </div>
-                <div class="card" *ngIf="(this.infoUser._id != this._sessionService.usuario._id) &amp;&amp; (this._sessionService.usuario.rolName === 'Administrador')">
+                <div class="card" *ngIf="(this.infoUser._id != this._sessionService.usuario._id) && (this._sessionService.usuario.rolName === 'ADMIN_ROLE')">
                     <div class="card-header">
                         <h4>Configuraciones de usuario</h4>
                     </div>
@@ -281,9 +281,9 @@ p-dialog( *ngIf="(this._sessionService.usuario.rolName === 'Administrador')", he
         </div>
     </div>
 </section>
-<p-dialog *ngIf="(this._sessionService.usuario.rolName === 'Administrador')" header="Cambiar rol" [(visible)]="this.changeRoles" [modal]="true" [style]="{width: '75vw'}" [baseZIndex]="10000">
+<p-dialog *ngIf="(this._sessionService.usuario.rolName === 'ADMIN_ROLE')" header="Cambiar rol" [(visible)]="this.changeRoles" [modal]="true" [style]="{width: '75vw'}" [baseZIndex]="10000">
     <app-change-role-dialog *ngIf="this.changeRoles == true" [user]="this.infoUser" (success)="this.sucess($event)" (close)="this.closeRoleDialog($event)"></app-change-role-dialog>
 </p-dialog>
-<p-dialog *ngIf="(this._sessionService.usuario.rolName === 'Administrador')" header="Cambiar rol" [(visible)]="this.deleteUser" [modal]="true" [style]="{width: '75vw'}" [baseZIndex]="10000">
+<p-dialog *ngIf="(this._sessionService.usuario.rolName === 'ADMIN_ROLE')" header="Cambiar rol" [(visible)]="this.deleteUser" [modal]="true" [style]="{width: '75vw'}" [baseZIndex]="10000">
     <app-delete-userr-dialog *ngIf="this.deleteUser == true" [user]="this.infoUser" (success)="this.sucess($event)" (close)="this.closeRoleDialog($event)"></app-delete-userr-dialog>
 </p-dialog>

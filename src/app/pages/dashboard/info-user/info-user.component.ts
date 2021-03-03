@@ -44,6 +44,7 @@ export class InfoUserComponent implements OnInit {
   ngOnInit(): void {
 
 
+      console.log('this._sessionService.usuario', this._sessionService.usuario);
 
   }
 

@@ -53,7 +53,7 @@ section.modalOptions.section
               <div class="card-body">
                   <div class="row">
                       <div class="form-group col-md-12 col-lg-12"><label for="nombre">Nombre de la ruta</label><input class="form-control" id="nombre" formControlName="Nombre" type="text" name="Nombre" />
-                          <app-field-error *ngIf="this._formResources.isFieldValid('Nombre', this.form) &amp;&amp; this.form.get('Nombre').errors.required " [errorMsg]="this.errorFields.Nombre.required"></app-field-error>
+                          <app-field-error *ngIf="this._formResources.isFieldValid('Nombre', this.form) && this.form.get('Nombre').errors.required " [errorMsg]="this.errorFields.Nombre.required"></app-field-error>
                       </div>
                   </div>
                   <div class="row">

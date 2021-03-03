@@ -47,7 +47,7 @@ StringStream.prototype = {
   eat: function(match) {
     var ch = this.string.charAt(this.pos);
     if (typeof match == "string") var ok = ch == match;
-    else var ok = ch &amp;&amp; match.test ? match.test(ch) : match(ch);
+    else var ok = ch && match.test ? match.test(ch) : match(ch);
     if (ok) {this.pos++; return ch;}
   },
   eatWhile: function(match) {
@@ -72,7 +72,7 @@ StringStream.prototype = {
     }
     else {
       var match = this.string.slice(this.pos).match(pattern);
-      if (match &amp;&amp; consume !== false) this.pos += match[0].length;
+      if (match && consume !== false) this.pos += match[0].length;
       return match;
     }
   }

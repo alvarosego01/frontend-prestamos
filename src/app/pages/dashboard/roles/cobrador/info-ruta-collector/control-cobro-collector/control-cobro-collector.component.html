@@ -100,7 +100,7 @@ section.modalOptions.section
                 <form [formGroup]="form" (ngSubmit)="this.hacerCobro()">
                     <div class="row">
                         <div class="form-group col-md-12 col-lg-6"><label for="monto">Monto a cobrar</label><input class="form-control" id="monto" type="monto" formControlName="monto" name="monto" />
-                            <app-field-error *ngIf="this._formResources.isFieldValid('monto', this.form) &amp;&amp; this.form.get('monto').errors.required " [errorMsg]="this.errorFields.monto.required"></app-field-error>
+                            <app-field-error *ngIf="this._formResources.isFieldValid('monto', this.form) && this.form.get('monto').errors.required " [errorMsg]="this.errorFields.monto.required"></app-field-error>
                         </div>
                         <div class="form-group col-md-12 col-lg-6"><label for="observacion">Observacion (Opcional)</label><input class="form-control" id="observacion" type="text" formControlName="observacion" name="observacion" /></div>
                     </div>
