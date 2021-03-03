@@ -102,7 +102,7 @@ export class UserService {
 
   usersOneGET(id: string){
 
-    let url = `${this._SERVICIOS}/users/getOne/${id}`;
+    let url = `${this._SERVICIOS}/users/${id}`;
 
     return this.http.get(url).pipe(
         map((resp: any) => {
