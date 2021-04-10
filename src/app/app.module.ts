@@ -71,6 +71,7 @@ import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 import { environment } from 'src/environments/environment';
 
 import { VisitsSocketService, WebSocketService } from './services/sockets/socket.index';
+import { CommonModule } from '@angular/common';
 const config: SocketIoConfig = {
   url: environment._SERVICE , options: {}
 };
@@ -80,10 +81,10 @@ const config: SocketIoConfig = {
     AppComponent,
     FooterComponent,
     NavbarComponent,
-    NavDashboardComponent,
-
+    NavDashboardComponent
   ],
   imports: [
+    CommonModule,
     IMaskModule,
     BrowserModule,
     ToastModule,

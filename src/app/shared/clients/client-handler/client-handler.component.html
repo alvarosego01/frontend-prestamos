@@ -1,0 +1,239 @@
+<!-- section.section
+  .section-header
+    h1 Mis clientes
+    .section-header-button
+      button.btn.btn-primary( (click)="this.showDialog('newClient')" ) Crear nuevo cliente
+  .section-body
+    h2.section-title Control de clientes
+    .row.mt-4
+      .col-12
+        .card(*ngIf='this.misRutas.length == 0')
+          .card-body
+            app-hero( [type]="'primary'", [titulo]="'Sin resultados'", [subTitulo]="'No tienes clientes añadidos actualmente'" )
+        .card( *ngIf='this.misRutas.length > 0' )
+          .card-header
+            h4
+            .card-header-form
+              //- form.needs-validation( #f="ngForm", (ngSubmit)="this.search( f )" )
+              //-   .input-group
+              //-     input.form-control( required ,ngModel ,type="text", name="arg" , placeholder="Busqueda")
+              //-     .input-group-btn
+              //-       button.noBorder.btn.btn-primary(type="submit", style="border-radius: 0!important")
+              //-         i.fas.fa-search
+              //-       button.btn.btn-primary(type="button", (click)="this.getAll(1)") Todos
+              //-         //- i.fas.fa-search
+              //-     .invalid-feedback
+              //-       | Por favor, escribe un argumento de búsqueda
+          .card-body
+            .table-responsive
+              table.table.table-striped( )
+                tbody
+                  tr
+                    th
+                    th Nombre
+                    th Apellido
+                    th Edad
+                    th Identificación
+                    th Teléfono
+                    th Email
+                    th Creado en
+                    //- th Opciones
+                  tr( *ngFor="let item of this.misRutas" )
+                    td
+                      .avatarUser
+                        img.rounded-circle(alt="image", src="assets/img/avatar/avatar-2.png", width="35", data-toggle="tooltip" ,data-placement="right", title="", data-original-title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.")
+                        .role
+                    td
+                      p {{ item.name }}
+                    td
+                      p {{ item.last_name }}
+                    td
+                      p {{ item.edad }}
+
+                    td
+                      p {{ item.card_id }}
+                    td
+                      p {{ item.phone }}
+                    td
+                      p {{ item.mail }}
+
+                    td
+                      p {{ item.createdAt[1] }}
+                    td
+                      //- a.btn.btn-primary([routerLink]="['/dashboard/cliente/', item._id ]", routerLinkActive="active") Detalles
+
+
+            .float-right
+
+
+
+
+
+
+
+//- modals
+p-dialog( *ngIf="(this._sessionService.usuario.rolName  === 'ENRUTATOR_ROLE')", header="Añadir nuevo cliente", [(visible)]="this.modalnewClient", [modal]="true", [style]="{width: '75vw'}", [baseZIndex]="10000")
+  app-add-cliente( *ngIf="this.modalnewClient == true" , (success)="this.sucessnewClient($event)" ,(close)="this.closeModal($event)" ) -->
+
+
+
+
+<section class="section">
+    <div class="section-header">
+        <h1>Mis clientes</h1>
+        <div *ngIf="caller === 'handler'" class="section-header-button"><button class="btn btn-primary" (click)="this.showDialog('newClient')">Crear nuevo cliente</button></div>
+    </div>
+    <div class="section-body">
+        <h2 class="section-title">Control de clientes</h2>
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card" *ngIf="this.misRutas.length == 0">
+                    <div class="card-body">
+                        <app-hero [type]="'primary'" [titulo]="'Sin resultados'" [subTitulo]="'No tienes clientes añadidos actualmente'"></app-hero>
+                    </div>
+                </div>
+                <div class="card" *ngIf="0 > 5">
+                    <div class="card-header">
+                        <h4></h4>
+                        <div class="card-header-form">Filter</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Nombre</th>
+                                        <th>Apellido</th>
+                                        <th>Edad</th>
+                                        <th>Identificación</th>
+                                        <th>Teléfono</th>
+                                        <th>Email</th>
+                                        <!-- <th>Creado en</th> -->
+                                        <th>Opciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of this.misRutas">
+                                        <td>
+                                            <div class="avatarUser"><img class="rounded-circle" alt="image" src="assets/img/avatar/avatar-2.png" width="35" data-toggle="tooltip" data-placement="right" title="" data-original-title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+                                                />
+                                                <div class="role"></div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <p>{{ item.name }}</p>
+                                        </td>
+                                        <td>
+                                            <p>{{ item.last_name }}</p>
+                                        </td>
+                                        <td>
+                                            <p>{{ item.edad }}</p>
+                                        </td>
+                                        <td>
+                                            <p>{{ item.card_id }}</p>
+                                        </td>
+                                        <td>
+                                            <p>{{ item.phone }}</p>
+                                        </td>
+                                        <td>
+                                            <p>{{ item.mail }}</p>
+                                        </td>
+                                        <td>
+                                            <!-- <p>{{ item.createdAt[1] }}</p> -->
+                                            <!-- <button class="btn btn-outline-primary">. . .</button> -->
+                                            <ul class="navbar-nav navbar-right">
+                                                <li class="dropdown">
+                                                    <a class="btn btn-outline-primary dropdown" href="#" data-toggle="dropdown">
+                                                  . . .
+                                                </a>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <div class="dropdown-title"></div>
+                                                        <a class="dropdown-item "><i class="fas fa-eye"></i> Detalle</a>
+                                                        <a class="dropdown-item " (click)="this.edit(item)"> <i class="fas fa-edit"></i> Editar</a>
+                                                        <!-- <div class="dropdown-divider"></div> -->
+                                                        <a class="dropdown-item "><i class="fas fa-trash"></i> Eliminar</a>
+                                                        <a class="dropdown-item "><i class="fas fa-plus"></i> Crear Cuenta</a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="float-right"></div>
+                    </div>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Edad</th>
+                            <th>Identificación</th>
+                            <th>Teléfono</th>
+                            <th>Email</th>
+                            <!-- <th>Creado en</th> -->
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of this.misRutas">
+                            <td>
+                                <div class="avatarUser"><img class="rounded-circle" alt="image" src="assets/img/avatar/avatar-2.png" width="35" data-toggle="tooltip" data-placement="right" title="" data-original-title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+                                    />
+                                    <div class="role"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <p>{{ item.name }}</p>
+                            </td>
+                            <td>
+                                <p>{{ item.last_name }}</p>
+                            </td>
+                            <td>
+                                <p>{{ item.edad }}</p>
+                            </td>
+                            <td>
+                                <p>{{ item.card_id }}</p>
+                            </td>
+                            <td>
+                                <p>{{ item.phone }}</p>
+                            </td>
+                            <td>
+                                <p>{{ item.mail }}</p>
+                            </td>
+                            <td>
+                                <!-- <p>{{ item.createdAt[1] }}</p> -->
+                                <!-- <button class="btn btn-outline-primary">. . .</button> -->
+                                <ul class="navbar-nav navbar-right">
+                                    <li class="dropdown">
+                                        <a class="btn btn-outline-primary dropdown" href="#" data-toggle="dropdown">
+                                    . . .
+                                  </a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <div class="dropdown-title"></div>
+                                            <a *ngIf="caller === 'handler'" class="dropdown-item"><i class="fas fa-eye"></i> Detalle</a>
+                                            <a *ngIf="caller === 'handler'" class="dropdown-item" (click)="this.edit(item)"> <i class="fas fa-edit"></i> Editar</a>
+                                            <!-- <div class="dropdown-divider"></div> -->
+                                            <a *ngIf="caller === 'handler'" class="dropdown-item" (click)="this.delete(item._id)"><i class="fas fa-trash"></i> Eliminar</a>
+                                            <a *ngIf="caller === 'ruta'" class="dropdown-item"><i class="fas fa-money-bill"></i> Negocios</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<p-dialog *ngIf="(this._sessionService.usuario.rolName  === 'ENRUTATOR_ROLE' || this._sessionService.usuario.rolName  === 'ADMIN_ROLE')" [header]="this.modalTitle" [(visible)]="this.modalnewClient" [modal]="true" [style]="{width: '75vw'}" [baseZIndex]="10000">
+    <app-add-cliente-handler [cliente]="this.editClient" *ngIf="this.modalnewClient == true" (success)="this.sucessnewClient($event)" (close)="this.closeModal($event)"></app-add-cliente-handler>
+</p-dialog>
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>

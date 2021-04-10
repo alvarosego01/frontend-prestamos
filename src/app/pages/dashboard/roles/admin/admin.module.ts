@@ -12,12 +12,20 @@ import { AdminComponent, RequestsControlComponent, RolesControlComponent, Routes
 import { _ADMIN_ROUTES } from './admin.routes';
 import { RouterModule } from '@angular/router';
 import { ClientesControlComponent } from './clientes-control/clientes-control.component';
+import { MainClientModule } from '../../../../shared/clients/main-client.module';
+import { MainRouteModule } from 'src/app/shared/rutas/main-route-module';
+
 
 @NgModule({
   declarations: [
     AdminComponent,
     UsersControlComponent,
-    RoutesControlComponent, StatsControlComponent, RolesControlComponent, RequestsControlComponent, ClientesControlComponent],
+    RoutesControlComponent,
+    StatsControlComponent,
+    RolesControlComponent,
+    RequestsControlComponent,
+    ClientesControlComponent,
+    ],
   imports: [
     CommonModule,
     BrowserModule,
@@ -26,8 +34,13 @@ import { ClientesControlComponent } from './clientes-control/clientes-control.co
     ReactiveFormsModule,
     BrowserAnimationsModule,
     GlobalModule,
-    RouterModule
+
+    RouterModule,
+    MainClientModule,
+    MainRouteModule
+
     // _ADMIN_ROUTES
-  ]
+  ],
+  exports:[CommonModule,BrowserModule]
 })
 export class AdminModule { }

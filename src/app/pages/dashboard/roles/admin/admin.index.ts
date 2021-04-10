@@ -5,5 +5,6 @@ export { RoutesControlComponent } from './routes-control/routes-control.componen
 export { StatsControlComponent } from './stats-control/stats-control.component';
 export { RolesControlComponent } from './roles-control/roles-control.component';
 export { RequestsControlComponent } from './requests-control/requests-control.component';
+export {MainClientComponent} from '../../../../shared/clients/main-client/main-client.component';
 
 

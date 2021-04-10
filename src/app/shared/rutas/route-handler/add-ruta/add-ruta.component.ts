@@ -7,15 +7,20 @@ import { NotifyService, GlobalService, RouterService, SessionService, FormsResou
   templateUrl: './add-ruta.component.html',
   styleUrls: ['./add-ruta.component.sass']
 })
-export class AddRutaComponent implements OnInit {
+export class AddRutaHandlerComponent implements OnInit {
 
 
   // @Input("user") user: any = [];
+  @Input() ruta: any;
   @Output() close  =  new EventEmitter<boolean>();
   @Output() success  =  new EventEmitter<boolean>();
 
   location: any = null;
-
+  locationSelected: any = {
+    pais: null,
+    department: null,
+    city: null
+  }
   form: FormGroup;
 
 
@@ -24,7 +29,6 @@ export class AddRutaComponent implements OnInit {
     Nombre: {
       required: "Por favor, escribe un nombre para la ruta"
     },
-
   }
 
   constructor(
@@ -33,37 +37,32 @@ export class AddRutaComponent implements OnInit {
     public _routerService: RouterService,
     public _sessionService: SessionService,
     public _formResources: FormsResourcesService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder 
   ) { }
 
   ngOnInit(): void {
+    if (this.ruta !== null){
+      console.log(this.ruta);
+    }
 
     this.form = this.formBuilder.group({
-
       Nombre: [null, Validators.required],
-
-
     });
 
   }
 
 
-  closeDialog(){
-
-
+  closeDialog(): void{
     this.close.emit(false);
   }
 
 
 
-  getLocation($event){
-
-    console.log('el retorno de esta vaina', $event);
+  getLocation($event): void{
     this.location = $event;
-
   }
 
- async addNew(  ){
+ async addNew(){
 
     if (this.form.invalid ){
 

@@ -62,12 +62,8 @@ export class ControlCobroCollectorComponent implements OnInit {
 
     let estatus = this.cobro;
 
-    if(estatus.cuotas.length == 0){
-
-
+    if (estatus.cuotas.length == 0){
       this.sinPagos = true;
-
-
     }
 
     this.form = this.formBuilder.group({
@@ -76,7 +72,7 @@ export class ControlCobroCollectorComponent implements OnInit {
       // venta: [null, Validators.required],
       // interes: [null, Validators.required],
       monto: [null, Validators.required],
-
+      observacion: [null],
       // cobrador_id
       // cliente_id
       // negocio_id

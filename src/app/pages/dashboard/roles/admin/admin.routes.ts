@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AdminGuard } from 'src/app/services/guards/guards.index';
+import { MainClientComponent } from 'src/app/shared/clients/main-client/main-client.component';
+import { MainRouteComponent } from 'src/app/shared/rutas/main-route/main-route.component';
 import { ProfileComponent, NotificationsComponent, SettingsComponent } from '../../dashboard.index';
 import { PanelCentralComponent } from '../../panel-central/panel-central.component';
 
@@ -62,11 +64,13 @@ const adminRoutes: Routes = [
         },
         {
           path: "rutas",
-          component: RoutesControlComponent,
+          component: MainRouteComponent,
+          loadChildren: () => import('../../../../shared/rutas/main-route.routes').then(m => m._ROUTES_ROUTES)
         },
         {
           path: "clientes",
-          component: ClientesControlComponent,
+          component: MainClientComponent,
+          loadChildren: () => import('../../../../shared/clients/main-client.routes').then(m => m._CLIENT_ROUTES)
         },
         {
           path: "reportes",

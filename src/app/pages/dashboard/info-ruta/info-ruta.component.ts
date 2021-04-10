@@ -10,20 +10,13 @@ import { SessionService, GlobalService, RouterService, NotifyService } from 'src
 export class InfoRutaComponent implements OnInit {
 
 
-  newNodo: boolean = false;
-
+  newNodo = false;
   idRoute: string = null;
-
   idUser: string = null;
-
-
   infoRoute: any = null;
-
-
-
-  showDetails: boolean = false;
-  showUpdate: boolean = false;
-  showDelete: boolean = false;
+  showDetails = false;
+  showUpdate = false;
+  showDelete = false;
 
   _cliente: any = null;
 
@@ -39,12 +32,10 @@ export class InfoRutaComponent implements OnInit {
   ) {
 
     this.activatedRoute.params.subscribe((params) => {
-      let id = params["id"];
+      const id = params.id;
       this.idRoute = id;
-
       this.idUser = this._sessionService.usuario._id;
       this.getInfoRoute(this.idRoute);
-
 
     });
 
@@ -54,98 +45,73 @@ export class InfoRutaComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
-
-  async getInfoRoute(id: string){
+  async getInfoRoute(id: string): Promise<void>{
 
     await this._routerService.getRouteInfoGET( id, this.idUser ).subscribe((resp) => {
-
-
       this.infoRoute = resp.data;
-
-      console.log('infoRoute',this.infoRoute);
-
+      console.log('infoRoute', this.infoRoute);
     }, (err) => {
-
       console.error(err);
-
       this._notifyService.messageService.add({
       severity: 'error',
       summary: err.error.message
     });
-
-    if(this._sessionService.usuario.rolName == 'ADMIN_ROLE'){
-      this.router.navigate(["/dashboard/admin/rutas/"]);
-    }
-    if(this._sessionService.usuario.rolName == 'ENRUTATOR_ROLE'){
-      this.router.navigate(["/dashboard/socio/rutas/"]);
-    }
+      if (this._sessionService.usuario.rolName === 'ADMIN_ROLE'){
+        this.router.navigate(['/dashboard/admin/rutas/']);
+      }
+      if (this._sessionService.usuario.rolName === 'ENRUTATOR_ROLE'){
+        this.router.navigate(['/dashboard/socio/rutas/']);
+      }
     });
 
   }
 
-  closeDialog(data){
-
+  closeDialog(data): void{
     this.newNodo = false;
-
     this.showDetails = false;
-this.showUpdate = false;
-this.showDelete = false;
-
+    this.showUpdate = false;
+    this.showDelete = false;
   }
 
-  sucess(data){
-
+  sucess(data): void{
     this.getInfoRoute(this.idRoute);
     this.newNodo = false;
-
     this.showDetails = false;
-this.showUpdate = false;
-this.showDelete = false;
+    this.showUpdate = false;
+    this.showDelete = false;
   }
 
-  showDialog(type: string, _cliente: any = null) {
-
-    if(type == 'newNodo'){
-      this.newNodo = true;
+  showDialog(type: string, cliente: any = null): void {
+    switch (type) {
+      case 'newNodo':
+        this.newNodo = true;
+        break;
+      case 'showDetails':
+        this.showDetails = true;
+        break;
+      case 'showUpdate':
+        this.showUpdate = true;
+        this._cliente = cliente;
+        break;
+      case 'showDelete':
+        this.showDelete = true;
+        this._cliente = cliente;
+        break;
+      default:
+        break;
     }
-    if(type == 'showDetails'){
-      this.showDetails = true;
-    }
-    if(type == 'showUpdate'){
-      this.showUpdate = true;
-      this._cliente = _cliente;
-    }
-    if(type == 'showDelete'){
-      this.showDelete = true;
-      this._cliente = _cliente;
-    }
-
-
-
   }
 
-
-  setReturnPath(){
-
-
-    if(this._sessionService.usuario.rolName == 'ADMIN_ROLE'){
-      this.router.navigate(["/dashboard/admin/rutas"]);
+  setReturnPath(): void{
+    if (this._sessionService.usuario.rolName === 'ADMIN_ROLE'){
+      this.router.navigate(['/dashboard/admin/rutas']);
     }
-    if(this._sessionService.usuario.rolName == 'ENRUTATOR_ROLE'){
-      this.router.navigate(["/dashboard/socio/rutas"]);
+    if (this._sessionService.usuario.rolName === 'ENRUTATOR_ROLE'){
+      this.router.navigate(['/dashboard/socio/rutas']);
     }
-
-
-
   }
 
-
-
-  sucessDelete($event){
-
-
+  sucessDelete($event): void{
     this.setReturnPath();
-
   }
 }

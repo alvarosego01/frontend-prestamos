@@ -34,6 +34,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FileUploadModule
   ],
   exports: [
+    CommonModule,
+    BrowserModule,
     CustomListsComponent,
     PaginatorComponent,
     SpinnerComponent,

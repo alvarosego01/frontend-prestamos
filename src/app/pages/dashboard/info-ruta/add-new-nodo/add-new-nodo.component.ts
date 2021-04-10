@@ -324,7 +324,7 @@ export class AddNewNodoComponent implements OnInit {
       this.cobradores = resp.data;
 
       this.paginator = null;
-
+      console.log('cobradores', this.cobradores);
 
     }, (err) => {
       console.error(err);

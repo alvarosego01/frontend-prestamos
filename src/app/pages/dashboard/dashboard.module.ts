@@ -38,9 +38,6 @@ import { IncidenciasModule } from './incidencias/incidencias.module';
     ChangePermisionDialogComponent,
     DeleteUserrDialogComponent,
     PanelCentralComponent,
-
-
-
   ],
   imports: [
     CommonModule,
@@ -58,7 +55,7 @@ import { IncidenciasModule } from './incidencias/incidencias.module';
     RouterModule,
     AdminModule,
     EnrutadorModule,
-    CobradorModule
+    CobradorModule,
     // _DASHBOARD_ROUTES
   ],
   exports: [

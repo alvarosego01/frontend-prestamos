@@ -1,0 +1,116 @@
+<!--
+section.modalOptions.section
+    .setOptions
+        .card
+            .card-header
+                h4 Control de cobros - Valor a cobrar: {{ this.cobro.vcuotas }}
+            .card-body
+                .row(*ngIf='this.sinPagos == true')
+                    h6
+                        i.fas.fa-exclamation-triangle
+                        | Sin cobros realizados
+                .row(*ngIf='this.sinPagos == false')
+                    .status( *ngFor='let item of this.cobro.cuotas; let i = index', style="width: 100%; display: block; height: 100%" ) Cuota {{ i + 1 }}
+                        .row( style="width: 100%; display: flex; height: 100%" )
+                            .porcGanancia.col-md-12.col-lg-3
+                              small.bold Resumen
+                              br
+                              span.ganancia {{ item.resumen }}
+
+                            .porcGanancia.col-md-12.col-lg-3
+                              small.bold Pagado
+                              br
+                              span.ganancia {{ item.pagado }}
+
+                            .porcGanancia.col-md-12.col-lg-3
+                              small.bold Valor restante
+                              br
+                              span.ganancia {{ item.restante }}
+                            .porcGanancia.col-md-12.col-lg-3( *ngIf='item.penalizacion > 0' )
+                              small.bold Penalización
+                              br
+                              span.ganancia {{ item.penalizacion }}
+
+
+
+
+                form( [formGroup]="form" ,(ngSubmit)="this.hacerCobro()")
+                    .row
+                        .form-group.col-md-12.col-lg-6
+                            label(for="monto") Monto a cobrar
+                            input#monto.form-control(  type="monto" formControlName="monto" , name="monto")
+                            app-field-error( *ngIf="this._formResources.isFieldValid('monto', this.form) && this.form.get('monto').errors.required ", [errorMsg]="this.errorFields.monto.required" )
+                        .form-group.col-md-12.col-lg-6
+                            label(for="observacion") Observacion (Opcional)
+                            input#observacion.form-control(  type="text" formControlName="observacion" , name="observacion")
+
+
+
+            .card-footer
+                .row
+                    .spaceButtons
+                        button.btn.btn-primary( (click)="this.hacerCobro()" )
+                            i.fas.fa-check
+                            | Aceptar
+                        //- button.btn.btn-primary( type="submit", *ngIf='this.confirmNotCollector == true' )
+                        //-   i.fas.fa-check
+                        //-   | ¿Crear cliente sin cobrador designado?
+                        button.btn.btn-primary( type="button", (click)="this.closeDialog()" )
+                            i.fas.fa-times
+                            | Cerrar
+
+
+
+
+//- cobrador_id
+//- card_id
+//- name
+//- last_name
+//- dir_domicilio
+//- edad
+//- perce_pagos
+//- prestado
+//- concurrencia
+
+
+//- app-paginator(*ngIf="( this.paginator != null ) && ( this.paginator.pageCount > 1 )", [paginator]="this.paginator", (newPageResponse)="this.newPageResponse($event)") -->
+
+
+
+<section class="modalOptions section">
+    <div class="setOptions">
+        <div class="card">
+            <div class="card-header">
+                <h4>Control de cobros - Valor a cobrar: {{ this.cobro.vcuotas }}</h4>
+            </div>
+            <div class="card-body">
+                <div class="row" *ngIf="this.sinPagos == true">
+                    <h6><i class="fas fa-exclamation-triangle"></i>Sin cobros realizados</h6>
+                </div>
+                <div class="row" *ngIf="this.sinPagos == false">
+                    <div class="status" *ngFor="let item of this.cobro.cuotas; let i = index" style="width: 100%; display: block; height: 100%">Cuota {{ i + 1 }}
+                        <div class="row" style="width: 100%; display: flex; height: 100%">
+                            <div class="porcGanancia col-md-12 col-lg-3"><small class="bold">Resumen</small><br /><span class="ganancia">{{ item.resumen }}</span></div>
+                            <div class="porcGanancia col-md-12 col-lg-3"><small class="bold">Pagado</small><br /><span class="ganancia">{{ item.pagado }}</span></div>
+                            <div class="porcGanancia col-md-12 col-lg-3"><small class="bold">Valor restante</small><br /><span class="ganancia">{{ item.restante }}</span></div>
+                            <div class="porcGanancia col-md-12 col-lg-3" *ngIf="item.penalizacion &gt; 0"><small class="bold">Penalización</small><br /><span class="ganancia">{{ item.penalizacion }}</span></div>
+                        </div>
+                    </div>
+                </div>
+                <form [formGroup]="form" (ngSubmit)="this.hacerCobro()">
+                    <div class="row">
+                        <div class="form-group col-md-12 col-lg-6"><label for="monto">Monto a cobrar</label><input class="form-control" id="monto" type="monto" formControlName="monto" name="monto" />
+                            <app-field-error *ngIf="this._formResources.isFieldValid('monto', this.form) && this.form.get('monto').errors.required " [errorMsg]="this.errorFields.monto.required"></app-field-error>
+                        </div>
+                        <div class="form-group col-md-12 col-lg-6"><label for="observacion">Observacion (Opcional)</label><input class="form-control" id="observacion" type="text" formControlName="observacion" name="observacion" /></div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <div class="row">
+                    <div class="spaceButtons"><button class="btn btn-primary" (click)="this.hacerCobro()"><i class="fas fa-check"></i>Aceptar</button><button class="btn btn-primary" type="button" (click)="this.closeDialog()"><i class="fas fa-times"></i>Cerrar</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

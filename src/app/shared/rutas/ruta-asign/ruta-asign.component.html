@@ -1,0 +1,44 @@
+<section class="modalOptions section">
+    <div class="setOptions">
+        <div class="row">
+            <div class="form-group col-md-12 col-lg-12">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Nombre</th>
+                            <th>Identificación</th>
+                            <th>Teléfono</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of this.misRutas">
+                            <td>
+                                <div class="p-field-checkbox">
+                                    <p-checkbox binary="true" (onChange)="change($event,item._id)" inputId="binary"></p-checkbox>
+                                </div>
+                            </td>
+                            <td>
+                                <p>{{ item.name }} {{ item.last_name }}</p>
+                            </td>
+                            <td>
+                                <p>{{ item.card_id }}</p>
+                            </td>
+                            <td>
+                                <p>{{ item.phone }}</p>
+                            </td>
+                            <td>
+                                <p>{{ item.mail }}</p>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="spaceButtons"><button class="btn btn-primary" (click)="this.asign()" type="submit"><i class="fas fa-check"></i>Aceptar</button><button class="btn btn-primary" type="button" (click)="this.closeDialog()"><i class="fas fa-times"></i>Cerrar</button></div>
+        </div>
+    </div>
+</section>

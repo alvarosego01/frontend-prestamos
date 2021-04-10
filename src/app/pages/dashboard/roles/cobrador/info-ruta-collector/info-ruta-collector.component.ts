@@ -12,29 +12,15 @@ import { CobradorService, SessionService } from 'src/app/services/services/servi
 })
 export class InfoRutaCollectorComponent implements OnInit {
 
-
-
-
-
   newNodo: boolean = false;
-
   idRoute: string = null;
-
   idUser: string = null;
-
-
   infoRoute: any = null;
-
-
-
   showDetails: boolean = false;
   showUpdate: boolean = false;
   showDelete: boolean = false;
 
   _cliente: any = null;
-
-
-
   controlCobro: boolean = false;
   aCobrar: any = null;
 
@@ -56,20 +42,13 @@ export class InfoRutaCollectorComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       let id = params["id"];
       this.idRoute = id;
-
       this.idUser = this._sessionService.usuario._id;
       this.getInfoRoute(this.idRoute);
-
-
     });
-
-
    }
 
   ngOnInit(): void {
   }
-
-
 
   async getInfoRoute(id: string){
 
@@ -78,7 +57,7 @@ export class InfoRutaCollectorComponent implements OnInit {
 
       this.infoRoute = resp.data;
 
-      console.log('infoRoute',this.infoRoute);
+      console.log('infoRoute', this.infoRoute);
 
     }, (err) => {
 
@@ -89,54 +68,39 @@ export class InfoRutaCollectorComponent implements OnInit {
       summary: err.error.message
     });
 
-    if(this._sessionService.usuario.rolName == 'ADMIN_ROLE'){
-      this.router.navigate(["/dashboard/admin/rutas/"]);
-    }
-    if(this._sessionService.usuario.rolName == 'ENRUTATOR_ROLE'){
-      this.router.navigate(["/dashboard/socio/rutas/"]);
-    }
+      if (this._sessionService.usuario.rolName === 'ADMIN_ROLE'){
+        this.router.navigate(['/dashboard/admin/rutas/']);
+      }
+      if (this._sessionService.usuario.rolName === 'ENRUTATOR_ROLE'){
+          this.router.navigate(['/dashboard/socio/rutas/']);
+      }
     });
 
   }
 
-  closeDialog(data){
-
+  closeDialog(data): void{
     this.newNodo = false;
-
     this.showDetails = false;
-this.showUpdate = false;
-this.showDelete = false;
-
-
-this.aCobrar = null;
-this.controlCobro = false;
-
+    this.showUpdate = false;
+    this.showDelete = false;
+    this.aCobrar = null;
+    this.controlCobro = false;
   }
 
-  sucess(data){
-
+  sucess(data): void{
     this.getInfoRoute(this.idRoute);
     this.newNodo = false;
-
     this.showDetails = false;
-this.showUpdate = false;
-this.showDelete = false;
-
-
-this.aCobrar = null;
-this.controlCobro = false;
-
+    this.showUpdate = false;
+    this.showDelete = false;
+    this.aCobrar = null;
+    this.controlCobro = false;
   }
 
-  showDialog(type: string, item: any = null) {
-
-    if(type == 'cobro'){
-
-      console.log('el maldito', item);
+  showDialog(type: string, item: any = null): void {
+    if (type === 'cobro'){
       this.aCobrar = item;
       this.controlCobro = true;
-
-
     }
     // if(type == 'showDetails'){
     //   this.showDetails = true;
@@ -150,55 +114,37 @@ this.controlCobro = false;
     //   this._cliente = _cliente;
     // }
 
-
-
   }
 
-
-  setReturnPath(){
-
-
-    if(this._sessionService.usuario.rolName == 'ADMIN_ROLE'){
-      this.router.navigate(["/dashboard/admin/rutas"]);
+  setReturnPath(): void{
+    switch (this._sessionService.usuario.rolName) {
+      case 'ADMIN_ROLE':
+        this.router.navigate(['/dashboard/admin/rutas']);
+        break;
+      case 'ENRUTATOR_ROLE':
+          this.router.navigate(['/dashboard/socio/rutas']);
+          break;
+      case 'COLLECTOR_ROLE':
+          this.router.navigate(['/dashboard/vendedor/rutas']);
+          break;
+      default:
+        break;
     }
-    if(this._sessionService.usuario.rolName == 'ENRUTATOR_ROLE'){
-      this.router.navigate(["/dashboard/socio/rutas"]);
-    }
-
-
-    if(this._sessionService.usuario.rolName == 'COLLECTOR_ROLE'){
-      this.router.navigate(["/dashboard/vendedor/rutas"]);
-    }
-
-
-
   }
 
-
-
-  sucessDelete($event){
-
-
+  sucessDelete($event): void{
     this.setReturnPath();
-
   }
 
 
 
   reportIncidencia(type){
 
-
-
-
   }
 
 
-  sucessCobro($event){
-
-
+  sucessCobro($event): void{
     this.getInfoRoute(this.idRoute);
-
-
   }
 
 

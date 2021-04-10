@@ -26,7 +26,8 @@ export class RouterService {
   getMyAllRoutesGET(paginate, id: string){
 
 
-    let url = `${this._SERVICIOS}/enrutador/rutas/${id}?paginate=${paginate}`;
+   // let url = `${this._SERVICIOS}/enrutador/rutas/${id}?paginate=${paginate}`;
+    let url = `${this._SERVICIOS}/enrutador/rutas/bysocio/${id}?paginate=${paginate}`;
 
     return this.http.get(url).pipe(
         map((resp: any) => {
@@ -73,6 +74,17 @@ export class RouterService {
   }
 
 
-
+  getClientysByRoute(id: string){
+    // let url = `${this._SERVICIOS}/enrutador/rutas/${id}?paginate=${paginate}`;
+     const url = `${this._SERVICIOS}/enrutador/rutas/clientsbyroute/${id}`;
+     return this.http.get(url).pipe(
+         map((resp: any) => {
+         return resp;
+     }),
+     catchError((err) => {
+         return throwError(err);
+     })
+     );
+   }
 
 }

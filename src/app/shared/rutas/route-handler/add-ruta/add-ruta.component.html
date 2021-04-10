@@ -43,29 +43,29 @@ section.modalOptions.section
  -->
 
 
- <section class="modalOptions section">
-  <div class="setOptions">
-      <div class="card">
-          <form class="needs-validation" [formGroup]="form" #f="ngForm" (ngSubmit)="this.addNew()">
-              <div class="card-header">
-                  <h4>Información de nueva ruta</h4>
-              </div>
-              <div class="card-body">
-                  <div class="row">
-                      <div class="form-group col-md-12 col-lg-12"><label for="nombre">Nombre de la ruta</label><input class="form-control" id="nombre" formControlName="Nombre" type="text" name="Nombre" />
-                          <app-field-error *ngIf="this._formResources.isFieldValid('Nombre', this.form) && this.form.get('Nombre').errors.required " [errorMsg]="this.errorFields.Nombre.required"></app-field-error>
-                      </div>
-                  </div>
-                  <div class="row">
-                      <app-location-field (data)="getLocation($event)"></app-location-field>
-                  </div>
-              </div>
-              <div class="card-footer">
-                  <div class="row">
-                      <div class="spaceButtons"><button class="btn btn-primary" type="submit"><i class="fas fa-check"></i>Aceptar</button><button class="btn btn-primary" type="button" (click)="this.closeDialog()"><i class="fas fa-times"></i>Cerrar</button></div>
-                  </div>
-              </div>
-          </form>
-      </div>
-  </div>
+<section class="modalOptions section">
+    <div class="setOptions">
+        <div class="card">
+            <form class="needs-validation" [formGroup]="form" #f="ngForm" (ngSubmit)="this.addNew()">
+                <div class="card-header">
+                    <h4>Información de nueva ruta</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="form-group col-md-12 col-lg-12"><label for="nombre">Nombre de la ruta</label><input class="form-control" id="nombre" formControlName="Nombre" type="text" name="Nombre" />
+                            <app-field-error *ngIf="this._formResources.isFieldValid('Nombre', this.form) && this.form.get('Nombre').errors.required " [errorMsg]="this.errorFields.Nombre.required"></app-field-error>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <app-location-field [test]="this.locationSelected" (data)="getLocation($event)"></app-location-field>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="spaceButtons"><button class="btn btn-primary" type="submit"><i class="fas fa-check"></i>Aceptar</button><button class="btn btn-primary" type="button" (click)="this.closeDialog()"><i class="fas fa-times"></i>Cerrar</button></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </section>

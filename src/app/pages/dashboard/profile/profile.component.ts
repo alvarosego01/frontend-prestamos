@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { I_responseInterface, I_users } from 'src/app/interfaces/interfaces.index';
 import { GlobalService, NotifyService, SessionService, UserService } from 'src/app/services/services/services.index';
 
@@ -41,13 +42,15 @@ export class ProfileComponent implements OnInit {
     public _sessionService: SessionService,
     public _notifyService: NotifyService,
     public _globalService: GlobalService,
-    public _userService: UserService
+    public _userService: UserService,
+    private _route:ActivatedRoute,
   ) {
 
     this.setUserInfo();
   }
 
   ngOnInit(): void {
+    console.log(this._route);
   }
 
  async userEdit(forma: NgForm){

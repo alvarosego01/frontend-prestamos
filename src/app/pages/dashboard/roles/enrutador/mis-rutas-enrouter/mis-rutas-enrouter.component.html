@@ -72,7 +72,7 @@ p-dialog( *ngIf="(this._sessionService.usuario.rolName  === 'ENRUTATOR_ROLE')", 
 
 
 
-  <section class="section">
+<!-- <section class="section">
     <div class="section-header">
         <h1>Mis rutas</h1>
         <div class="section-header-button"><button class="btn btn-primary" (click)="this.showDialog('newRoute')">Crear nueva ruta</button></div>
@@ -140,4 +140,5 @@ p-dialog( *ngIf="(this._sessionService.usuario.rolName  === 'ENRUTATOR_ROLE')", 
 </section>
 <p-dialog *ngIf="(this._sessionService.usuario.rolName  === 'ENRUTATOR_ROLE')" header="Añadir nueva ruta" [(visible)]="this.modalNewRoute" [modal]="true" [style]="{width: '75vw'}" [baseZIndex]="10000">
     <app-add-ruta *ngIf="this.modalNewRoute == true" (success)="this.sucessNewRoute($event)" (close)="this.closeModal($event)"></app-add-ruta>
-</p-dialog>
+</p-dialog> -->
+<app-main-route></app-main-route>

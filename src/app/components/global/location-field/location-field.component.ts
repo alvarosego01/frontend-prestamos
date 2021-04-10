@@ -1,5 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, MaxLengthValidator } from '@angular/forms';
 import { FormsResourcesService } from 'src/app/services/services/services.index';
 
 @Component({
@@ -9,9 +9,9 @@ import { FormsResourcesService } from 'src/app/services/services/services.index'
 })
 export class LocationFieldComponent implements OnInit {
 
-
+  selectedCountry:any;
   forma: FormGroup;
-
+  @Input('test') test:any;
   location: any = {
     paises: [],
     estados: null,
@@ -59,17 +59,19 @@ export class LocationFieldComponent implements OnInit {
 
     this.setPaises();
 
+
+
   }
 
 
   returnData(){
 
-    let pais =(this.forma.value.pais != null)? JSON.parse(this.forma.value.pais): null;
-    pais = pais.nativeName;
-    let estado  =(this.forma.value.estado != null)? JSON.parse(this.forma.value.estado): null;
-    estado = estado.value || null;
-    let ciudad  =(this.forma.value.ciudad != null)? JSON.parse(this.forma.value.ciudad): null;
-    ciudad = ciudad.value || null;
+    let pais =(this.forma.value.pais != null)? this.forma.value.pais: null;
+    //pais = pais.nativeName;
+    let estado  =(this.forma.value.estado != null)? this.forma.value.estado: null;
+    //estado = estado.value || null;
+    let ciudad  =(this.forma.value.ciudad != null)? this.forma.value.ciudad: null;
+    //ciudad = ciudad.value || null;
 
 
     let l = {
@@ -96,21 +98,51 @@ export class LocationFieldComponent implements OnInit {
     // });
 
     this.location.paises = this._formResources.getLatamCountries();
-    console.log('paises', this.location.paises);
+
+    if(this.test.pais !== null){
+      this.selectedCountry = this.location.paises.filter(item => {
+        return item.nativeName === this.test.pais;
+      })[0];
+      this.forma.controls.pais.patchValue(this.selectedCountry.nativeName);
+
+      this._formResources.getEstadosCountries(this.selectedCountry.alpha2Code).subscribe((resp) => {
+
+        this.location.estados = resp.result;
+        this.forma.controls.estado.patchValue(this.test.department);
+
+        let selectedState = this.getKeyByValue(this.location.estados,this.test.department);
+        this._formResources.getEstadosCiudad( selectedState, this.selectedCountry.alpha2Code ).subscribe((resp) => {
+
+          this.location.ciudades = resp.result;
+          this.forma.controls.ciudad.patchValue(this.test.city);
+
+        }, (err) => {
+           console.error(err);
+        });
+
+      }, (err) => {
+          console.error(err);
+      });
+
+    }
     // await this.setAuthCountrys();
+
 
   }
 
-  async selectEstado(estado: string){
+  getKeyByValue(object, value) {
+    return Object.keys(object).find(key => object[key] === value);
+}
 
+  async selectEstado(estado: string){
     if(estado != null){
 
-      let p = JSON.parse(estado);
-      p = p.key;
-      let pais = JSON.parse(this.forma.value.pais);
-      pais = pais.alpha2Code;
+      let p = this.getKeyByValue(this.location.estados,estado);
+      let pais = this.location.paises.filter(item =>{
+        return item.nativeName === this.forma.value.pais;
+      })[0];
 
-      await this._formResources.getEstadosCiudad( p, pais ).subscribe((resp) => {
+      await this._formResources.getEstadosCiudad( p, pais.alpha2Code ).subscribe((resp) => {
 
           this.location.ciudades = resp.result;
           console.log('consulta ciudad', resp);
@@ -127,15 +159,14 @@ export class LocationFieldComponent implements OnInit {
   async selectPais(pais: any){
 
 
+    if(pais !== null){
 
-    if(pais != null){
-
-      let p = JSON.parse(pais);
+      let p = this.location.paises.filter(item =>{
+        return item.nativeName === pais;
+      })[0];
 
       await this._formResources.getEstadosCountries(p.alpha2Code).subscribe((resp) => {
 
-
-        console.log('consulta estados', resp.result);
 
         this.location.estados = resp.result;
 

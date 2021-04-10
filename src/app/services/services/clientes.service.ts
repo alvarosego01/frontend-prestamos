@@ -41,8 +41,6 @@ export class ClientesService {
 
 
   crearClientSingle(data: any, idUser: string) {
-
-
     let url = `${this._SERVICIOS}/clientes/crearSingle/${idUser}`;
 
     return this.http.post(url, data).pipe(
@@ -75,8 +73,7 @@ export class ClientesService {
 
 
 
-  getClientInfoGET(idRuta: string ,idUser: string){
-
+  getClientInfoGET(idRuta: string , idUser: string){
 
     let url = `${this._SERVICIOS}/enrutador/rutas/${idRuta}/${idUser}`;
     return this.http.get(url).pipe(
@@ -126,8 +123,8 @@ export class ClientesService {
 
 
   clientOneDELETE(id: string) {
-
-    let url = `${this._SERVICIOS}/clientes/borrar/${this._sessionService.usuario._id}/${id}`;
+    console.log('delete', id);
+    const url = `${this._SERVICIOS}/clientes/borrar/${this._sessionService.usuario._id}/${id}`;
 
     return this.http.delete(url).pipe(
       map((resp: any) => {
@@ -138,6 +135,18 @@ export class ClientesService {
       })
     );
 
+  }
+
+  asignarRuta(ruta: string, cliente: string){
+    const url = `${this._SERVICIOS}/clientes/enlazar/${cliente}/${ruta}`;
+    return this.http.post(url, []).pipe(
+      map((resp: any) => {
+        return resp;
+      }),
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
   }
 
 }

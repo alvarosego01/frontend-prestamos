@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { _DASHBOARD_ROUTES } from './pages/dashboard/dashboard.routes';
 import { _ADMIN_ROUTES } from './pages/dashboard/roles/admin/admin.routes';
 
+
 // Modulos
 // import { PagesRoutingModule } from './pages/pages.routing';
 // import { AuthRoutingModule } from './auth/auth.routing';
@@ -31,6 +32,7 @@ const routes: Routes = [
     // _ADMIN_ROUTES
     // PagesRoutingModule,
     // AuthRoutingModule
+
   ],
   exports: [ RouterModule ]
 })

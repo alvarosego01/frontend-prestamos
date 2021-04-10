@@ -41,7 +41,7 @@ form( [formGroup]="this.forma", (change)="returnData()" )
         <div class="form-group col-md-12 col-lg-4"><label for="pais">País</label>
             <div class="selectric-wrapper selectric-form-control selectric-selectric selectric-below selectric-open">
                 <div class="selectric-hide-select"><select class="form-control selectric" id="pais" *ngIf="this.location.paises && this.location.paises.length > 0" type="text" formControlName="pais" name="pais" tabindex="-1" (change)="this.selectPais($event.target.value)">
-                        <option *ngFor="let item of this.location.paises" [value]="item | json">{{ item.nativeName }}</option>
+                        <option *ngFor="let item of this.location.paises" [value]="item.nativeName">{{ item.nativeName }}</option>
                     </select>
                     <app-field-error *ngIf="this._formResources.isFieldValid('pais', this.forma) && this.forma.get('pais').errors.required " [errorMsg]="this.errorFields.pais.required"></app-field-error>
                 </div>
@@ -50,7 +50,7 @@ form( [formGroup]="this.forma", (change)="returnData()" )
         <div class="form-group col-md-12 col-lg-4" *ngIf="this.location.estados != null"><label for="estado">Estado o departamento</label>
             <div class="selectric-wrapper selectric-form-control selectric-selectric selectric-below selectric-open">
                 <div class="selectric-hide-select"><select class="form-control selectric" id="estado" type="text" formControlName="estado" name="estado" tabindex="-1" (change)="this.selectEstado($event.target.value)">
-                        <option *ngFor="let item of this.location.estados | keyvalue" [value]="item | json">{{ item.value }}</option>
+                        <option *ngFor="let item of this.location.estados | keyvalue" [value]="item.value">{{ item.value }}</option>
                     </select>
                     <app-field-error *ngIf="this._formResources.isFieldValid('estado', this.forma) && this.forma.get('estado').errors.required " [errorMsg]="this.errorFields.estado.required"></app-field-error>
                 </div>
@@ -59,7 +59,7 @@ form( [formGroup]="this.forma", (change)="returnData()" )
         <div class="form-group col-md-12 col-lg-4" *ngIf="this.location.ciudades != null"><label for="ciudad">Ciudad o municipio</label>
             <div class="selectric-wrapper selectric-form-control selectric-selectric selectric-below selectric-open">
                 <div class="selectric-hide-select"><select class="form-control selectric" id="ciudad" type="text" formControlName="ciudad" name="ciudad" tabindex="-1">
-                        <option *ngFor="let item of this.location.ciudades | keyvalue" [value]="item | json">{{ item.value }}</option>
+                        <option *ngFor="let item of this.location.ciudades | keyvalue" [value]="item.value">{{ item.value }}</option>
                     </select>
                     <app-field-error *ngIf="this._formResources.isFieldValid('ciudad', this.forma) && this.forma.get('ciudad').errors.required " [errorMsg]="this.errorFields.ciudad.required"></app-field-error>
                 </div>
