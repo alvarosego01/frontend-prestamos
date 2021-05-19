@@ -87,4 +87,18 @@ export class RouterService {
      );
    }
 
+   updateRoutePOST(data: any, id: any){
+
+    let url = `${this._SERVICIOS}/enrutador/rutas/modificar/${id}`;
+    return this.http.post(url, data).pipe(
+        map((resp: any) => {
+        return resp;
+    }),
+    catchError((err) => {
+        return throwError(err);
+    })
+    );
+
+  }
+
 }

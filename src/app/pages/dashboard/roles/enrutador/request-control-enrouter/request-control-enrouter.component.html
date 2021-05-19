@@ -3,8 +3,149 @@
     h1 Control de peticiones
 
  -->
- <section class="section">
-  <div class="section-header">
-      <h1>Control de peticiones</h1>
-  </div>
+<section class="section">
+    <div class="section-header">
+        <div class="section-header-button"><button class="btn btn-primary" (click)="this.add(5)">Crear peticion</button></div>
+    </div>
+    <div class="section-body">
+        <h2 class="section-title">Control de peticiones</h2>
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card" *ngIf="true">
+                    <div class="card-body">
+                        <app-hero [type]="'primary'" [titulo]="'Sin resultados'" [subTitulo]="'No tienes peticiones añadidas actualmente'"></app-hero>
+                    </div>
+                </div>
+                <div class="card" *ngIf="0 > 5">
+                    <div class="card-header">
+                        <h4></h4>
+                        <div class="card-header-form">Filter</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Nombre</th>
+                                        <th>Apellido</th>
+                                        <th>Edad</th>
+                                        <th>Identificación</th>
+                                        <th>Teléfono</th>
+                                        <th>Email</th>
+                                        <!-- <th>Creado en</th> -->
+                                        <th>Opciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of this.misRutas">
+                                        <td>
+                                            <div class="avatarUser"><img class="rounded-circle" alt="image" src="assets/img/avatar/avatar-2.png" width="35" data-toggle="tooltip" data-placement="right" title="" data-original-title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+                                                />
+                                                <div class="role"></div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <p>{{ item.name }}</p>
+                                        </td>
+                                        <td>
+                                            <p>{{ item.last_name }}</p>
+                                        </td>
+                                        <td>
+                                            <p>{{ item.edad }}</p>
+                                        </td>
+                                        <td>
+                                            <p>{{ item.card_id }}</p>
+                                        </td>
+                                        <td>
+                                            <p>{{ item.phone }}</p>
+                                        </td>
+                                        <td>
+                                            <p>{{ item.mail }}</p>
+                                        </td>
+                                        <td>
+                                            <!-- <p>{{ item.createdAt[1] }}</p> -->
+                                            <!-- <button class="btn btn-outline-primary">. . .</button> -->
+                                            <ul class="navbar-nav navbar-right">
+                                                <li class="dropdown">
+                                                    <a class="btn btn-outline-primary dropdown" href="#" data-toggle="dropdown">
+                                              . . .
+                                            </a>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <div class="dropdown-title"></div>
+                                                        <a class="dropdown-item "><i class="fas fa-eye"></i> Detalle</a>
+                                                        <a class="dropdown-item " (click)="this.edit(item)"> <i class="fas fa-edit"></i> Editar</a>
+                                                        <!-- <div class="dropdown-divider"></div> -->
+                                                        <a class="dropdown-item "><i class="fas fa-trash"></i> Eliminar</a>
+                                                        <a class="dropdown-item "><i class="fas fa-plus"></i> Crear Cuenta</a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="float-right"></div>
+                    </div>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Edad</th>
+                            <!-- <th>Creado en</th> -->
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="avatarUser"><img class="rounded-circle" alt="image" src="assets/img/avatar/avatar-2.png" width="35" data-toggle="tooltip" data-placement="right" title="" data-original-title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+                                    />
+                                    <div class="role"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <p>Data</p>
+                            </td>
+                            <td>
+                                <p>Data</p>
+                            </td>
+                            <td>
+                                <p>Data</p>
+                            </td>
+                            <td>
+                                <!-- <p>{{ item.createdAt[1] }}</p> -->
+                                <!-- <button class="btn btn-outline-primary">. . .</button> -->
+                                <ul class="navbar-nav navbar-right">
+                                    <li class="dropdown">
+                                        <a class="btn btn-outline-primary dropdown" href="#" data-toggle="dropdown">
+                                . . .
+                              </a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <div class="dropdown-title"></div>
+                                            <a class="dropdown-item"><i class="fas fa-edit"></i> Aceptar</a>
+                                            <a class="dropdown-item"><i class="fas fa-edit"></i> Denegar</a>
+                                            <a class="dropdown-item" (click)="this.edit('5')"> <i class="fas fa-edit"></i> Editar</a>
+                                            <!-- <div class="dropdown-divider"></div> -->
+                                            <a class="dropdown-item" (click)="this.delete('5')"><i class="fas fa-trash"></i> Eliminar</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </section>
+
+<p-dialog [header]="this.title" [(visible)]="this.showModal" [modal]="true" [style]="{width: '45vw'}" [baseZIndex]="10000">
+    <app-add-request></app-add-request>
+</p-dialog>

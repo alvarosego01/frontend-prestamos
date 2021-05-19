@@ -163,6 +163,7 @@ p-dialog( *ngIf="(this._sessionService.usuario.rolName  === 'COLLECTOR_ROLE')", 
                             </div>
                             <hr />
                             <div class="infoventaFooter row">
+                                <div class="col-md-12 col-lg-12">Coutas pagadas <strong>{{item.cuotas.length}} de {{item.ncuotas}}</strong></div>
                                 <div class="asignado col-md-12 col-lg-12"><small class="bold" *ngIf="item.cobrador_id != null">Asignado al cobrador:<a>{{ item.cobrador_id.name+' '+item.cobrador_id.last_name }}</a></small><small class="bold" *ngIf="item.cobrador_id == null">Sin cobrador designado</small></div>
                             </div>
                         </div>

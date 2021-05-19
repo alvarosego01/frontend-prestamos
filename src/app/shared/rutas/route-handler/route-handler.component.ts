@@ -23,6 +23,7 @@ export class RouteHandlerComponent implements OnInit {
   paginator: any = null;
   misRutas: any = [];
   editRoute: any = null;
+  header = 'Añadir nueva ruta';
 
   constructor(
     public _notifyService: NotifyService,
@@ -138,6 +139,7 @@ export class RouteHandlerComponent implements OnInit {
 
   edit(route: any): void{
     this.editRoute = route;
+    this.header = 'Editar ruta';
     this.modalNewRoute = true;
   }
 

@@ -216,7 +216,7 @@ p-dialog( *ngIf="(this._sessionService.usuario.rolName  === 'ENRUTATOR_ROLE')", 
                                   </a>
                                         <div class="dropdown-menu dropdown-menu-right">
                                             <div class="dropdown-title"></div>
-                                            <a *ngIf="caller === 'handler'" class="dropdown-item"><i class="fas fa-eye"></i> Detalle</a>
+                                            <a *ngIf="caller === 'handler'" class="dropdown-item" (click)="this.detalle(item)"><i class="fas fa-eye"></i> Detalle</a>
                                             <a *ngIf="caller === 'handler'" class="dropdown-item" (click)="this.edit(item)"> <i class="fas fa-edit"></i> Editar</a>
                                             <!-- <div class="dropdown-divider"></div> -->
                                             <a *ngIf="caller === 'handler'" class="dropdown-item" (click)="this.delete(item._id)"><i class="fas fa-trash"></i> Eliminar</a>
@@ -235,5 +235,9 @@ p-dialog( *ngIf="(this._sessionService.usuario.rolName  === 'ENRUTATOR_ROLE')", 
 </section>
 <p-dialog *ngIf="(this._sessionService.usuario.rolName  === 'ENRUTATOR_ROLE' || this._sessionService.usuario.rolName  === 'ADMIN_ROLE')" [header]="this.modalTitle" [(visible)]="this.modalnewClient" [modal]="true" [style]="{width: '75vw'}" [baseZIndex]="10000">
     <app-add-cliente-handler [cliente]="this.editClient" *ngIf="this.modalnewClient == true" (success)="this.sucessnewClient($event)" (close)="this.closeModal($event)"></app-add-cliente-handler>
+</p-dialog>
+<p-dialog *ngIf="(this._sessionService.usuario.rolName  === 'ENRUTATOR_ROLE' || this._sessionService.usuario.rolName  === 'ADMIN_ROLE')" [header]="this.modalDetailTitle" [(visible)]="this.modalDetailVisivility" [modal]="true" [style]="{width: '50vw'}"
+    [baseZIndex]="10000">
+    <app-client-detail *ngIf="this.modalDetailVisivility == true" [cliente]="this.editClient"></app-client-detail>
 </p-dialog>
 <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>

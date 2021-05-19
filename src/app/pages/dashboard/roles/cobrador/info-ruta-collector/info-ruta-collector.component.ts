@@ -101,6 +101,7 @@ export class InfoRutaCollectorComponent implements OnInit {
     if (type === 'cobro'){
       this.aCobrar = item;
       this.controlCobro = true;
+      console.log('item a cobrar (venta)', item);
     }
     // if(type == 'showDetails'){
     //   this.showDetails = true;

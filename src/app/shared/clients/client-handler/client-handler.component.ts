@@ -16,6 +16,8 @@ export class ClientHandlerComponent implements OnInit {
   paginator: any = null;
   misRutas: any = [];
   modalTitle = 'Nuevo Cliente';
+  modalDetailTitle = 'Informacion del Cliente';
+  modalDetailVisivility = false;
   constructor(
     public _notifyService: NotifyService,
     public _globalService: GlobalService,
@@ -84,8 +86,9 @@ export class ClientHandlerComponent implements OnInit {
   });
   }
 
-  detalle(client: any){
-
+  detalle(client: any): void{
+    this.editClient = client;
+    this.modalDetailVisivility = true;
   }
 
   crearCuenta(id: string){

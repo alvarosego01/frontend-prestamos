@@ -131,7 +131,6 @@ p-dialog( *ngIf="(this._sessionService.usuario.rolName  === 'ENRUTATOR_ROLE')", 
                                     </a>
                                             <div class="dropdown-menu dropdown-menu-right">
                                                 <div class="dropdown-title"></div>
-                                                <a class="dropdown-item" (click)="asignar(item._id)" routerLinkActive="active"><i class="fas fa-plus"></i> Agregar Clientes</a>
                                                 <a class="dropdown-item" [routerLink]="['ruta/detail', item._id ]" routerLinkActive="active"><i class="fas fa-eye"></i> Detalles</a>
                                                 <a class="dropdown-item" [routerLink]="['rutas/', item._id ]" routerLinkActive="active"><i class="fas fa-eye"></i> Ventas</a>
 
@@ -151,8 +150,8 @@ p-dialog( *ngIf="(this._sessionService.usuario.rolName  === 'ENRUTATOR_ROLE')", 
     </div>
 </section>
 
-<p-dialog *ngIf="(this._sessionService.usuario.rolName  === 'ENRUTATOR_ROLE' || this._sessionService.usuario.rolName  === 'ADMIN_ROLE')" header="Añadir nueva ruta" [(visible)]="this.modalNewRoute" [modal]="true" [style]="{width: '75vw'}" [baseZIndex]="10000">
-    <app-add-ruta [ruta]="" *ngIf="this.modalNewRoute == true" (success)="this.sucessNewRoute($event)" (close)="this.closeModal($event)"></app-add-ruta>
+<p-dialog *ngIf="(this._sessionService.usuario.rolName  === 'ENRUTATOR_ROLE' || this._sessionService.usuario.rolName  === 'ADMIN_ROLE')" header="{{header}}" [(visible)]="this.modalNewRoute" [modal]="true" [style]="{width: '75vw'}" [baseZIndex]="10000">
+    <app-add-ruta [ruta]="editRoute" *ngIf="this.modalNewRoute == true" (success)="this.sucessNewRoute($event)" (close)="this.closeModal($event)"></app-add-ruta>
 </p-dialog>
 <p-dialog header="Asignar Clientes" [(visible)]="asignModal" [style]="{width: '70vw'}" [baseZIndex]="10000">
     <app-ruta-asign [rutaSelected]="this.selectedRoute" (successAsign)="this.asignSuccess($event)"></app-ruta-asign>

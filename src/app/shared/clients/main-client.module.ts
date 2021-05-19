@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 import { InfoRutaModule } from '../../pages/dashboard/info-ruta/info-ruta.module';
 import { AddClientHandlerComponent,MainClientComponent,ClientHandlerComponent } from './main-client/main-client.index';
 import { ConfirmationService } from 'primeng/api';
+import { ClientDetailComponent } from './client-handler/client-detail/client-detail.component';
 
 
 @NgModule({
@@ -27,7 +28,7 @@ import { ConfirmationService } from 'primeng/api';
     RouterModule,
     InfoRutaModule
   ],
-  declarations: [MainClientComponent,AddClientHandlerComponent,ClientHandlerComponent],
+  declarations: [MainClientComponent,AddClientHandlerComponent,ClientHandlerComponent, ClientDetailComponent],
   exports:[
     CommonModule,
     BrowserModule,

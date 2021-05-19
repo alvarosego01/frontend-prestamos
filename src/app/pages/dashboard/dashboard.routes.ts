@@ -51,7 +51,6 @@ const dashboardRoutes: Routes = [
         canActivate: [AdminOrEnruterGuard],
         canActivateChild: [AdminOrEnruterGuard],
       },
-
       {
         path: "admin",
         component: AdminComponent,
@@ -60,7 +59,6 @@ const dashboardRoutes: Routes = [
         // canLoad: [ AuthGuard ],
         loadChildren: () => import('../dashboard/roles/admin/admin.routes').then(m => m._ADMIN_ROUTES)
       },
-
       {
         path: "socio",
         component: EnrutadorComponent,

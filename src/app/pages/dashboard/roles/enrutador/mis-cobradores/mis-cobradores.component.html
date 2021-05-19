@@ -118,76 +118,69 @@ section.section
 
 
 <section class="section">
-  <div class="section-header">
-      <h1>Control de mis cobradores</h1>
-  </div>
-  <div class="section-body">
-      <h2 class="section-title">Listado de cobradores referenciados a tu cuenta<span *ngIf="this.paginator && this.paginator.itemCount &gt; 0">- {{ this.paginator.itemCount }}</span></h2>
-      <div class="row">
-          <div class="col-12">
-              <div class="card">
-                  <div class="card-header">
-                      <h4></h4>
-                      <div class="card-header-form">
-                          <form class="needs-validation" #f="ngForm" (ngSubmit)="this.searchUser( f )">
-                              <div class="input-group"><input class="form-control" required="required" ngModel="ngModel" type="text" name="arg" placeholder="Busqueda" />
-                                  <div class="input-group-btn"><button class="noBorder btn btn-primary" type="submit" style="border-radius: 0!important"><i class="fas fa-search"></i></button><button class="btn btn-primary" type="button" (click)="this.getAll(1)">Todos</button></div>
-                                  <div class="invalid-feedback">Por favor, escribe un argumento de búsqueda</div>
-                              </div>
-                          </form>
-                      </div>
-                  </div>
-                  <div class="card-body p-0">
-                      <div class="table-responsive">
-                          <table class="table table-striped">
-                              <thead>
-                                  <tr>
-                                      <th *ngFor="let item of this.headers">{{ item }}</th>
-                                  </tr>
-                              </thead>
-                              <tbody>
-                                  <tr *ngFor="let it2 of this.registros">
-                                      <td>
-                                          <div class="avatarUser"><img class="rounded-circle" alt="image" src="assets/img/avatar/avatar-2.png" width="50" data-toggle="tooltip" data-placement="right" title="" data-original-title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." />
-                                              <div class="role"></div>
-                                          </div>
-                                      </td>
-                                      <td>
-                                          <p>{{ it2.name }} {{ it2.last_name }}</p>
-                                      </td>
-                                      <td>
-                                          <p>{{ it2.edad}}</p>
-                                      </td>
-                                      <td>
-                                          <p>{{ it2.id_card}}</p>
-                                      </td>
-                                      <td>
-                                          <p>{{ it2.nro_fijo}}</p>
-                                      </td>
-                                      <td>
-                                          <p>{{ it2.nro_movil}}</p>
-                                      </td>
-                                      <td>
-                                          <p>{{ it2.email}}</p>
-                                      </td>
-                                      <td>
-                                          <p>{{ it2.createdAt[1] }} {{ it2.createdAt[2] }}</p>
-                                      </td>
-                                      <td>
-                                          <p>{{ it2.last_session[1] }} {{ it2.last_session[2] }}</p>
-                                      </td>
-                                      <td>
-                                          <div class="badge badge-success">{{ it2.status }}</div>
-                                      </td>
-                                      <td><a class="btn btn-primary" [routerLink]="['/dashboard/usuario', it2._id ]" routerLinkActive="active">Detalles</a></td>
-                                  </tr>
-                              </tbody>
-                          </table>
-                      </div>
-                  </div>
-              </div>
-              <app-paginator *ngIf="( this.paginator != null ) && ( this.paginator.pageCount &gt; 1 )" [paginator]="this.paginator" (newPageResponse)="this.newPageResponse($event)"></app-paginator>
-          </div>
-      </div>
-  </div>
+    <div class="section-header">
+        <h1>Control de mis cobradores</h1>
+    </div>
+    <div class="section-body">
+        <h2 class="section-title">Listado de cobradores referenciados a tu cuenta<span *ngIf="this.paginator && this.paginator.itemCount &gt; 0">- {{ this.paginator.itemCount }}</span></h2>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4></h4>
+                        <div class="card-header-form">
+                            <form class="needs-validation" #f="ngForm" (ngSubmit)="this.searchUser( f )">
+                                <div class="input-group"><input class="form-control" required="required" ngModel="ngModel" type="text" name="arg" placeholder="Busqueda" />
+                                    <div class="input-group-btn"><button class="noBorder btn btn-primary" type="submit" style="border-radius: 0!important"><i class="fas fa-search"></i></button><button class="btn btn-primary" type="button" (click)="this.getAll(1)">Todos</button></div>
+                                    <div class="invalid-feedback">Por favor, escribe un argumento de búsqueda</div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th *ngFor="let item of this.headers">{{ item }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let it2 of this.registros">
+                                <td>
+                                    <div class="avatarUser"><img class="rounded-circle" alt="image" src="assets/img/avatar/avatar-2.png" width="50" data-toggle="tooltip" data-placement="right" title="" data-original-title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+                                        />
+                                        <div class="role"></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p>{{ it2.name }} {{ it2.last_name }}</p>
+                                </td>
+                                <!-- <td>
+                                    <p>{{ it2.edad}}</p>
+                                </td>
+                                <td>
+                                    <p>{{ it2.id_card}}</p>
+                                </td>
+                                <td>
+                                    <p>{{ it2.nro_fijo}}</p>
+                                </td> -->
+                                <td>
+                                    <p>{{ it2.nro_movil}}</p>
+                                </td>
+                                <td>
+                                    <p>{{ it2.email}}</p>
+                                </td>
+                                <td>
+                                    <div class="badge badge-success">{{ it2.status }}</div>
+                                </td>
+                                <td><a class="btn btn-primary" [routerLink]="['/dashboard/usuario', it2._id ]" routerLinkActive="active">Detalles</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <app-paginator *ngIf="( this.paginator != null ) && ( this.paginator.pageCount &gt; 1 )" [paginator]="this.paginator" (newPageResponse)="this.newPageResponse($event)"></app-paginator>
+            </div>
+        </div>
+    </div>
 </section>

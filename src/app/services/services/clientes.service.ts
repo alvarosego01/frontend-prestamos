@@ -121,10 +121,8 @@ export class ClientesService {
 
   }
 
-
   clientOneDELETE(id: string) {
-    console.log('delete', id);
-    const url = `${this._SERVICIOS}/clientes/borrar/${this._sessionService.usuario._id}/${id}`;
+    const url = `${this._SERVICIOS}/clientes/borrar/${id}`;
 
     return this.http.delete(url).pipe(
       map((resp: any) => {
@@ -147,6 +145,19 @@ export class ClientesService {
         return throwError(err);
       })
     );
+  }
+
+  getClientPayments(idClient: string){
+    const url = `${this._SERVICIOS}/cliente/cobros/realizados/${idClient}`;
+    return this.http.get(url).pipe(
+        map((resp: any) => {
+        return resp;
+    }),
+    catchError((err) => {
+        return throwError(err);
+    })
+    );
+
   }
 
 }

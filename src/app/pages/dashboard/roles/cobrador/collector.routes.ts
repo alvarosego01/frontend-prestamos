@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminGuard } from 'src/app/services/guards/guards.index';
 import { ProfileComponent, NotificationsComponent, SettingsComponent } from '../../dashboard.index';
 import { InfoRutaComponent } from '../../info-ruta/inforuta.index';
+import { RequestControlEnrouterComponent } from '../enrutador/enrutador.index';
 import { InfoRutaCollectorComponent, MisRutasCollectorComponent, RequestControlCollectorComponent, StatsCollectorComponent } from './collector.index';
 
 
@@ -39,7 +40,7 @@ const enrouterRoutes: Routes = [
         },
         {
           path: "peticiones",
-          component: RequestControlCollectorComponent,
+          component: RequestControlEnrouterComponent,
         },
         {
           path: "reportes",

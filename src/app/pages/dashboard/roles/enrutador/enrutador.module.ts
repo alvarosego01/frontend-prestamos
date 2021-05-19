@@ -17,9 +17,10 @@ import { MisClientesComponent } from './mis-clientes/mis-clientes.component';
 import { AddClienteComponent } from './mis-clientes/add-cliente/add-cliente.component';
 import { MainClientModule } from 'src/app/shared/clients/main-client.module';
 import { MainRouteModule } from 'src/app/shared/rutas/main-route-module';
+import { AddRequestComponent } from './request-control-enrouter/add-request/add-request.component';
 
 @NgModule({
-  declarations: [EnrutadorComponent, MisCobradoresComponent, MisRutasEnrouterComponent, StatsEnrouterComponent, RequestControlEnrouterComponent,  MisClientesComponent, AddClienteComponent],
+  declarations: [EnrutadorComponent, MisCobradoresComponent, MisRutasEnrouterComponent, StatsEnrouterComponent, RequestControlEnrouterComponent,  MisClientesComponent, AddClienteComponent, AddRequestComponent],
   imports: [
     DialogModule,
     CommonModule,

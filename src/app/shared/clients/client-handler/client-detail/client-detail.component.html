@@ -1,0 +1,100 @@
+<section class="section">
+    <div class="section-body">
+        <div class="row mt-4">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Edad</th>
+                        <!-- <th>Creado en</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="avatarUser"><img class="rounded-circle" alt="image" src="assets/img/avatar/avatar-2.png" width="35" data-toggle="tooltip" data-placement="right" title="" data-original-title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." />
+                                <div class="role"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <p>{{cliente.name}}</p>
+                        </td>
+                        <td>
+                            <p>{{cliente.last_name}}</p>
+                        </td>
+                        <td>
+                            <p>{{cliente.edad}}</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <h2 class="section-title">Cobros</h2>
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card" *ngIf="false">
+                    <div class="card-body">
+                        <app-hero [type]="'primary'" [titulo]="'Sin resultados'" [subTitulo]="'No tienes cobros actualmente'"></app-hero>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h4></h4>
+                        <!-- <app-panel-slize *ngIf="this.cliente.rutas[0].negocios_id && this.cliente.rutas[0].negocios_id.length > 0">
+                            <app-statsRoute-general [_ruta]="this.cliente.rutas[0]"></app-statsRoute-general>
+                        </app-panel-slize> -->
+
+                        <div class="row">
+                            <div class="col-12">
+                                <h2 class="section-title">{{ this.cliente.rutas[0].titleRoute }} - Creado en: {{ this.cliente.rutas[0].createdAt[0]+' '+this.cliente.rutas[0].createdAt[1]+' '+this.cliente.rutas[0].createdAt[2] }}</h2>
+                                <div class="activities clientList">
+                                    <div class="activity" *ngFor="let item of this.payments; let i = index">
+                                        <div class="activity-icon bg-primary text-white shadow-primary">{{ i + 1 }}</div>
+                                        <div class="activity-detail">
+                                            <div class="dataHeaderClient mb-2"><span class="text-job">{{ item.createdAt[1]+' '+item.createdAt[2] }}</span><span><i class="fas fa-calendar-check"></i>Cobro<span *ngIf="item.concurrencia.tipo != 'Otro'">{{ item.concurrencia.tipo }}</span>
+                                                <span *ngIf="item.concurrencia.tipo == 'Otro'">cada {{ item.concurrencia.concurrencia }} Días</span>
+                                                </span>
+                                                <!-- <div class="float-right dropdown"><a href="#" data-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></a>
+                                                  <div class="dropdown-menu">
+                                                      <div class="dropdown-title">Opciones</div><a class="dropdown-item has-icon" (click)="this.showDialog('showDetails', item)"><i class="fas fa-eye"></i> Ver detalles</a>
+                                                      <a class="dropdown-item has-icon" (click)="this.showDialog('showUpdate', item)"><i class="fas fa-list"></i> Modificar</a>
+                                                      <div class="dropdown-divider"></div><a class="dropdown-item has-icon text-danger" (click)="this.showDialog('showDelete', item)"><i class="fas fa-trash-alt"></i> Eliminar</a>
+                                                  </div>
+                                              </div> -->
+                                            </div>
+                                            <div class="infoventa row">
+                                                <div class="porcGanancia col-md-12 col-lg-4"><small class="bold">Valor de venta</small><br /><span class="ganancia">{{ item.venta }}<i class="fas fa-dollar-sign"></i></span></div>
+                                                <div class="porcGanancia col-md-12 col-lg-4"><small class="bold">Interés</small><br /><span class="ganancia">{{ item.interes }}<i class="fas fa-percent"></i></span></div>
+                                                <div class="porcGanancia col-md-12 col-lg-4"><small class="bold">Total</small><br /><span class="ganancia">{{ item.total }}<i class="fas fa-dollar-sign"></i></span></div>
+                                            </div>
+                                            <div class="infoventa row">
+                                                <div class="porcGanancia col-md-12 col-lg-6"><small class="bold">Número de cuotas</small><br /><span class="ganancia">{{ item.ncuotas }}</span></div>
+                                                <div class="porcGanancia col-md-12 col-lg-6"><small class="bold">Valor por cuotas</small><br /><span class="ganancia">{{ item.vcuotas }}<i class="fas fa-dollar-sign"></i></span></div>
+                                            </div>
+                                            <hr />
+                                            <div class="infoventa datosventa row">
+                                                <div class="porcGanancia col-md-12 col-lg-6"><small class="bold">Nombre y apellido</small><br /><small>{{ item.cliente_id.name+' '+item.cliente_id.last_name }}</small></div>
+                                                <div class="porcGanancia col-md-12 col-lg-6"><small class="bold">Edad</small><br /><small>{{ item.cliente_id.edad }}</small></div>
+                                                <div class="porcGanancia col-md-12 col-lg-6"><small class="bold">Identificación</small><br /><small>{{ item.cliente_id.card_id }}</small></div>
+                                                <div class="porcGanancia col-md-12 col-lg-6"><small class="bold">Teléfono</small><br /><small>{{ item.cliente_id.phone }}</small></div>
+                                                <div class="porcGanancia col-md-12 col-lg-12"><small class="bold">Domicilio de cobro</small><br /><small>{{ item.cliente_id.phone }}</small></div>
+                                            </div>
+                                            <hr />
+                                            <div class="infoventaFooter row">
+                                                <div class="asignado col-md-12 col-lg-12"><small class="bold" *ngIf="item.cobrador_id != null">Asignado al cobrador:<a [routerLink]="['/dashboard/usuario', item.cobrador_id._id ]" routerLinkActive="active">{{ item.cobrador_id.name+' '+item.cobrador_id.last_name }}</a></small>
+                                                    <small class="bold" *ngIf="item.cobrador_id == null">Sin cobrador designado</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

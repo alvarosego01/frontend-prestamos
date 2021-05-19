@@ -164,8 +164,7 @@ p-dialog( *ngIf="(this._sessionService.usuario.rolName === 'ENRUTATOR_ROLE')", h
                             <hr />
                             <div class="infoventaFooter row">
                                 <div class="asignado col-md-12 col-lg-12"><small class="bold" *ngIf="item.cobrador_id != null">Asignado al cobrador:<a [routerLink]="['/dashboard/usuario', item.cobrador_id._id ]" routerLinkActive="active">{{ item.cobrador_id.name+' '+item.cobrador_id.last_name }}</a></small>
-                                    <small
-                                        class="bold" *ngIf="item.cobrador_id == null">Sin cobrador designado</small>
+                                    <small class="bold" *ngIf="item.cobrador_id == null">Sin cobrador designado</small>
                                 </div>
                             </div>
                         </div>
